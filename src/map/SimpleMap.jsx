@@ -20,20 +20,76 @@ const SimpleMap = () => {
     });
 
     const [places, setPlaces] = useState([
-        {id: '1', longitude: 25.341746138622348, latitude: 54.72744555070343},
-        {id: '2', longitude: 25.348183440258097, latitude: 54.72298451304856},
-        {id: '3', longitude: 25.33977203278708, latitude: 54.716093723400704},
-        {id: '4', longitude: 25.32149009614157, latitude: 54.718473409062995},
-        {id: '5', longitude: 25.325781630565665, latitude: 54.72888289157234},
-        {id: '6', longitude: 25.367924498608037, latitude: 54.73165830208707},
+        {
+            id: '1',
+            position: {longitude: 25.341746138622348, latitude: 54.72744555070343},
+            title: 'Maxima XXX',
+            products: [{
+                title: 'tofu',
+                description: 'a lot of protein, low sugar, healthy',
+                imageUrl: 'https://www.veggo.lt/991-home_default/organic-tofu-picknicker-50g-viana.jpg'
+            }]
+        },
+        {
+            id: '2',
+            position: {longitude: 25.348183440258097, latitude: 54.72298451304856},
+            title: 'Maxima XXX',
+            products: [{
+                title: 'tofu',
+                description: 'a lot of protein, low sugar, healthy',
+                imageUrl: 'https://www.veggo.lt/147-home_default/ekologiskas-keptas-tempeh.jpg'
+            }]
+        },
+        {
+            id: '3',
+            position: {longitude: 25.33977203278708, latitude: 54.716093723400704},
+            title: 'Maxima XXX',
+            products: [{
+                title: 'tofu',
+                description: 'a lot of protein, low sugar, healthy',
+                imageUrl: 'https://www.veggo.lt/839-home_default/ekologiskas-fermentuotas-tofu-su-laiskiniais-cesnakais-130g-lord-of-tofu.jpg'
+            }]
+        },
+        {
+            id: '4',
+            position: {longitude: 25.32149009614157, latitude: 54.718473409062995},
+            title: 'Maxima XXX',
+            products: [{
+                title: 'tofu',
+                description: 'a lot of protein, low sugar, healthy',
+                imageUrl: 'https://www.veggo.lt/549-home_default/ekologiskas-silkinis-tofu.jpg'
+            }]
+        },
+        {
+            id: '5',
+            position: {longitude: 25.325781630565665, latitude: 54.72888289157234},
+            title: 'Maxima XXX',
+            products: [{
+                title: 'tofu',
+                description: 'a lot of protein, low sugar, healthy',
+                imageUrl: 'https://www.veggo.lt/146-home_default/marinuotas-tempeh-natural-way.jpg'
+            }]
+        },
+        {
+            id: '6',
+            position: {longitude: 25.367924498608037, latitude: 54.73165830208707},
+            title: 'Maxima XXX',
+            products: [{
+                title: 'tofu',
+                description: 'a lot of protein, low sugar, healthy',
+                imageUrl: 'https://www.veggo.lt/1640-home_default/rukytas-tofu.jpg'
+            }]
+        },
     ]);
 
     const onClickAddPlace = (data) => {
 
         const marker = {
             id: `${Guid.newGuid()}`,
-            longitude: data.lngLat[0],
-            latitude: data.lngLat[1]
+            position: {
+                longitude: data.lngLat[0],
+                latitude: data.lngLat[1]
+            }
         };
         console.table(places)
         setPlaces(markers => [...markers, marker])

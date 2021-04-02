@@ -11,8 +11,8 @@ const PlacePopup = (props) => {
             tipSize={15}
             anchor="bottom"
             offsetTop={-15}
-            longitude={popupInfo.longitude}
-            latitude={popupInfo.latitude}
+            longitude={popupInfo.position.longitude}
+            latitude={popupInfo.position.latitude}
             closeOnClick={false}
             onClose={setPopupInfo}
         >

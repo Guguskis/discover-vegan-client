@@ -8,8 +8,8 @@ const PlaceMarkers = (props) => {
     return places.map(place => (
         <Marker
             key={place.id}
-            longitude={place.longitude}
-            latitude={place.latitude}
+            longitude={place.position.longitude}
+            latitude={place.position.latitude}
             offsetTop={-20} // center
             offsetLeft={-20} // center
         >
