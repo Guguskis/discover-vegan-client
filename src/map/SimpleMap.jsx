@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import ReactMapGL, {Marker} from 'react-map-gl'
 import {usePosition} from 'use-position';
+import StorefrontIcon from '@material-ui/icons/Storefront';
 
 import './SimpleMap.css'
 import {Guid} from "../utils/utils";
@@ -61,9 +62,12 @@ const SimpleMap = () => {
                 <Marker
                     key={marker.id}
                     longitude={marker.longitude}
-                    latitude={marker.latitude}>
-                    <button>
-                        <div>asd</div>
+                    latitude={marker.latitude}
+                    offsetTop={-20} // center
+                    offsetLeft={-20} // center
+                >
+                    <button className='locationMarker'>
+                        <StorefrontIcon className='locationIcon' width='auto' height='auto'/>
                     </button>
                 </Marker>
             ))}

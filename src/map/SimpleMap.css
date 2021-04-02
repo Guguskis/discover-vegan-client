@@ -1,0 +1,17 @@
+.locationMarker {
+    width: 3em;
+    height: 3em;
+    background-color: forestgreen;
+
+    border-radius: 100%;
+    border-color: limegreen;
+
+    /*center*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.locationIcon {
+    /*border: 2px solid black;*/
+}
