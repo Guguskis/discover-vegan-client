@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react'
-import ReactMapGL, {Marker} from 'react-map-gl'
+import ReactMapGL from 'react-map-gl'
 import {usePosition} from 'use-position';
-import StorefrontIcon from '@material-ui/icons/Storefront';
 
 import './SimpleMap.css'
 import {Guid} from "../utils/utils";
+import LocationMarkers from "./LocationMarkers";
 
 const SimpleMap = () => {
     const {latitude, longitude} = usePosition(false);
@@ -58,19 +58,7 @@ const SimpleMap = () => {
                     onViewportChange={setViewport}
                     mapStyle="mapbox://styles/mapbox/dark-v9"
                     onClick={onClickAddMarker}>
-            {markers.map(marker => (
-                <Marker
-                    key={marker.id}
-                    longitude={marker.longitude}
-                    latitude={marker.latitude}
-                    offsetTop={-20} // center
-                    offsetLeft={-20} // center
-                >
-                    <button className='locationMarker'>
-                        <StorefrontIcon className='locationIcon' width='auto' height='auto'/>
-                    </button>
-                </Marker>
-            ))}
+            <LocationMarkers markers={markers} onClick={onClickAddMarker}/>
         </ReactMapGL>
     );
 }
