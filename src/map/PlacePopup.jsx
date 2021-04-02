@@ -1,7 +1,7 @@
 import React from 'react';
 import {Popup} from "react-map-gl";
 
-const LocationPopup = (props) => {
+const PlacePopup = (props) => {
     const {popupInfo, setPopupInfo} = props;
 
     if (!popupInfo) return null;
@@ -21,4 +21,4 @@ const LocationPopup = (props) => {
     );
 };
 
-export default LocationPopup;
+export default PlacePopup;

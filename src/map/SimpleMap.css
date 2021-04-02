@@ -1,4 +1,4 @@
-.locationMarker {
+.placeMarker {
     width: 3em;
     height: 3em;
     background-color: forestgreen;
@@ -12,6 +12,6 @@
     align-items: center;
 }
 
-.locationIcon {
+.placeIcon {
     /*border: 2px solid black;*/
 }

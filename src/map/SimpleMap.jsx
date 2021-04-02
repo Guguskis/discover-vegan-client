@@ -4,8 +4,8 @@ import {usePosition} from 'use-position';
 
 import './SimpleMap.css'
 import {Guid} from "../utils/utils";
-import LocationMarkers from "./LocationMarkers";
-import LocationPopup from "./LocationPopup";
+import PlaceMarkers from "./PlaceMarkers";
+import PlacePopup from "./PlacePopup";
 
 const SimpleMap = () => {
     const {latitude, longitude} = usePosition(false);
@@ -19,7 +19,7 @@ const SimpleMap = () => {
         zoom: 13
     });
 
-    const [markers, setMarkers] = useState([
+    const [places, setPlaces] = useState([
         {id: '1', longitude: 25.341746138622348, latitude: 54.72744555070343},
         {id: '2', longitude: 25.348183440258097, latitude: 54.72298451304856},
         {id: '3', longitude: 25.33977203278708, latitude: 54.716093723400704},
@@ -28,15 +28,15 @@ const SimpleMap = () => {
         {id: '6', longitude: 25.367924498608037, latitude: 54.73165830208707},
     ]);
 
-    const onClickAddMarker = (data) => {
+    const onClickAddPlace = (data) => {
 
         const marker = {
             id: `${Guid.newGuid()}`,
             longitude: data.lngLat[0],
             latitude: data.lngLat[1]
         };
-        console.table(markers)
-        setMarkers(markers => [...markers, marker])
+        console.table(places)
+        setPlaces(markers => [...markers, marker])
     }
 
     useEffect(() => {
@@ -47,7 +47,7 @@ const SimpleMap = () => {
                 latitude: latitude
             })
 
-            onClickAddMarker({lngLat: [longitude, latitude]})
+            onClickAddPlace({lngLat: [longitude, latitude]})
         }
     }, [latitude, longitude])
 
@@ -59,9 +59,9 @@ const SimpleMap = () => {
                     {...viewport}
                     onViewportChange={setViewport}
                     mapStyle="mapbox://styles/mapbox/dark-v9"
-                    onClick={onClickAddMarker}>
-            <LocationMarkers markers={markers} setPopupInfo={setPopupInfo}/>
-            <LocationPopup popupInfo={popupInfo} setPopupInfo={setPopupInfo}/>
+                    onClick={onClickAddPlace}>
+            <PlaceMarkers places={places} setPopupInfo={setPopupInfo}/>
+            <PlacePopup popupInfo={popupInfo} setPopupInfo={setPopupInfo}/>
         </ReactMapGL>
     );
 }
