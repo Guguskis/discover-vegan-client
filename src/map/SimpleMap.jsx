@@ -25,60 +25,68 @@ const SimpleMap = () => {
             position: {longitude: 25.341746138622348, latitude: 54.72744555070343},
             title: 'Maxima XXX',
             products: [{
+                id: 1,
                 title: 'tofu',
                 description: 'a lot of protein, low sugar, healthy',
                 imageUrl: 'https://www.veggo.lt/991-home_default/organic-tofu-picknicker-50g-viana.jpg'
-            }]
+            },
+                {
+                    id: 1,
+                    title: 'tofu',
+                    description: 'a lot of protein, low sugar, healthy',
+                    imageUrl: 'https://www.veggo.lt/991-home_default/organic-tofu-picknicker-50g-viana.jpg'
+                }]
         },
         {
             id: '2',
             position: {longitude: 25.348183440258097, latitude: 54.72298451304856},
             title: 'Maxima XXX',
             products: [{
+                id: 1,
                 title: 'tofu',
                 description: 'a lot of protein, low sugar, healthy',
                 imageUrl: 'https://www.veggo.lt/147-home_default/ekologiskas-keptas-tempeh.jpg'
-            }]
+            },
+                {
+                    id: 1,
+                    title: 'tofu',
+                    description: 'a lot of protein, low sugar, healthy',
+                    imageUrl: 'https://www.veggo.lt/147-home_default/ekologiskas-keptas-tempeh.jpg'
+                }]
         },
         {
             id: '3',
             position: {longitude: 25.33977203278708, latitude: 54.716093723400704},
             title: 'Maxima XXX',
             products: [{
+                id: 1,
                 title: 'tofu',
                 description: 'a lot of protein, low sugar, healthy',
                 imageUrl: 'https://www.veggo.lt/839-home_default/ekologiskas-fermentuotas-tofu-su-laiskiniais-cesnakais-130g-lord-of-tofu.jpg'
-            }]
+            },
+                {
+                    id: 1,
+                    title: 'tofu',
+                    description: 'a lot of protein, low sugar, healthy',
+                    imageUrl: 'https://www.veggo.lt/839-home_default/ekologiskas-fermentuotas-tofu-su-laiskiniais-cesnakais-130g-lord-of-tofu.jpg'
+                }]
         },
         {
             id: '4',
             position: {longitude: 25.32149009614157, latitude: 54.718473409062995},
             title: 'Maxima XXX',
             products: [{
+                id: 1,
                 title: 'tofu',
                 description: 'a lot of protein, low sugar, healthy',
                 imageUrl: 'https://www.veggo.lt/549-home_default/ekologiskas-silkinis-tofu.jpg'
-            }]
-        },
-        {
-            id: '5',
-            position: {longitude: 25.325781630565665, latitude: 54.72888289157234},
-            title: 'Maxima XXX',
-            products: [{
-                title: 'tofu',
-                description: 'a lot of protein, low sugar, healthy',
-                imageUrl: 'https://www.veggo.lt/146-home_default/marinuotas-tempeh-natural-way.jpg'
-            }]
-        },
-        {
-            id: '6',
-            position: {longitude: 25.367924498608037, latitude: 54.73165830208707},
-            title: 'Maxima XXX',
-            products: [{
-                title: 'tofu',
-                description: 'a lot of protein, low sugar, healthy',
-                imageUrl: 'https://www.veggo.lt/1640-home_default/rukytas-tofu.jpg'
-            }]
+            },
+                {
+                    id: 1,
+                    title: 'tofu',
+                    description: 'a lot of protein, low sugar, healthy',
+                    imageUrl: 'https://www.veggo.lt/549-home_default/ekologiskas-silkinis-tofu.jpg'
+                }]
         },
     ]);
 
@@ -102,8 +110,6 @@ const SimpleMap = () => {
                 longitude: longitude,
                 latitude: latitude
             })
-
-            onClickAddPlace({lngLat: [longitude, latitude]})
         }
     }, [latitude, longitude])
 
@@ -115,7 +121,8 @@ const SimpleMap = () => {
                     {...viewport}
                     onViewportChange={setViewport}
                     mapStyle="mapbox://styles/mapbox/dark-v9"
-                    onClick={onClickAddPlace}>
+            // onClick={onClickAddPlace}
+        >
             <PlaceMarkers places={places} setPopupInfo={setPopupInfo}/>
             <PlacePopup popupInfo={popupInfo} setPopupInfo={setPopupInfo}/>
         </ReactMapGL>

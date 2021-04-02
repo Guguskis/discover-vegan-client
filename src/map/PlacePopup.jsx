@@ -1,5 +1,8 @@
 import React from 'react';
 import {Popup} from "react-map-gl";
+import Product from "../components/Product";
+
+import './PlacePopup.css'
 
 const PlacePopup = (props) => {
     const {popupInfo, setPopupInfo} = props;
@@ -15,8 +18,9 @@ const PlacePopup = (props) => {
             latitude={popupInfo.position.latitude}
             closeOnClick={false}
             onClose={setPopupInfo}
+            className='productsContainer'
         >
-            <div>XXXXXX</div>
+            {popupInfo.products.map(product => <Product product={product}/>)}
         </Popup>
     );
 };
