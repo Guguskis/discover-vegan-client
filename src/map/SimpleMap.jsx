@@ -5,9 +5,11 @@ import {usePosition} from 'use-position';
 import './SimpleMap.css'
 import {Guid} from "../utils/utils";
 import LocationMarkers from "./LocationMarkers";
+import LocationPopup from "./LocationPopup";
 
 const SimpleMap = () => {
     const {latitude, longitude} = usePosition(false);
+    const [popupInfo, setPopupInfo] = useState(null);
 
     const [viewport, setViewport] = useState({
         latitude: 40.67,
@@ -49,8 +51,8 @@ const SimpleMap = () => {
         }
     }, [latitude, longitude])
 
-    if (!latitude || !longitude)
-        return (<div>Getting your location</div>)
+    // if (!latitude || !longitude)
+    //     return (<div>Getting your location</div>)
 
     return (
         <ReactMapGL className='map'
@@ -58,7 +60,8 @@ const SimpleMap = () => {
                     onViewportChange={setViewport}
                     mapStyle="mapbox://styles/mapbox/dark-v9"
                     onClick={onClickAddMarker}>
-            <LocationMarkers markers={markers} onClick={onClickAddMarker}/>
+            <LocationMarkers markers={markers} setPopupInfo={setPopupInfo}/>
+            <LocationPopup popupInfo={popupInfo} setPopupInfo={setPopupInfo}/>
         </ReactMapGL>
     );
 }

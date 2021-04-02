@@ -3,7 +3,7 @@ import {Marker} from "react-map-gl";
 import StorefrontIcon from "@material-ui/icons/Storefront";
 
 const LocationMarkers = (props) => {
-    const {markers, onCLick: onClick} = props;
+    const {markers, setPopupInfo} = props;
 
     return markers.map(marker => (
         <Marker
@@ -13,7 +13,7 @@ const LocationMarkers = (props) => {
             offsetTop={-20} // center
             offsetLeft={-20} // center
         >
-            <button className='locationMarker' onClick={onClick}>
+            <button className='locationMarker' onClick={() => setPopupInfo(marker)}>
                 <StorefrontIcon className='locationIcon' width='auto' height='auto'/>
             </button>
         </Marker>
