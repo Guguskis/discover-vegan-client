@@ -1,4 +1,4 @@
-.placeMarker {
+.vendorMarker {
     width: 3em;
     height: 3em;
     background-color: forestgreen;
@@ -12,6 +12,6 @@
     align-items: center;
 }
 
-.placeIcon {
+.vendorIcon {
     /*border: 2px solid black;*/
 }

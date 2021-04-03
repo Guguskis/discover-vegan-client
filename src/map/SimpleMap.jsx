@@ -4,8 +4,8 @@ import {usePosition} from 'use-position';
 
 import './SimpleMap.css'
 import {Guid} from "../utils/utils";
-import PlaceMarkers from "./PlaceMarkers";
-import PlacePopup from "./PlacePopup";
+import VendorMarkers from "./VendorMarkers";
+import VendorPopup from "./VendorPopup";
 
 const SimpleMap = () => {
     const {latitude, longitude} = usePosition(false);
@@ -19,7 +19,7 @@ const SimpleMap = () => {
         zoom: 13
     });
 
-    const [places, setPlaces] = useState([
+    const [vendors, setVendors] = useState([
         {
             id: '1',
             position: {longitude: 25.341746138622348, latitude: 54.72744555070343},
@@ -90,7 +90,7 @@ const SimpleMap = () => {
         },
     ]);
 
-    const onClickAddPlace = (data) => {
+    const onClickAddVendor = (data) => {
 
         const marker = {
             id: `${Guid.newGuid()}`,
@@ -99,8 +99,8 @@ const SimpleMap = () => {
                 latitude: data.lngLat[1]
             }
         };
-        console.table(places)
-        setPlaces(markers => [...markers, marker])
+        console.table(vendors)
+        setVendors(markers => [...markers, marker])
     }
 
     useEffect(() => {
@@ -121,10 +121,10 @@ const SimpleMap = () => {
                     {...viewport}
                     onViewportChange={setViewport}
                     mapStyle="mapbox://styles/mapbox/dark-v9"
-            // onClick={onClickAddPlace}
+            // onClick={onClickAddVendor}
         >
-            <PlaceMarkers places={places} setPopupInfo={setPopupInfo}/>
-            <PlacePopup popupInfo={popupInfo} setPopupInfo={setPopupInfo}/>
+            <VendorMarkers vendors={vendors} setPopupInfo={setPopupInfo}/>
+            <VendorPopup popupInfo={popupInfo} setPopupInfo={setPopupInfo}/>
         </ReactMapGL>
     );
 }

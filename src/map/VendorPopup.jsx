@@ -2,9 +2,9 @@ import React from 'react';
 import {Popup} from "react-map-gl";
 import Product from "../components/Product";
 
-import './PlacePopup.css'
+import './VendorPopup.css'
 
-const PlacePopup = (props) => {
+const VendorPopup = (props) => {
     const {popupInfo, setPopupInfo} = props;
 
     if (!popupInfo) return null;
@@ -25,4 +25,4 @@ const PlacePopup = (props) => {
     );
 };
 
-export default PlacePopup;
+export default VendorPopup;
