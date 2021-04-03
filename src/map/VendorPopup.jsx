@@ -20,7 +20,7 @@ const VendorPopup = (props) => {
             onClose={setPopupInfo}
             className='productsContainer'
         >
-            {popupInfo.products.map(product => <Product product={product}/>)}
+            {popupInfo.products.map(product => <Product key={product.id} product={product}/>)}
         </Popup>
     );
 };
