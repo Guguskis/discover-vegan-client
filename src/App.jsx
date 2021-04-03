@@ -1,4 +1,4 @@
-import './App.css';
+import './App.less';
 import Home from "./navigation/Home";
 import React from "react";
 
