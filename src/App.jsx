@@ -1,10 +1,10 @@
 import './App.less';
-import Home from "./navigation/Home.jsx";
+import HomePage from "./navigation/HomePage.jsx";
 import React from "react";
 
 function App() {
   return (
-    <Home/>
+      <HomePage/>
   );
 }
 

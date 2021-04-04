@@ -1,12 +1,12 @@
 import React from 'react';
-import './Home.less'
-import SimpleMap from "../map/SimpleMap.jsx";
+import './HomePage.less'
+import Map from "../map/Map.jsx";
 
-export default Home;
+export default HomePage;
 
-function Home() {
+function HomePage() {
     return (
-        <SimpleMap/>
+        <Map/>
         // <div className='chairContainer'>
         //     <div className='title'>ULTRA CHAIR</div>
         //     <div className='details'>super cheap and sturdy chair</div>

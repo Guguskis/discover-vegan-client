@@ -2,13 +2,13 @@ import React, {useEffect, useState} from 'react'
 import ReactMapGL from 'react-map-gl'
 import {usePosition} from 'use-position';
 
-import './SimpleMap.css'
+import './Map.css'
 import {Guid} from "../utils/utils.jsx";
 import VendorMarkers from "./VendorMarkers.jsx";
 import VendorPopup from "./VendorPopup.jsx";
 import VENDORS from "../data-sample/vendor.jsx";
 
-const SimpleMap = () => {
+const Map = () => {
     const {latitude, longitude} = usePosition(false);
     const [popupInfo, setPopupInfo] = useState(null);
 
@@ -62,4 +62,4 @@ const SimpleMap = () => {
     );
 }
 
-export default SimpleMap;
+export default Map;
