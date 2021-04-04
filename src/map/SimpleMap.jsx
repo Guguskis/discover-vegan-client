@@ -3,10 +3,10 @@ import ReactMapGL from 'react-map-gl'
 import {usePosition} from 'use-position';
 
 import './SimpleMap.css'
-import {Guid} from "../utils/utils";
-import VendorMarkers from "./VendorMarkers";
-import VendorPopup from "./VendorPopup";
-import VENDORS from "../data-sample/vendor";
+import {Guid} from "../utils/utils.jsx";
+import VendorMarkers from "./VendorMarkers.jsx";
+import VendorPopup from "./VendorPopup.jsx";
+import VENDORS from "../data-sample/vendor.jsx";
 
 const SimpleMap = () => {
     const {latitude, longitude} = usePosition(false);
