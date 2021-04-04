@@ -53,6 +53,7 @@ const SimpleMap = () => {
                     {...viewport}
                     onViewportChange={setViewport}
                     mapStyle="mapbox://styles/mapbox/dark-v9"
+                    mapboxApiAccessToken={process.env.MAPBOX_ACCESS_TOKEN}
             // onClick={onClickAddVendor}
         >
             <VendorMarkers vendors={vendors} setPopupInfo={setPopupInfo}/>
