@@ -1,6 +1,6 @@
 import React from 'react';
 import {Popup} from "react-map-gl";
-import Product from "../components/Product.jsx";
+import Product from "../Product.jsx";
 
 import './VendorPopup.css'
 

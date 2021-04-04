@@ -1,5 +1,5 @@
 import './App.less';
-import HomePage from "./navigation/HomePage.jsx";
+import HomePage from "./components/navigation/HomePage.jsx";
 import React from "react";
 
 function App() {
