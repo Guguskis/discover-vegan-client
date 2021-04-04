@@ -18,7 +18,7 @@
     "web-vitals": "^1.1.1"
   },
   "scripts": {
-    "start": "webpack-dev-server --port 3000 --mode development",
+    "start": "webpack-dev-server --mode development",
     "prebuild": "rimraf dist",
     "build": "webpack --progress --mode production",
     "test": "react-scripts test",
