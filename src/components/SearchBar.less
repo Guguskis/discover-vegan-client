@@ -1,0 +1,20 @@
+@import "./common";
+
+@background-color: tint(@secondary-color, 65%);
+
+.search-bar {
+  margin-left: 10px;
+  margin-top: 10px;
+  width: 300px;
+  background-color: @background-color;
+
+  .MuiInputLabel-shrink {
+    background-color: @background-color;
+    padding: 5px;
+    border-radius: 5px;
+  }
+}
+
+.MuiAutocomplete-loading, .MuiAutocomplete-listbox {
+  background-color: @background-color;
+}

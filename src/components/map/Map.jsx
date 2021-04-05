@@ -2,11 +2,11 @@ import React, {useEffect, useState} from 'react'
 import ReactMapGL from 'react-map-gl'
 import {usePosition} from 'use-position';
 
-import './Map.css'
-import {Guid} from "../../utils/utils.jsx";
+import './Map.less'
 import VendorMarkers from "./VendorMarkers.jsx";
 import VendorPopup from "./VendorPopup.jsx";
 import VENDORS from "../../data-sample/vendor.jsx";
+import SearchBar from "../SearchBar.jsx";
 
 const Map = () => {
     const {latitude, longitude} = usePosition(false);
@@ -20,19 +20,6 @@ const Map = () => {
 
     const [vendors, setVendors] = useState(VENDORS);
 
-    const onClickAddVendor = (data) => {
-
-        const marker = {
-            id: `${Guid.newGuid()}`,
-            position: {
-                longitude: data.lngLat[0],
-                latitude: data.lngLat[1]
-            }
-        };
-        console.table(vendors)
-        setVendors(markers => [...markers, marker])
-    }
-
     useEffect(() => {
         if (latitude && longitude) {
             setViewport({
@@ -43,9 +30,6 @@ const Map = () => {
         }
     }, [latitude, longitude])
 
-    // if (!latitude || !longitude)
-    //     return (<div>Getting your location</div>)
-
     return (
         <div className='map'>
             <ReactMapGL
@@ -54,11 +38,12 @@ const Map = () => {
                 mapStyle="mapbox://styles/mapbox/dark-v9"
                 mapboxApiAccessToken={process.env.MAPBOX_ACCESS_TOKEN}
                 width='100%'
-                height='100%'
-                // onClick={onClickAddVendor}
-            >
+                height='100%'>
                 <VendorMarkers vendors={vendors} setPopupInfo={setPopupInfo}/>
                 <VendorPopup popupInfo={popupInfo} setPopupInfo={setPopupInfo}/>
+                <div className='ui-overlay'>
+                    <SearchBar/>
+                </div>
             </ReactMapGL>
         </div>
     );
