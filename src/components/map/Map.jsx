@@ -15,8 +15,6 @@ const Map = () => {
     const [viewport, setViewport] = useState({
         latitude: 54.72744555070343,
         longitude: 25.341746138622348,
-        width: '100vw',
-        height: '100vh',
         zoom: 13
     });
 
@@ -49,16 +47,20 @@ const Map = () => {
     //     return (<div>Getting your location</div>)
 
     return (
-        <ReactMapGL className='map'
-                    {...viewport}
-                    onViewportChange={setViewport}
-                    mapStyle="mapbox://styles/mapbox/dark-v9"
-                    mapboxApiAccessToken={process.env.MAPBOX_ACCESS_TOKEN}
-            // onClick={onClickAddVendor}
-        >
-            <VendorMarkers vendors={vendors} setPopupInfo={setPopupInfo}/>
-            <VendorPopup popupInfo={popupInfo} setPopupInfo={setPopupInfo}/>
-        </ReactMapGL>
+        <div className='map'>
+            <ReactMapGL
+                {...viewport}
+                onViewportChange={setViewport}
+                mapStyle="mapbox://styles/mapbox/dark-v9"
+                mapboxApiAccessToken={process.env.MAPBOX_ACCESS_TOKEN}
+                width='100%'
+                height='100%'
+                // onClick={onClickAddVendor}
+            >
+                <VendorMarkers vendors={vendors} setPopupInfo={setPopupInfo}/>
+                <VendorPopup popupInfo={popupInfo} setPopupInfo={setPopupInfo}/>
+            </ReactMapGL>
+        </div>
     );
 }
 

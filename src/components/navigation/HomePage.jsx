@@ -7,10 +7,6 @@ export default HomePage;
 function HomePage() {
     return (
         <Map/>
-        // <div className='chairContainer'>
-        //     <div className='title'>ULTRA CHAIR</div>
-        //     <div className='details'>super cheap and sturdy chair</div>
-        // </div>
     );
 }
 
