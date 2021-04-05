@@ -1,0 +1,33 @@
+@import "./common.less";
+
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-bottom: 10px;
+
+    .details {
+        display: flex;
+        flex-direction: column;
+        align-content: flex-start;
+
+        .title {
+            font-size: @font-size-medium;
+            font-weight: bold;
+            margin: 10px 0 0 0;
+        }
+
+        .description {
+            font-size: @font-size-small;
+            margin: 0;
+        }
+    }
+
+    img {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+
+

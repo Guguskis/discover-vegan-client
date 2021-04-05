@@ -1,5 +1,5 @@
 import React from 'react';
-import './Product.css'
+import './Product.less'
 
 const Product = (props) => {
     const {product} = props;
@@ -8,8 +8,8 @@ const Product = (props) => {
         <div className='container' key={product.id}>
             <img src={product.imageUrl} alt={product.title}/>
             <div className='details'>
-                <div>{product.title}</div>
-                <div>{product.description}</div>
+                <p className='title'>{product.title}</p>
+                <p className='description'>{product.description}</p>
             </div>
         </div>
     );

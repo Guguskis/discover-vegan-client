@@ -1,17 +1,23 @@
 @import "./common";
 
-@background-color: tint(@secondary-color, 65%);
+@background-color: white;
 
 .search-bar {
   margin-left: 10px;
   margin-top: 10px;
-  width: 300px;
+  width: 400px;
   background-color: @background-color;
 
   .MuiInputLabel-shrink {
     background-color: @background-color;
     padding: 5px;
     border-radius: 5px;
+  }
+
+  .product {
+    .container {
+      height: 64px !important;
+    }
   }
 }
 
