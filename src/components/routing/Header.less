@@ -1,20 +1,37 @@
 @import "../common";
 
-.header-container {
+.header {
   display: flex;
   flex-direction: row;
   justify-content: center;
 
-  margin: 10px 0 10px 0;
+  width: 100%;
+  padding: 10px 0 10px 0;
 
-  .routing-item {
-    padding: 0 10px 0 10px;
+  .header-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
     background-color: @ternary-color;
-    color: @primary-color;
-    font-size: @font-size-large;
-  }
 
-  .active {
-    color: red;
+    border-radius: 10px;
+    overflow: hidden;
+
+    .routing-item {
+      padding: 0 15px 0 15px;
+      color: @primary-color;
+      font-size: @font-size-large;
+      text-decoration: none;
+
+      &:hover {
+        background-color: tint(@ternary-color, 10%);
+        transition: background-color 500ms linear;
+      }
+    }
+
+    .active {
+      background-color: tint(@ternary-color, 10%);
+    }
   }
 }
