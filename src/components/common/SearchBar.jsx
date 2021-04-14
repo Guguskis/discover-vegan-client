@@ -80,7 +80,6 @@ const SearchBar = () => {
                 <Product className='product' key={option.id} product={option}/>
             )}
         />
-
     );
 }
 
