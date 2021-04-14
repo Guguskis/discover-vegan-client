@@ -2,7 +2,10 @@ import React from 'react';
 import {Popup} from "react-map-gl";
 import Product from "../common/Product.jsx";
 
-import './VendorPopup.css'
+import './VendorPopup.less'
+import Button from "@material-ui/core/Button";
+import AddIcon from "@material-ui/icons/Add.js";
+import ListIcon from '@material-ui/icons/List';
 
 const VendorPopup = (props) => {
     const {popupInfo, setPopupInfo} = props;
@@ -21,6 +24,10 @@ const VendorPopup = (props) => {
             className='productsContainer'
         >
             {popupInfo.products.map(product => <Product key={product.id} product={product}/>)}
+            <div className="button-container">
+                <Button variant="contained" size="small" startIcon={<AddIcon/>}>Product</Button>
+                <Button variant="contained" size="small" startIcon={<ListIcon/>}>View all</Button>
+            </div>
         </Popup>
     );
 };

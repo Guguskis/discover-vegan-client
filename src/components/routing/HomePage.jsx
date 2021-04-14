@@ -14,7 +14,7 @@ function HomePage() {
             <Header/>
             <div className="map-overlay-container">
                 <SearchBar/>
-                <Button variant="contained" size="small" startIcon={<AddIcon/>}>Add missing product</Button>
+                <Button variant="contained" size="small" startIcon={<AddIcon/>}>Add vendor</Button>
             </div>
         </Map>
     );
