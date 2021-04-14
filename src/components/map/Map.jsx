@@ -6,9 +6,8 @@ import './Map.less'
 import VendorMarkers from "./VendorMarkers.jsx";
 import VendorPopup from "./VendorPopup.jsx";
 import VENDORS from "../../data-sample/vendor.jsx";
-import SearchBar from "../SearchBar.jsx";
 
-const Map = () => {
+const Map = (props) => {
     const {latitude, longitude} = usePosition(false);
     const [popupInfo, setPopupInfo] = useState(null);
 
@@ -42,7 +41,7 @@ const Map = () => {
                 <VendorMarkers vendors={vendors} setPopupInfo={setPopupInfo}/>
                 <VendorPopup popupInfo={popupInfo} setPopupInfo={setPopupInfo}/>
                 <div className='ui-overlay'>
-                    <SearchBar/>
+                    {props.children}
                 </div>
             </ReactMapGL>
         </div>
