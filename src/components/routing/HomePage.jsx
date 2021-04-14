@@ -1,7 +1,7 @@
 import React from 'react';
 import './HomePage.less'
 import Map from "../map/Map.jsx";
-import SearchBar from "../SearchBar.jsx";
+import SearchBar from "../common/SearchBar.jsx";
 
 export default HomePage;
 

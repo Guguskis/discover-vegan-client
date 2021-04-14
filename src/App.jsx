@@ -1,11 +1,14 @@
 import './App.less';
-import HomePage from "./components/navigation/HomePage.jsx";
+import {BrowserRouter as Router, Route} from 'react-router-dom'
+import HomePage from "./components/routing/HomePage.jsx";
 import React from "react";
 
 function App() {
-  return (
-      <HomePage/>
-  );
+    return (
+        <Router>
+            <Route exact path="/" component={HomePage}/>
+        </Router>
+    );
 }
 
 export default App;

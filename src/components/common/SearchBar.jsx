@@ -3,7 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import './SearchBar.less'
-import PRODUCTS from "../data-sample/product.jsx";
+import PRODUCTS from "../../data-sample/product.jsx";
 import Product from "./Product.jsx";
 
 function sleep(delay = 0) {
