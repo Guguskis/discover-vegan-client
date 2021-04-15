@@ -1,8 +1,19 @@
 @import "../common";
 
-.productsContainer {
+.popup-container {
   display: flex;
   flex-direction: column;
+  overflow: auto;
+
+  .mapboxgl-popup-content {
+    background-color: @ternary-color;
+  }
+
+  .products-container {
+    overflow-y: scroll;
+    max-height: 70vh;
+    margin: 15px 0 10px 0;
+  }
 
   .MuiButton-label {
     font-size: @font-size-small;

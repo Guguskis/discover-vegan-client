@@ -21,9 +21,14 @@ const VendorPopup = (props) => {
             latitude={popupInfo.position.latitude}
             closeOnClick={false}
             onClose={setPopupInfo}
-            className='productsContainer'
+            className='popup-container'
+            captureScroll={true}
+            captureClick={true}
+            capturePointerMove={true}
         >
-            {popupInfo.products.map(product => <Product key={product.id} product={product}/>)}
+            <div className="products-container">
+                {popupInfo.products.map(product => <Product key={product.id} product={product}/>)}
+            </div>
             <div className="button-container">
                 <Button variant="contained" size="small" startIcon={<AddIcon/>}>Product</Button>
                 <Button variant="contained" size="small" startIcon={<ListIcon/>}>View all</Button>
