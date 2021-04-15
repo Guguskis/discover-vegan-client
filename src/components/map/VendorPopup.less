@@ -1,12 +1,14 @@
 @import "../common";
 
+@container-background-color: @secondary-color;
+
 .popup-container {
   display: flex;
   flex-direction: column;
   overflow: auto;
 
   .mapboxgl-popup-content {
-    background-color: @secondary-color;
+    background-color: @container-background-color;
   }
 
   .products-container {
@@ -28,4 +30,24 @@
     flex-direction: row;
     justify-content: space-between;
   }
+}
+
+.mapboxgl-popup-anchor-top .mapboxgl-popup-tip,
+.mapboxgl-popup-anchor-top-left .mapboxgl-popup-tip,
+.mapboxgl-popup-anchor-top-right .mapboxgl-popup-tip {
+  border-bottom-color: @container-background-color !important;
+}
+
+.mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip,
+.mapboxgl-popup-anchor-bottom-left .mapboxgl-popup-tip,
+.mapboxgl-popup-anchor-bottom-right .mapboxgl-popup-tip {
+  border-top-color: @container-background-color !important;
+}
+
+.mapboxgl-popup-anchor-left .mapboxgl-popup-tip {
+  border-right-color: @container-background-color !important;
+}
+
+.mapboxgl-popup-anchor-right .mapboxgl-popup-tip {
+  border-left-color: @container-background-color !important;
 }
