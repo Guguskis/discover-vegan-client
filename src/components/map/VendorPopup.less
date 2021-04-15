@@ -7,10 +7,6 @@
   flex-direction: column;
   overflow: auto;
 
-  .mapboxgl-popup-content {
-    background-color: @container-background-color;
-  }
-
   .products-container {
     overflow-y: scroll;
     max-height: 70vh;
@@ -32,6 +28,13 @@
   }
 }
 
+// popup-background-color
+.popup-container {
+  .mapboxgl-popup-content {
+    background-color: @container-background-color;
+  }
+}
+
 .mapboxgl-popup-anchor-top .mapboxgl-popup-tip,
 .mapboxgl-popup-anchor-top-left .mapboxgl-popup-tip,
 .mapboxgl-popup-anchor-top-right .mapboxgl-popup-tip {
@@ -43,11 +46,9 @@
 .mapboxgl-popup-anchor-bottom-right .mapboxgl-popup-tip {
   border-top-color: @container-background-color !important;
 }
-
 .mapboxgl-popup-anchor-left .mapboxgl-popup-tip {
   border-right-color: @container-background-color !important;
 }
-
 .mapboxgl-popup-anchor-right .mapboxgl-popup-tip {
   border-left-color: @container-background-color !important;
 }
