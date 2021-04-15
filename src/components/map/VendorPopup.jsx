@@ -16,10 +16,10 @@ const VendorPopup = (props) => {
 
     if (!popupInfo) return null;
 
-    const onCLickHandleAddProduct = () => {
+    const onClickHandleAddProduct = () => {
         setAddProductFormOpen(true);
     }
-    const onCLickHandleAddProductClose = () => {
+    const onClickHandleAddProductClose = () => {
         setAddProductFormOpen(false);
     }
 
@@ -42,17 +42,17 @@ const VendorPopup = (props) => {
             </div>
             <div className="button-container">
                 <Button variant="contained" size="small" startIcon={<AddIcon/>}
-                        onClick={onCLickHandleAddProduct}>Product</Button>
+                        onClick={onClickHandleAddProduct}>Product</Button>
                 <Button variant="contained" size="small" startIcon={<ListIcon/>}>View all</Button>
             </div>
             <Modal
                 open={addProductFormOpen}
-                onClose={onCLickHandleAddProductClose}
+                onClose={onClickHandleAddProductClose}
                 aria-labelledby="server-modal-title"
                 aria-describedby="server-modal-description"
                 className="modal-container"
             >
-                <div><AddProductForm handleOnClose={onCLickHandleAddProductClose}/></div>
+                <div><AddProductForm handleOnClose={onClickHandleAddProductClose}/></div>
             </Modal>
         </Popup>
     );
