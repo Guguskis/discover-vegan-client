@@ -5,21 +5,30 @@
     flex-direction: row;
     align-items: flex-start;
     margin-bottom: 10px;
+    min-width: 20ch;
+    max-width: 40ch;
+
+    color: @font-color;
+
+    > * {
+        border: 1px solid red;
+    }
 
     .details {
         display: flex;
         flex-direction: column;
         align-content: flex-start;
+        padding: 0 1ch 0 1ch;
 
         .title {
             font-size: @font-size-medium;
             font-weight: bold;
-            margin: 10px 0 0 0;
+            margin: 0.5ch 0 0 0;
         }
 
-        .description {
-            font-size: @font-size-small;
+        .price {
             margin: 0;
+            font-size: @font-size-medium;
         }
     }
 

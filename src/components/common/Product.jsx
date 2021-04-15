@@ -9,7 +9,7 @@ const Product = (props) => {
             <img src={product.imageUrl} alt={product.title}/>
             <div className='details'>
                 <p className='title'>{product.title}</p>
-                <p className='description'>{product.description}</p>
+                <p className='price'>{product.price}€</p>
             </div>
         </div>
     );

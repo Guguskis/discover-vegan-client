@@ -8,19 +8,22 @@ const VENDORS = [
                 id: 1,
                 title: 'tofu',
                 description: 'a lot of protein, low sugar, healthy',
-                imageUrl: 'https://www.veggo.lt/991-home_default/organic-tofu-picknicker-50g-viana.jpg'
+                imageUrl: 'https://www.veggo.lt/991-home_default/organic-tofu-picknicker-50g-viana.jpg',
+                price: 4.19
             },
             {
                 id: 2,
                 title: 'tofu',
                 description: 'a lot of protein, low sugar, healthy',
-                imageUrl: 'https://www.veggo.lt/991-home_default/organic-tofu-picknicker-50g-viana.jpg'
+                imageUrl: 'https://www.veggo.lt/991-home_default/organic-tofu-picknicker-50g-viana.jpg',
+                price: 4.19
             },
             {
                 id: 3,
                 title: 'tofu',
                 description: 'a lot of protein, low sugar, healthy',
-                imageUrl: 'https://www.veggo.lt/991-home_default/organic-tofu-picknicker-50g-viana.jpg'
+                imageUrl: 'https://www.veggo.lt/991-home_default/organic-tofu-picknicker-50g-viana.jpg',
+                price: 4.19
             }
         ]
     },
@@ -33,19 +36,22 @@ const VENDORS = [
                 id: 1,
                 title: 'tofu',
                 description: 'a lot of protein, low sugar, healthy',
-                imageUrl: 'https://www.veggo.lt/147-home_default/ekologiskas-keptas-tempeh.jpg'
+                imageUrl: 'https://www.veggo.lt/147-home_default/ekologiskas-keptas-tempeh.jpg',
+                price: 4.19
             },
             {
                 id: 2,
                 title: 'tofu',
                 description: 'a lot of protein, low sugar, healthy',
-                imageUrl: 'https://www.veggo.lt/147-home_default/ekologiskas-keptas-tempeh.jpg'
+                imageUrl: 'https://www.veggo.lt/147-home_default/ekologiskas-keptas-tempeh.jpg',
+                price: 4.19
             },
             {
                 id: 3,
                 title: 'tofu',
                 description: 'a lot of protein, low sugar, healthy',
-                imageUrl: 'https://www.veggo.lt/147-home_default/ekologiskas-keptas-tempeh.jpg'
+                imageUrl: 'https://www.veggo.lt/147-home_default/ekologiskas-keptas-tempeh.jpg',
+                price: 4.19
             }
         ]
     },
@@ -58,31 +64,36 @@ const VENDORS = [
                 id: 1,
                 title: 'tofu',
                 description: 'a lot of protein, low sugar, healthy',
-                imageUrl: 'https://www.veggo.lt/839-home_default/ekologiskas-fermentuotas-tofu-su-laiskiniais-cesnakais-130g-lord-of-tofu.jpg'
+                imageUrl: 'https://www.veggo.lt/839-home_default/ekologiskas-fermentuotas-tofu-su-laiskiniais-cesnakais-130g-lord-of-tofu.jpg',
+                price: 4.19
             },
             {
                 id: 2,
                 title: 'tofu',
                 description: 'a lot of protein, low sugar, healthy',
-                imageUrl: 'https://www.veggo.lt/839-home_default/ekologiskas-fermentuotas-tofu-su-laiskiniais-cesnakais-130g-lord-of-tofu.jpg'
+                imageUrl: 'https://www.veggo.lt/839-home_default/ekologiskas-fermentuotas-tofu-su-laiskiniais-cesnakais-130g-lord-of-tofu.jpg',
+                price: 4.19
             },
             {
                 id: 3,
                 title: 'tofu',
                 description: 'a lot of protein, low sugar, healthy',
-                imageUrl: 'https://www.veggo.lt/839-home_default/ekologiskas-fermentuotas-tofu-su-laiskiniais-cesnakais-130g-lord-of-tofu.jpg'
+                imageUrl: 'https://www.veggo.lt/839-home_default/ekologiskas-fermentuotas-tofu-su-laiskiniais-cesnakais-130g-lord-of-tofu.jpg',
+                price: 4.19
             },
             {
                 id: 4,
                 title: 'tofu',
                 description: 'a lot of protein, low sugar, healthy',
-                imageUrl: 'https://www.veggo.lt/839-home_default/ekologiskas-fermentuotas-tofu-su-laiskiniais-cesnakais-130g-lord-of-tofu.jpg'
+                imageUrl: 'https://www.veggo.lt/839-home_default/ekologiskas-fermentuotas-tofu-su-laiskiniais-cesnakais-130g-lord-of-tofu.jpg',
+                price: 4.19
             },
             {
                 id: 5,
                 title: 'tofu',
                 description: 'a lot of protein, low sugar, healthy',
-                imageUrl: 'https://www.veggo.lt/839-home_default/ekologiskas-fermentuotas-tofu-su-laiskiniais-cesnakais-130g-lord-of-tofu.jpg'
+                imageUrl: 'https://www.veggo.lt/839-home_default/ekologiskas-fermentuotas-tofu-su-laiskiniais-cesnakais-130g-lord-of-tofu.jpg',
+                price: 4.19
             }
         ]
     },
@@ -95,49 +106,57 @@ const VENDORS = [
                 id: 1,
                 title: 'tofu',
                 description: 'a lot of protein, low sugar, healthy',
-                imageUrl: 'https://www.veggo.lt/549-home_default/ekologiskas-silkinis-tofu.jpg'
+                imageUrl: 'https://www.veggo.lt/549-home_default/ekologiskas-silkinis-tofu.jpg',
+                price: 4.19
             },
             {
                 id: 2,
                 title: 'tofu',
                 description: 'a lot of protein, low sugar, healthy',
-                imageUrl: 'https://www.veggo.lt/549-home_default/ekologiskas-silkinis-tofu.jpg'
+                imageUrl: 'https://www.veggo.lt/549-home_default/ekologiskas-silkinis-tofu.jpg',
+                price: 4.19
             },
             {
                 id: 3,
                 title: 'tofu',
                 description: 'a lot of protein, low sugar, healthy',
-                imageUrl: 'https://www.veggo.lt/549-home_default/ekologiskas-silkinis-tofu.jpg'
+                imageUrl: 'https://www.veggo.lt/549-home_default/ekologiskas-silkinis-tofu.jpg',
+                price: 4.19
             },
             {
                 id: 4,
-                title: 'tofu',
+                title: 'tofu is a good thing but is not so bad',
                 description: 'a lot of protein, low sugar, healthy',
-                imageUrl: 'https://www.veggo.lt/549-home_default/ekologiskas-silkinis-tofu.jpg'
+                imageUrl: 'https://www.veggo.lt/549-home_default/ekologiskas-silkinis-tofu.jpg',
+                price: 4.19
             },
             {
                 id: 5,
-                title: 'tofu',
+                title: 'tofu is a good thing but is not so bad asd asd asd asd asd d d',
                 description: 'a lot of protein, low sugar, healthy',
-                imageUrl: 'https://www.veggo.lt/549-home_default/ekologiskas-silkinis-tofu.jpg'
+                imageUrl: 'https://www.veggo.lt/549-home_default/ekologiskas-silkinis-tofu.jpg',
+                price: 4.19
             },
             {
                 id: 6,
                 title: 'tofu',
                 description: 'a lot of protein, low sugar, healthy',
-                imageUrl: 'https://www.veggo.lt/549-home_default/ekologiskas-silkinis-tofu.jpg'
+                imageUrl: 'https://www.veggo.lt/549-home_default/ekologiskas-silkinis-tofu.jpg',
+                price: 4.19
             },
             {
                 id: 7,
                 title: 'tofu',
                 description: 'a lot of protein, low sugar, healthy',
-                imageUrl: 'https://www.veggo.lt/549-home_default/ekologiskas-silkinis-tofu.jpg'
+                imageUrl: 'https://www.veggo.lt/549-home_default/ekologiskas-silkinis-tofu.jpg',
+                price: 4.19
             },
             {
                 id: 8,
                 title: 'tofu',
                 description: 'a lot of protein, low sugar, healthy',
-                imageUrl: 'https://www.veggo.lt/549-home_default/ekologiskas-silkinis-tofu.jpg'
+                imageUrl: 'https://www.veggo.lt/549-home_default/ekologiskas-silkinis-tofu.jpg',
+                price: 4.19
             }
         ]
     },
