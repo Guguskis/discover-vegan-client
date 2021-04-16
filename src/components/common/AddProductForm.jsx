@@ -4,13 +4,14 @@ import "./AddProductForm.less";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Button from "@material-ui/core/Button";
+import ImageDropzone from "./ImageDropzone.jsx";
 
 const AddProductForm = (props) => {
     const {handleOnClose} = props;
 
-    return (
-        <FormContainer handleOnClose={handleOnClose}>
-            <div className="add-product-form-container">
+    const CreateNewProductForm = () => (
+        <div className="submit-form">
+            <div className="details-container">
                 <TextField id="filled-basic"
                            className="input-field"
                            label="Product name"
@@ -23,8 +24,18 @@ const AddProductForm = (props) => {
                            required={true}
                            type="number"
                            InputProps={{
-                               startAdornment: <InputAdornment position="start">€</InputAdornment>,
+                               startAdornment: <InputAdornment position="start">€</InputAdornment>
                            }}/>
+            </div>
+            <ImageDropzone/>
+        </div>
+    )
+
+    return (
+        <FormContainer handleOnClose={handleOnClose}>
+            <div className="add-product-form-container">
+                <CreateNewProductForm/>
+
                 <Button variant="contained"
                         size="medium"
                         className="button">Submit</Button>

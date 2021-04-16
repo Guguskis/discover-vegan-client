@@ -1,0 +1,35 @@
+@import ".././common";
+
+.dropzone-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 20rem;
+  min-width: 15rem;
+
+  max-height: 30rem;
+  max-width: 20rem;
+
+  border: 2px dashed @primary-color;
+  border-radius: 2ch;
+  overflow: hidden;
+
+  background-color: tint(@secondary-color, 10%);
+  color: @font-color;
+
+
+  .empty-dropzone {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .uploaded-dropzone {
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+  }
+}
