@@ -18,28 +18,41 @@ const AddProductForm = (props) => {
         setProducts(products => products.concat(product));
     };
 
+    const handleOnEditProductSubmit = (product) => {
+        let newProduct = !product.hasOwnProperty("id");
 
-    const SelectExistingProductForm = () => (
-        <div className="select-existing-product-form">
-            <div className="details-container">
-                <ProductSearchBar handleOnOptionSelect={handleOnProductSelect}/>
+        if (newProduct) {
+            console.log("POST request for new product")
+            throw new Error("Failed to POST new product")
+            console.log(product)
+
+        } else {
+            console.log("PUT request for edited product")
+            console.log(product)
+        }
+    }
+
+    const ProductInputs = () => (
+        <div className="product-input-container">
+            <div className="select-existing-product-form">
+                <div className="details-container">
+                    <ProductSearchBar handleOnOptionSelect={handleOnProductSelect}/>
+                </div>
             </div>
+            <Button variant="contained"
+                    size="small"
+                    className="button"
+                    startIcon={<AddIcon/>}
+                    onClick={() => setEditProductFormOpen(true)}
+            >New product</Button>
         </div>
+
     )
 
     return (
         <FormContainer handleOnClose={handleOnClose}>
             <div className="add-product-form-container">
-                <div className="product-input-container">
-                    <SelectExistingProductForm/>
-                    <Button variant="contained"
-                            size="small"
-                            className="button"
-                            startIcon={<AddIcon/>}
-                            onClick={() => setEditProductFormOpen(true)}
-                    >New product</Button>
-                </div>
-
+                <ProductInputs/>
                 <Button variant="contained"
                         size="medium"
                         className="button">Submit</Button>
@@ -53,7 +66,7 @@ const AddProductForm = (props) => {
                 >
                     <div>
                         <EditProductForm handleOnClose={() => setEditProductFormOpen(false)}
-                                         handleOnSubmit={(product) => console.log(product)}/>
+                                         handleOnSubmit={handleOnEditProductSubmit}/>
                     </div>
                 </Modal>
             </div>

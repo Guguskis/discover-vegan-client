@@ -4,6 +4,8 @@ import './Product.less'
 const Product = (props) => {
     const {product} = props;
 
+    // todo add gamintojas
+
     return (
         <div className="product-container" key={product.id}>
             <img src={product.imageUrl} alt={product.title}/>

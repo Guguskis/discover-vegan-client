@@ -8,8 +8,17 @@ import ImageDropzone from "./ImageDropzone.jsx";
 
 const EditProductForm = (props) => {
     const {handleOnClose, handleOnSubmit} = props;
-    const [product, setProduct] = useState(props.product);
+    const [product, setProduct] = useState(props.product ? props.product : {});
 
+
+    const handleOnClickSubmit = () => {
+        // todo input validation
+        try {
+            handleOnSubmit(product);
+        } catch (ex) {
+            console.log(ex)
+        }
+    }
 
     // todo if edit disable title change
     return (
@@ -37,7 +46,7 @@ const EditProductForm = (props) => {
                 <Button variant="contained"
                         size="medium"
                         className="button"
-                        onClick={() => handleOnSubmit(product)}>Submit</Button>
+                        onClick={handleOnClickSubmit}>Submit</Button>
             </div>
         </FormContainer>
     );
