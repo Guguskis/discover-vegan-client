@@ -17,7 +17,7 @@ const VendorMarkers = (props) => {
             className="vendor-marker"
         >
             <IconButton onClick={() => setPopupInfo(vendor)}>
-                <StorefrontIcon className='vendorIcon' width='auto' height='auto'/>
+                <StorefrontIcon className='vendorIcon'/>
             </IconButton>
         </Marker>
     ))

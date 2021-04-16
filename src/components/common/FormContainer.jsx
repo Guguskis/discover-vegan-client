@@ -10,7 +10,7 @@ const FormContainer = (props) => {
         <div className="form-container">
             <div className="close-button-container">
                 <IconButton onClick={handleOnClose}>
-                    <CloseIcon width='auto' height='auto'/>
+                    <CloseIcon/>
                 </IconButton>
             </div>
             <div className="form-body">
