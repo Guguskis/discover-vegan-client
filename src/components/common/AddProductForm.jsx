@@ -1,44 +1,61 @@
-import React from 'react';
+import React, {useState} from 'react';
 import FormContainer from "./FormContainer.jsx";
-import "./AddProductForm.less";
-import TextField from "@material-ui/core/TextField";
-import InputAdornment from "@material-ui/core/InputAdornment";
+import ProductSearchBar from "./ProductSearchBar.jsx";
+import EditProductForm from "./EditProductForm.jsx";
 import Button from "@material-ui/core/Button";
-import ImageDropzone from "./ImageDropzone.jsx";
+import Modal from "@material-ui/core/Modal";
+
+import "./AddProductForm.less";
+import AddIcon from "@material-ui/icons/Add.js";
 
 const AddProductForm = (props) => {
     const {handleOnClose} = props;
 
-    const CreateNewProductForm = () => (
-        <div className="create-new-product-form">
+    const [editProductFormOpen, setEditProductFormOpen] = useState(false);
+    const [products, setProducts] = useState([]);
+
+    const handleOnProductSelect = (product) => {
+        setProducts(products => products.concat(product));
+    };
+
+
+    const SelectExistingProductForm = () => (
+        <div className="select-existing-product-form">
             <div className="details-container">
-                <TextField id="filled-basic"
-                           className="input-field"
-                           label="Product name"
-                           variant="filled"
-                           required={true}/>
-                <TextField id="filled-start-adornment"
-                           className="input-field"
-                           label="Price"
-                           variant="filled"
-                           required={true}
-                           type="number"
-                           InputProps={{
-                               startAdornment: <InputAdornment position="start">€</InputAdornment>
-                           }}/>
+                <ProductSearchBar handleOnOptionSelect={handleOnProductSelect}/>
             </div>
-            <ImageDropzone/>
         </div>
     )
 
     return (
         <FormContainer handleOnClose={handleOnClose}>
             <div className="add-product-form-container">
-                <CreateNewProductForm/>
+                <div className="product-input-container">
+                    <SelectExistingProductForm/>
+                    <Button variant="contained"
+                            size="small"
+                            className="button"
+                            startIcon={<AddIcon/>}
+                            onClick={() => setEditProductFormOpen(true)}
+                    >New product</Button>
+                </div>
 
                 <Button variant="contained"
                         size="medium"
                         className="button">Submit</Button>
+
+                <Modal
+                    open={editProductFormOpen}
+                    onClose={() => setEditProductFormOpen(false)}
+                    aria-labelledby="server-modal-title"
+                    aria-describedby="server-modal-description"
+                    className="modal-container"
+                >
+                    <div>
+                        <EditProductForm handleOnClose={() => setEditProductFormOpen(false)}
+                                         handleOnSubmit={(product) => console.log(product)}/>
+                    </div>
+                </Modal>
             </div>
         </FormContainer>
     );
