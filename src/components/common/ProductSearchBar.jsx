@@ -16,7 +16,9 @@ const fetchProducts = (start, items) => {
     return PRODUCTS.slice(start, start + items);
 }
 
-const ProductSearchBar = () => {
+const ProductSearchBar = (props) => {
+    const {handleOnOptionSelect} = props;
+
     const [open, setOpen] = React.useState(false);
     const [options, setOptions] = React.useState([]);
     const loading = open && options.length === 0;
@@ -77,7 +79,9 @@ const ProductSearchBar = () => {
                 />
             )}
             renderOption={(option, state) => (
-                <Product className='product' key={option.id} product={option}/>
+                <div onClick={() => handleOnOptionSelect(option)}>
+                    <Product className='product' key={option.id} product={option}/>
+                </div>
             )}
         />
     );

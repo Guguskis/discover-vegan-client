@@ -13,7 +13,7 @@ function HomePage() {
         <Map>
             <Header/>
             <div className="map-overlay-container">
-                <ProductSearchBar/>
+                <ProductSearchBar handleOnOptionSelect={(product) => console.log(product)}/>
                 <Button variant="contained" size="small" startIcon={<AddIcon/>}>Add vendor</Button>
             </div>
         </Map>
