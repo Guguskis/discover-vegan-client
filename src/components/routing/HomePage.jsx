@@ -1,7 +1,7 @@
 import React from 'react';
 import './HomePage.less'
 import Map from "../map/Map.jsx";
-import SearchBar from "../common/SearchBar.jsx";
+import ProductSearchBar from "../common/ProductSearchBar.jsx";
 import Header from "./Header.jsx";
 import Button from "@material-ui/core/Button";
 import AddIcon from '@material-ui/icons/Add';
@@ -13,7 +13,7 @@ function HomePage() {
         <Map>
             <Header/>
             <div className="map-overlay-container">
-                <SearchBar/>
+                <ProductSearchBar/>
                 <Button variant="contained" size="small" startIcon={<AddIcon/>}>Add vendor</Button>
             </div>
         </Map>

@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import './SearchBar.less'
+import './ProductSearchBar.less'
 import PRODUCTS from "../../data-sample/product.jsx";
 import Product from "./Product.jsx";
 
@@ -16,7 +16,7 @@ const fetchProducts = (start, items) => {
     return PRODUCTS.slice(start, start + items);
 }
 
-const SearchBar = () => {
+const ProductSearchBar = () => {
     const [open, setOpen] = React.useState(false);
     const [options, setOptions] = React.useState([]);
     const loading = open && options.length === 0;
@@ -83,4 +83,4 @@ const SearchBar = () => {
     );
 }
 
-export default SearchBar;
+export default ProductSearchBar;
