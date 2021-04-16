@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -19,8 +19,8 @@ const fetchProducts = (start, items) => {
 const ProductSearchBar = (props) => {
     const {handleOnOptionSelect} = props;
 
-    const [open, setOpen] = React.useState(false);
-    const [options, setOptions] = React.useState([]);
+    const [open, setOpen] = useState(false);
+    const [options, setOptions] = useState([]);
     const loading = open && options.length === 0;
 
     useEffect(() => {
