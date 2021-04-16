@@ -7,6 +7,7 @@ import Modal from "@material-ui/core/Modal";
 
 import "./AddProductForm.less";
 import AddIcon from "@material-ui/icons/Add.js";
+import ManageProductsList from "./ManageProductsList.jsx";
 
 const AddProductForm = (props) => {
     const {handleOnClose} = props;
@@ -34,10 +35,8 @@ const AddProductForm = (props) => {
 
     const ProductInputs = () => (
         <div className="product-input-container">
-            <div className="select-existing-product-form">
-                <div className="details-container">
-                    <ProductSearchBar handleOnOptionSelect={handleOnProductSelect}/>
-                </div>
+            <div className="details-container">
+                <ProductSearchBar handleOnOptionSelect={handleOnProductSelect}/>
             </div>
             <Button variant="contained"
                     size="small"
@@ -53,6 +52,7 @@ const AddProductForm = (props) => {
         <FormContainer handleOnClose={handleOnClose}>
             <div className="add-product-form-container">
                 <ProductInputs/>
+                <ManageProductsList/>
                 <Button variant="contained"
                         size="medium"
                         className="button">Submit</Button>
