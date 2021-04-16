@@ -22,30 +22,29 @@ const ManageProductsList = () => {
     }
 
     return (
-        <div>
-            <List dense={false}>
-                {generate(
-                    <ListItem>
-                        <ListItemAvatar>
-                            <Avatar>
-                                <LocalGroceryStoreIcon/>
-                            </Avatar>
-                        </ListItemAvatar>
-                        <ListItemText
-                            primary="Single-line item"
-                        />
-                        <ListItemSecondaryAction>
-                            <IconButton edge="end" aria-label="delete">
-                                <EditIcon/>
-                            </IconButton>
-                            <IconButton edge="end" aria-label="delete">
-                                <DeleteIcon/>
-                            </IconButton>
-                        </ListItemSecondaryAction>
-                    </ListItem>,
-                )}
-            </List>
-        </div>
+        <List dense={false} className="manage-products-container">
+            {generate(
+                <ListItem>
+                    <ListItemAvatar>
+                        <Avatar>
+                            <LocalGroceryStoreIcon/>
+                        </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                        className="list-item-text"
+                        primary="Single-line item"
+                    />
+                    <ListItemSecondaryAction>
+                        <IconButton edge="end" aria-label="delete">
+                            <EditIcon/>
+                        </IconButton>
+                        <IconButton edge="end" aria-label="delete">
+                            <DeleteIcon/>
+                        </IconButton>
+                    </ListItemSecondaryAction>
+                </ListItem>
+            )}
+        </List>
     );
 };
 
