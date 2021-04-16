@@ -5,6 +5,7 @@ import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Button from "@material-ui/core/Button";
 import ImageDropzone from "./ImageDropzone.jsx";
+import {toast} from "react-toastify";
 
 const EditProductForm = (props) => {
     const {handleOnClose, handleOnSubmit} = props;
@@ -16,7 +17,9 @@ const EditProductForm = (props) => {
         try {
             handleOnSubmit(product);
         } catch (ex) {
-            console.log(ex)
+            toast.error(ex.message, {
+                position: toast.POSITION.TOP_CENTER
+            })
         }
     }
 
