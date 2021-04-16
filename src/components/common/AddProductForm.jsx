@@ -10,7 +10,7 @@ const AddProductForm = (props) => {
     const {handleOnClose} = props;
 
     const CreateNewProductForm = () => (
-        <div className="submit-form">
+        <div className="create-new-product-form">
             <div className="details-container">
                 <TextField id="filled-basic"
                            className="input-field"
