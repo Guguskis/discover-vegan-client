@@ -9,6 +9,7 @@ import "./AddProductForm.less";
 import AddIcon from "@material-ui/icons/Add.js";
 import ManageProductsList from "./ManageProductsList.jsx";
 import {ArraysState} from "../../utils/utils.jsx";
+import {toast} from "react-toastify";
 
 const AddProductForm = (props) => {
     const {handleOnClose} = props;
@@ -18,7 +19,13 @@ const AddProductForm = (props) => {
     const [productToEdit, setProductToEdit] = useState();
 
     const handleOnProductSelect = (product) => {
-        ArraysState.add(setProducts, product);
+        if (products.find(productInArray => productInArray.id === product.id)) {
+            toast.error("This product already added", {
+                position: toast.POSITION.TOP_CENTER
+            })
+        } else {
+            ArraysState.add(setProducts, product);
+        }
     };
 
     const handleOnEditProductSubmit = (product) => {
