@@ -12,7 +12,7 @@ import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from '@material-ui/icons/Delete';
 
 const ManageProductsList = (props) => {
-    const {products, setProducts} = props;
+    const {products, onClickHandleEdit, onClickHandleDelete} = props;
 
     return (
         <List dense={false} className="manage-products-container">
@@ -28,10 +28,10 @@ const ManageProductsList = (props) => {
                         primary={product.title}
                     />
                     <ListItemSecondaryAction>
-                        <IconButton edge="end" aria-label="edit">
+                        <IconButton onClick={() => onClickHandleEdit(product)} edge="end" aria-label="edit">
                             <EditIcon/>
                         </IconButton>
-                        <IconButton edge="end" aria-label="delete">
+                        <IconButton onClick={() => onClickHandleDelete(product)} edge="end" aria-label="delete">
                             <DeleteIcon/>
                         </IconButton>
                     </ListItemSecondaryAction>

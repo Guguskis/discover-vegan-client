@@ -13,14 +13,33 @@ class ArraysState {
         setArray(products => products.concat(item));
     }
 
-    static remove(setArray, key, value) {
+    static removeByKey(setArray, key, value) {
         setArray(array => {
             return array.filter(item => {
                 const property = item[key];
                 if (property) {
-                    return property === value;
+                    return property !== value;
                 } else {
                     return false
+                }
+            });
+        })
+    }
+
+    static remove(setArray, item) {
+        setArray(array => {
+            return array.filter(itemInArray => {
+                return JSON.stringify(item) !== JSON.stringify(itemInArray)
+            });
+        })
+    }
+
+    static update(setArray, item, key) {
+        setArray(array => {
+            return array.map(itemInArray => {
+                if (!itemInArray[key] || !item[key]) return itemInArray;
+                if (itemInArray[key] === item[key]) {
+                    return item;
                 }
             });
         })
