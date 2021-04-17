@@ -3,15 +3,18 @@ import Dropzone from "react-dropzone";
 import "./ImageDropzone.less"
 import ImageIcon from '@material-ui/icons/Image';
 
+const ImageDropzone = (props) => {
+    const {imageUrl, setImage} = props;
 
-const ImageDropzone = () => {
+    const [files, setFiles] = useState(imageUrl ?
+        [{url: imageUrl}] : []
+    );
 
-    const [files, setFiles] = useState([]);
-
-    const handleOnDrop = (acceptedFiles) => {
+    const handleOnDrop = async (acceptedFiles) => {
+        setImage(acceptedFiles[0])
         setFiles(acceptedFiles.map(file =>
             Object.assign(file, {
-                preview: URL.createObjectURL(file)
+                url: URL.createObjectURL(file)
             })
         ))
     }
@@ -30,7 +33,7 @@ const ImageDropzone = () => {
         return (
             <div {...props.getRootProps({className: 'uploaded-dropzone'})}>
                 <input {...props.getInputProps()} />
-                <img src={files[0].preview} alt="Uploaded image"/>
+                <img src={files[0].url} alt="Uploaded image"/>
             </div>
         );
     }

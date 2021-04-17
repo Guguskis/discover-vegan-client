@@ -12,7 +12,6 @@ const EditProductForm = (props) => {
     const {handleOnClose, handleOnSubmit} = props;
     const [product, setProduct] = useState(props.product ? props.product : {});
 
-
     const handleOnClickSubmit = () => {
         // todo input validation
         try {
@@ -26,6 +25,10 @@ const EditProductForm = (props) => {
 
     const onChangeUpdateProduct = (event) => {
         ObjectState.update(setProduct, event.target.name, event.target.value)
+    }
+
+    const setImage = (image) => {
+        ObjectState.update(setProduct, "image", image)
     }
 
     // todo if edit disable title change
@@ -55,7 +58,8 @@ const EditProductForm = (props) => {
                                        startAdornment: <InputAdornment position="start">€</InputAdornment>
                                    }}/>
                     </div>
-                    <ImageDropzone/>
+                    <ImageDropzone imageUrl={product.imageUrl}
+                                   setImage={setImage}/>
                 </div>
                 <Button variant="contained"
                         size="medium"

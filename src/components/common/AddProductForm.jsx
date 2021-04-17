@@ -31,12 +31,15 @@ const AddProductForm = (props) => {
     const handleOnEditProductSubmit = (product) => {
         let newProduct = !product.hasOwnProperty("id"); // || !product.id
 
+
+        if (product.image instanceof File) {
+            toast.error("POST api/storage/file")
+        }
+
         if (newProduct) {
-            console.log("POST api/vendor/product, add response to products")
-            throw new Error("Not implemented")
+            throw new Error("POST api/vendor/product, add response to products")
         } else {
-            console.log("PUT api/vendor/product")
-            throw new Error("Not implemented")
+            throw new Error("PUT api/vendor/product")
         }
     }
 
