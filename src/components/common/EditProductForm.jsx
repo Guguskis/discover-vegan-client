@@ -6,6 +6,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import Button from "@material-ui/core/Button";
 import ImageDropzone from "./ImageDropzone.jsx";
 import {toast} from "react-toastify";
+import {ObjectState} from "../../utils/utils.jsx";
 
 const EditProductForm = (props) => {
     const {handleOnClose, handleOnSubmit} = props;
@@ -23,6 +24,10 @@ const EditProductForm = (props) => {
         }
     }
 
+    const onChangeUpdateProduct = (event) => {
+        ObjectState.update(setProduct, event.target.name, event.target.value)
+    }
+
     // todo if edit disable title change
     return (
         <FormContainer handleOnClose={handleOnClose}>
@@ -33,6 +38,9 @@ const EditProductForm = (props) => {
                                    className="input-field"
                                    label="Product name"
                                    variant="filled"
+                                   name="title"
+                                   value={product.title}
+                                   onChange={onChangeUpdateProduct}
                                    required={true}/>
                         <TextField id="filled-start-adornment"
                                    className="input-field"
@@ -40,6 +48,9 @@ const EditProductForm = (props) => {
                                    variant="filled"
                                    required={true}
                                    type="number"
+                                   name="price"
+                                   value={product.price}
+                                   onChange={onChangeUpdateProduct}
                                    InputProps={{
                                        startAdornment: <InputAdornment position="start">€</InputAdornment>
                                    }}/>

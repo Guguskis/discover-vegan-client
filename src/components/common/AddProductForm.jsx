@@ -80,7 +80,8 @@ const AddProductForm = (props) => {
                     className="modal-container"
                 >
                     <div>
-                        <EditProductForm handleOnClose={onClickCancelEditProduct}
+                        <EditProductForm product={productToEdit}
+                                         handleOnClose={onClickCancelEditProduct}
                                          handleOnSubmit={handleOnEditProductSubmit}/>
                     </div>
                 </Modal>

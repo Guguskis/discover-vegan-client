@@ -34,7 +34,7 @@ class ArraysState {
         })
     }
 
-    static update(setArray, item, key) {
+    static updateByKey(setArray, item, key) {
         setArray(array => {
             return array.map(itemInArray => {
                 if (!itemInArray[key] || !item[key]) return itemInArray;
@@ -46,5 +46,14 @@ class ArraysState {
     }
 }
 
-export {Guid, ArraysState};
+class ObjectState {
+    static update(setState, key, value) {
+        setState(prevState => ({
+            ...prevState,
+            [key]: value
+        }))
+    }
+}
+
+export {Guid, ArraysState, ObjectState};
 
