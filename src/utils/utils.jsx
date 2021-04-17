@@ -8,5 +8,24 @@ class Guid {
     }
 }
 
-export {Guid};
+class ArraysState {
+    static add(setArray, item) {
+        setArray(products => products.concat(item));
+    }
+
+    static remove(setArray, key, value) {
+        setArray(array => {
+            return array.filter(item => {
+                const property = item[key];
+                if (property) {
+                    return property === value;
+                } else {
+                    return false
+                }
+            });
+        })
+    }
+}
+
+export {Guid, ArraysState};
 

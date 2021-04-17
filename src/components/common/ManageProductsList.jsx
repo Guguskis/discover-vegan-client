@@ -11,20 +11,13 @@ import EditIcon from '@material-ui/icons/Edit';
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from '@material-ui/icons/Delete';
 
-const ManageProductsList = () => {
-
-    function generate(element) {
-        return [0, 1, 2].map((value) =>
-            React.cloneElement(element, {
-                key: value,
-            }),
-        );
-    }
+const ManageProductsList = (props) => {
+    const {products, setProducts} = props;
 
     return (
         <List dense={false} className="manage-products-container">
-            {generate(
-                <ListItem>
+            {products.map((product) =>
+                React.cloneElement(<ListItem>
                     <ListItemAvatar>
                         <Avatar>
                             <LocalGroceryStoreIcon/>
@@ -32,17 +25,19 @@ const ManageProductsList = () => {
                     </ListItemAvatar>
                     <ListItemText
                         className="list-item-text"
-                        primary="Single-line item"
+                        primary={product.title}
                     />
                     <ListItemSecondaryAction>
-                        <IconButton edge="end" aria-label="delete">
+                        <IconButton edge="end" aria-label="edit">
                             <EditIcon/>
                         </IconButton>
                         <IconButton edge="end" aria-label="delete">
                             <DeleteIcon/>
                         </IconButton>
                     </ListItemSecondaryAction>
-                </ListItem>
+                </ListItem>, {
+                    key: product.id,
+                }),
             )}
         </List>
     );

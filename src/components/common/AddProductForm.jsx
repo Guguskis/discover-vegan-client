@@ -8,6 +8,7 @@ import Modal from "@material-ui/core/Modal";
 import "./AddProductForm.less";
 import AddIcon from "@material-ui/icons/Add.js";
 import ManageProductsList from "./ManageProductsList.jsx";
+import {ArraysState} from "../../utils/utils.jsx";
 
 const AddProductForm = (props) => {
     const {handleOnClose} = props;
@@ -16,7 +17,7 @@ const AddProductForm = (props) => {
     const [products, setProducts] = useState([]);
 
     const handleOnProductSelect = (product) => {
-        setProducts(products => products.concat(product));
+        ArraysState.add(setProducts, product);
     };
 
     const handleOnEditProductSubmit = (product) => {
@@ -52,7 +53,7 @@ const AddProductForm = (props) => {
         <FormContainer handleOnClose={handleOnClose}>
             <div className="add-product-form-container">
                 <ProductInputs/>
-                <ManageProductsList/>
+                <ManageProductsList products={products} setProducts={setProducts}/>
                 <Button variant="contained"
                         size="medium"
                         className="button">Submit</Button>
