@@ -92,7 +92,8 @@ const AddProductForm = (props) => {
                                     onClickHandleDelete={onClickDeleteProduct}/>
                 <Button variant="contained"
                         size="medium"
-                        className="button">Done</Button>
+                        className="button"
+                        onClick={handleOnClose}>Done</Button>
 
                 <Modal
                     open={editProductFormOpen}
@@ -104,7 +105,8 @@ const AddProductForm = (props) => {
                     <div>
                         <EditProductForm product={productToEdit}
                                          handleOnClose={onClickCancelEditProduct}
-                                         handleOnSubmit={handleOnEditProductSubmit}/>
+                                         handleOnSubmit={handleOnEditProductSubmit}
+                                         loading={fileUploadLoading}/>
                     </div>
                 </Modal>
             </div>

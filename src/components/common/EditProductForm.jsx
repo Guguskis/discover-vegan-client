@@ -3,23 +3,22 @@ import FormContainer from "./FormContainer.jsx";
 import "./EditProductForm.less";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Button from "@material-ui/core/Button";
 import ImageDropzone from "./ImageDropzone.jsx";
 import {toast} from "react-toastify";
 import {ObjectState} from "../../utils/utils.jsx";
 
 const EditProductForm = (props) => {
-    const {handleOnClose, handleOnSubmit} = props;
+    const {handleOnClose, handleOnSubmit, loading} = props;
     const [product, setProduct] = useState(props.product ? props.product : {});
 
-    const handleOnClickSubmit = () => {
+    const handleOnClickSubmit = async () => {
         // todo input validation
         try {
-            handleOnSubmit(product);
+            await handleOnSubmit(product);
         } catch (ex) {
-            toast.error(ex.message, {
-                position: toast.POSITION.TOP_CENTER
-            })
+            toast.error(ex.message)
         }
     }
 
@@ -64,7 +63,9 @@ const EditProductForm = (props) => {
                 <Button variant="contained"
                         size="medium"
                         className="button"
-                        onClick={handleOnClickSubmit}>Submit</Button>
+                        onClick={handleOnClickSubmit}>
+                    {loading ? <CircularProgress/> : "Submit"}
+                </Button>
             </div>
         </FormContainer>
     );
