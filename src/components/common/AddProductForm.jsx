@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import FormContainer from "./FormContainer.jsx";
 import ProductSearchBar from "./ProductSearchBar.jsx";
 import EditProductForm from "./EditProductForm.jsx";
-import Button from "@material-ui/core/Button";
 import Modal from "@material-ui/core/Modal";
 
 import "./AddProductForm.less";
@@ -11,6 +10,7 @@ import ManageProductsList from "./ManageProductsList.jsx";
 import {ArraysState} from "../../utils/utils.jsx";
 import {toast} from "react-toastify";
 import {API} from "../../config/config.jsx";
+import Button from "./Button.jsx";
 
 const AddProductForm = (props) => {
     const {handleOnClose} = props;
@@ -72,15 +72,11 @@ const AddProductForm = (props) => {
     const ProductInputs = () => (
         <div className="product-input-container">
             <ProductSearchBar handleOnOptionSelect={handleOnProductSelect}/>
-            <Button variant="contained"
-                    size="small"
-                    className="button"
+            <Button size="small"
                     startIcon={<AddIcon/>}
-                    onClick={() => onClickEditProduct(null)}>
-                New product
-            </Button>
+                    onClick={() => onClickEditProduct(null)} // todo IconButton
+                    text="New product"/>
         </div>
-
     )
 
     return (
@@ -90,14 +86,13 @@ const AddProductForm = (props) => {
                 <ManageProductsList products={products}
                                     onClickHandleEdit={onClickEditProduct}
                                     onClickHandleDelete={onClickDeleteProduct}/>
-                <Button variant="contained"
-                        size="medium"
-                        className="button"
-                        onClick={handleOnClose}>Done</Button>
+                <Button size="medium"
+                        text="Done"
+                        onClick={handleOnClose}/>
 
                 <Modal
                     open={editProductFormOpen}
-                    onClose={() => setEditProductFormOpen(false)}
+                    onClose={() => setEditProductFormOpen(false)} // todo onClickCancelEditProduct
                     aria-labelledby="server-modal-title"
                     aria-describedby="server-modal-description"
                     className="modal-container"
