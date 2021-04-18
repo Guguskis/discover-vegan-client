@@ -3,11 +3,11 @@ import {Popup} from "react-map-gl";
 import Product from "../common/Product.jsx";
 
 import './VendorPopup.less'
-import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add.js";
 import ListIcon from '@material-ui/icons/List';
 import Modal from "@material-ui/core/Modal";
 import AddProductForm from "../common/AddProductForm.jsx";
+import SmallButton from "../common/SmallButton.jsx";
 
 const VendorPopup = (props) => {
     const {popupInfo, setPopupInfo} = props;
@@ -41,9 +41,11 @@ const VendorPopup = (props) => {
                 {popupInfo.products.map(product => <Product key={product.id} product={product}/>)}
             </div>
             <div className="button-container">
-                <Button variant="contained" size="small" startIcon={<AddIcon/>}
-                        onClick={onClickHandleAddProduct}>Product</Button>
-                <Button variant="contained" size="small" startIcon={<ListIcon/>}>View all</Button>
+                <SmallButton text="Product"
+                             icon={<AddIcon/>}
+                             onClick={onClickHandleAddProduct}/>
+                <SmallButton text="View all"
+                             icon={<ListIcon/>}/>
             </div>
             <Modal
                 open={addProductFormOpen}
