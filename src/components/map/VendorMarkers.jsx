@@ -5,18 +5,18 @@ import IconButton from "@material-ui/core/IconButton";
 import "./VendorMarkers.less"
 
 const VendorMarkers = (props) => {
-    const {vendors, setPopupInfo} = props;
+    const {vendors, setVendors} = props;
 
     return vendors.map(vendor => (
         <Marker
             key={vendor.id}
-            longitude={vendor.position.longitude}
-            latitude={vendor.position.latitude}
+            longitude={vendor.longitude}
+            latitude={vendor.latitude}
             offsetTop={-26} // center
             offsetLeft={-26} // center
             className="vendor-marker"
         >
-            <IconButton onClick={() => setPopupInfo(vendor)}>
+            <IconButton onClick={() => setVendors(vendor)}>
                 <StorefrontIcon className='vendorIcon'/>
             </IconButton>
         </Marker>

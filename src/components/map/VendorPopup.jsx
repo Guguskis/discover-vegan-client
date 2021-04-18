@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Popup} from "react-map-gl";
 import Product from "../common/Product.jsx";
 
@@ -8,13 +8,28 @@ import ListIcon from '@material-ui/icons/List';
 import Modal from "@material-ui/core/Modal";
 import AddProductForm from "../common/AddProductForm.jsx";
 import SmallButton from "../common/SmallButton.jsx";
+import {API} from "../../config/config.jsx";
 
 const VendorPopup = (props) => {
-    const {popupInfo, setPopupInfo} = props;
+    const {vendor, setVendor} = props;
 
+    if (!vendor) return null;
+
+    const [{data: productsData, loading: productsLoading, error: productsError}, executeProducts] = API.useDiscoverVeganApiAxios(
+        {
+            url: `/api/vendor/${vendor.id}/product`,
+            method: 'GET'
+        }
+    )
     const [addProductFormOpen, setAddProductFormOpen] = useState(false);
+    const [products, setProducts] = useState([]);
 
-    if (!popupInfo) return null;
+    useEffect(() => {
+        if (productsData) {
+            setProducts(productsData);
+        }
+    }, [productsData])
+
 
     const onClickHandleAddProduct = () => {
         setAddProductFormOpen(true);
@@ -28,17 +43,17 @@ const VendorPopup = (props) => {
             tipSize={15}
             anchor="bottom"
             offsetTop={-15}
-            longitude={popupInfo.position.longitude}
-            latitude={popupInfo.position.latitude}
+            longitude={vendor.longitude}
+            latitude={vendor.latitude}
             closeOnClick={false}
-            onClose={setPopupInfo}
+            onClose={setVendor}
             className='popup-container'
             captureScroll={true}
             captureClick={true}
             capturePointerMove={true}
         >
             <div className="products-container">
-                {popupInfo.products.map(product => <Product key={product.id} product={product}/>)}
+                {products.map(product => <Product key={product.id} product={product}/>)}
             </div>
             <div className="button-container">
                 <SmallButton text="Product"

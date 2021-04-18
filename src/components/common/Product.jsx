@@ -8,9 +8,9 @@ const Product = (props) => {
 
     return (
         <div className="product-container" key={product.id}>
-            <img src={product.imageUrl} alt={product.title}/>
+            <img src={product.imageUrl} alt="Product image"/>
             <div className='details'>
-                <p className='title'>{product.title}</p>
+                <p className='name'>{product.name}</p>
                 <p className='price'>{product.price}€</p>
             </div>
         </div>

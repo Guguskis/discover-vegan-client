@@ -1,33 +1,34 @@
 import React, {useEffect, useState} from 'react'
 import ReactMapGL from 'react-map-gl'
-import {usePosition} from 'use-position';
 
 import './Map.less'
 import VendorMarkers from "./VendorMarkers.jsx";
 import VendorPopup from "./VendorPopup.jsx";
-import VENDORS from "../../data-sample/vendor.jsx";
+import {API} from "../../config/config.jsx";
 
 const Map = (props) => {
-    const {latitude, longitude} = usePosition(false);
-    const [popupInfo, setPopupInfo] = useState(null);
+    const [{data: vendorData, loading: vendorLoading, error: vendorError}, executeVendor] = API.useDiscoverVeganApiAxios(
+        {
+            url: "/api/vendor",
+            method: 'GET'
+        }
+    )
 
+    const [selectedVendor, setSelectedVendor] = useState(null);
     const [viewport, setViewport] = useState({
         latitude: 54.72744555070343,
         longitude: 25.341746138622348,
         zoom: 13
     });
 
-    const [vendors, setVendors] = useState(VENDORS);
+    const [vendors, setVendors] = useState([]);
 
     useEffect(() => {
-        if (latitude && longitude) {
-            setViewport({
-                ...viewport,
-                longitude: longitude,
-                latitude: latitude
-            })
+        if (vendorData) {
+            setVendors(vendorData);
         }
-    }, [latitude, longitude])
+    }, [vendorData]);
+
 
     return (
         <div className='map'>
@@ -38,8 +39,8 @@ const Map = (props) => {
                 mapboxApiAccessToken={process.env.MAPBOX_ACCESS_TOKEN}
                 width='100%'
                 height='100%'>
-                <VendorMarkers vendors={vendors} setPopupInfo={setPopupInfo}/>
-                <VendorPopup popupInfo={popupInfo} setPopupInfo={setPopupInfo}/>
+                <VendorMarkers vendors={vendors} setVendors={setSelectedVendor}/>
+                <VendorPopup vendor={selectedVendor} setVendor={setSelectedVendor}/>
                 <div className='ui-overlay'>
                     {props.children}
                 </div>
