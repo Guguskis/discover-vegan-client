@@ -10,6 +10,7 @@ import AddIcon from "@material-ui/icons/Add.js";
 import ManageProductsList from "./ManageProductsList.jsx";
 import {ArraysState} from "../../utils/utils.jsx";
 import {toast} from "react-toastify";
+import {API} from "../../config/config.jsx";
 
 const AddProductForm = (props) => {
     const {handleOnClose} = props;
@@ -17,6 +18,14 @@ const AddProductForm = (props) => {
     const [editProductFormOpen, setEditProductFormOpen] = useState(false);
     const [products, setProducts] = useState([]); // GET api/vendor/product
     const [productToEdit, setProductToEdit] = useState();
+
+    const [{data: fileUploadData, loading: fileUploadLoading, error: fileUploadError}, executeFileUpload] = API.useStorageAxios(
+        {
+            url: "/api/storage/file",
+            method: 'POST'
+        },
+        {manual: true}
+    )
 
     const handleOnProductSelect = (product) => {
         if (products.find(productInArray => productInArray.id === product.id)) {
@@ -28,12 +37,15 @@ const AddProductForm = (props) => {
         }
     };
 
-    const handleOnEditProductSubmit = (product) => {
+    const handleOnEditProductSubmit = async (product) => {
         let newProduct = !product.hasOwnProperty("id"); // || !product.id
 
+        const formData = new FormData();
+        formData.append("file", product.image)
 
         if (product.image instanceof File) {
-            toast.error("POST api/storage/file")
+            const response = await executeFileUpload({...fileUploadData, data: formData})
+            product.imageUrl = response.data.fileUrl;
         }
 
         if (newProduct) {
