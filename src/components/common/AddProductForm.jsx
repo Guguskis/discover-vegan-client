@@ -11,7 +11,6 @@ import {ArraysState} from "../../utils/utils.jsx";
 import {toast} from "react-toastify";
 import {API} from "../../config/config.jsx";
 import Button from "./Button.jsx";
-import IconButton from "./IconButton.jsx";
 
 const AddProductForm = (props) => {
     const {handleOnClose} = props;
@@ -73,9 +72,9 @@ const AddProductForm = (props) => {
     const ProductInputs = () => (
         <div className="product-input-container">
             <ProductSearchBar handleOnOptionSelect={handleOnProductSelect}/>
-            <IconButton icon={<AddIcon/>}
-                        onClick={() => onClickEditProduct(null)}
-                        text="New product"/>
+            <Button text="New product"
+                    onClick={() => onClickEditProduct(null)}
+                    icon={<AddIcon/>}/>
         </div>
     )
 
