@@ -3,7 +3,6 @@ import FormContainer from "./FormContainer.jsx";
 import "./EditProductForm.less";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
-import CircularProgress from '@material-ui/core/CircularProgress';
 import ImageDropzone from "./ImageDropzone.jsx";
 import {toast} from "react-toastify";
 import {ObjectState} from "../../utils/utils.jsx";
@@ -61,9 +60,9 @@ const EditProductForm = (props) => {
                                    setImage={setImage}/>
                 </div>
                 <Button text="Submit"
-                        onClick={handleOnClickSubmit}>
-                    {loading ? <CircularProgress/> : "Submit"}
-                </Button>
+                        onClick={handleOnClickSubmit}
+                        isLoading={loading}/>
+
             </div>
         </FormContainer>
     );
