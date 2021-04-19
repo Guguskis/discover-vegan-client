@@ -9,7 +9,7 @@ const VendorMarkers = (props) => {
 
     return vendors.map(vendor => (
         <Marker
-            key={vendor.id}
+            key={vendor.vendorId}
             longitude={vendor.longitude}
             latitude={vendor.latitude}
             offsetTop={-26} // center

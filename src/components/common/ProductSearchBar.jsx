@@ -57,8 +57,8 @@ const ProductSearchBar = (props) => {
             open={open}
             onOpen={() => setOpen(true)}
             onClose={() => setOpen(false)}
-            getOptionSelected={(option, value) => option.id === value.id}
-            getOptionLabel={(option) => option.title}
+            getOptionSelected={(option, value) => option.productId === value.productId}
+            getOptionLabel={(option) => option.name}
             options={options}
             loading={loading}
             renderInput={(params) => (
@@ -80,7 +80,7 @@ const ProductSearchBar = (props) => {
             )}
             renderOption={(option, state) => (
                 <div onClick={() => handleOnOptionSelect(option)}>
-                    <Product className='product' key={option.id} product={option}/>
+                    <Product className='product' key={option.productId} product={option}/>
                 </div>
             )}
         />

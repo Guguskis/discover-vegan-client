@@ -17,7 +17,7 @@ const VendorPopup = (props) => {
 
     const [{data: productsData, loading: productsLoading, error: productsError}, executeProducts] = API.useDiscoverVeganApiAxios(
         {
-            url: `/api/vendor/${vendor.id}/product`,
+            url: `/api/vendor/${vendor.vendorId}/product`,
             method: 'GET'
         }
     )
@@ -53,7 +53,7 @@ const VendorPopup = (props) => {
             capturePointerMove={true}
         >
             <div className="products-container">
-                {products.map(product => <Product key={product.id} product={product}/>)}
+                {products.map(product => <Product key={product.productId} product={product}/>)}
             </div>
             <div className="button-container">
                 <SmallButton text="Product"
@@ -69,7 +69,9 @@ const VendorPopup = (props) => {
                 aria-describedby="server-modal-description"
                 className="modal-container"
             >
-                <div><AddProductForm handleOnClose={onClickHandleAddProductClose}/></div>
+                <div><AddProductForm products={products}
+                                     setProducts={setProducts}
+                                     handleOnClose={onClickHandleAddProductClose}/></div>
             </Modal>
         </Popup>
     );

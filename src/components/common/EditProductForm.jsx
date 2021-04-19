@@ -40,7 +40,7 @@ const EditProductForm = (props) => {
                                    label="Product name"
                                    variant="filled"
                                    name="title"
-                                   value={product.title}
+                                   value={product.name}
                                    onChange={onChangeUpdateProduct}
                                    required={true}/>
                         <TextField id="filled-start-adornment"

@@ -13,10 +13,9 @@ import {API} from "../../config/config.jsx";
 import Button from "./Button.jsx";
 
 const AddProductForm = (props) => {
-    const {handleOnClose} = props;
+    const {handleOnClose, products, setProducts} = props;
 
     const [editProductFormOpen, setEditProductFormOpen] = useState(false);
-    const [products, setProducts] = useState([]); // GET api/vendor/product
     const [productToEdit, setProductToEdit] = useState();
 
     const [{data: fileUploadData, loading: fileUploadLoading, error: fileUploadError}, executeFileUpload] = API.useStorageAxios(
@@ -28,7 +27,7 @@ const AddProductForm = (props) => {
     )
 
     const handleOnProductSelect = (product) => {
-        if (products.find(productInArray => productInArray.id === product.id)) {
+        if (products.find(productInArray => productInArray.productId === product.productId)) {
             toast.error("This product already added", {
                 position: toast.POSITION.TOP_CENTER
             })
@@ -38,7 +37,7 @@ const AddProductForm = (props) => {
     };
 
     const handleOnEditProductSubmit = async (product) => {
-        let newProduct = !product.hasOwnProperty("id"); // || !product.id
+        let newProduct = !product.hasOwnProperty("id"); // || !product.productId
 
         const formData = new FormData();
         formData.append("file", product.image)

@@ -7,7 +7,7 @@ const Product = (props) => {
     // todo add gamintojas
 
     return (
-        <div className="product-container" key={product.id}>
+        <div className="product-container" key={product.productId}>
             <img src={product.imageUrl} alt="Product image"/>
             <div className='details'>
                 <p className='name'>{product.name}</p>

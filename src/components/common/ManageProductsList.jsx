@@ -25,7 +25,7 @@ const ManageProductsList = (props) => {
                     </ListItemAvatar>
                     <ListItemText
                         className="list-item-text"
-                        primary={product.title}
+                        primary={product.name}
                     />
                     <ListItemSecondaryAction>
                         <IconButton onClick={() => onClickHandleEdit(product)} edge="end" aria-label="edit">
@@ -36,7 +36,7 @@ const ManageProductsList = (props) => {
                         </IconButton>
                     </ListItemSecondaryAction>
                 </ListItem>, {
-                    key: product.id,
+                    key: product.productId,
                 }),
             )}
         </List>
