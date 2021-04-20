@@ -17,7 +17,6 @@ const VendorPopup = (props) => {
 
     if (!vendor) return null;
 
-    const {DICTIONARY} = useDictionary();
     const [{data: productsData, loading: productsLoading, error: productsError}, executeProducts] = API.useDiscoverVeganApiAxios(
         {
             url: `/api/vendor/${vendor.vendorId}/product`,
