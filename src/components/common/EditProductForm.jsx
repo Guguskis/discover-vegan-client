@@ -10,12 +10,13 @@ import Button from "./Button.jsx";
 
 const EditProductForm = (props) => {
     const {handleOnClose, handleOnSubmit, loading} = props;
-    const [product, setProduct] = useState(props.product ? props.product : {});
+    const isNewProduct = !props.product;
+    const [product, setProduct] = useState(isNewProduct ? {} : props.product);
 
     const handleOnClickSubmit = async () => {
         // todo input validation
         try {
-            await handleOnSubmit(product);
+            await handleOnSubmit(isNewProduct, product);
         } catch (ex) {
             toast.error(ex.message)
         }

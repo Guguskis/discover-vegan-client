@@ -36,9 +36,7 @@ const VendorAddProductForm = (props) => {
         }
     };
 
-    const handleOnEditProductSubmit = async (product) => {
-        let newProduct = !product.hasOwnProperty("id"); // || !product.productId
-
+    const handleOnEditProductSubmit = async (isNewProduct, product) => {
         const formData = new FormData();
         formData.append("file", product.image)
 
@@ -47,7 +45,7 @@ const VendorAddProductForm = (props) => {
             product.imageUrl = response.data.fileUrl;
         }
 
-        if (newProduct) {
+        if (isNewProduct) {
             throw new Error("POST api/vendor/product, add response to products")
         } else {
             throw new Error("PUT api/vendor/product")
