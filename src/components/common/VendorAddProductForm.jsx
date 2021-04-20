@@ -26,6 +26,14 @@ const VendorAddProductForm = (props) => {
         {manual: true}
     )
 
+    const [{data: createProductData, loading: createProductLoading, error: createProductError}, executeCreateProduct] = API.useDiscoverVeganApiAxios(
+        {
+            url: "/api/product",
+            method: 'POST'
+        },
+        {manual: true}
+    )
+
     const handleOnProductSelect = (product) => {
         if (products.find(productInArray => productInArray.productId === product.productId)) {
             toast.error("This product already added", {
@@ -36,27 +44,33 @@ const VendorAddProductForm = (props) => {
         }
     };
 
-    const handleOnEditProductSubmit = async (isNewProduct, product) => {
+    const handleOnEditProductSubmit = async (isNewProduct, editedProductState) => {
         const formData = new FormData();
-        formData.append("file", product.image)
+        formData.append("file", editedProductState.image)
 
-        if (product.image instanceof File) {
+        let editedProduct = editedProductState;
+
+        if (editedProductState.image instanceof File) {
             const response = await executeFileUpload({...fileUploadData, data: formData})
-            product.imageUrl = response.data.fileUrl;
+            editedProduct.imageUrl = response.data.fileUrl;
         }
 
         if (isNewProduct) {
-            throw new Error("POST api/vendor/product, add response to products")
+            const newProduct = await executeCreateProduct({...createProductData, data: editedProduct}).data;
+            // todo add product to vendor
+            ArraysState.add(setProducts, newProduct);
+            closeEditProduct()
         } else {
             throw new Error("PUT api/vendor/product")
         }
+
     }
 
-    const onClickEditProduct = (product) => {
+    const editProduct = (product) => {
         setEditProductFormOpen(true)
         setProductToEdit(product)
     }
-    const onClickCancelEditProduct = () => {
+    const closeEditProduct = () => {
         setEditProductFormOpen(false)
         setProductToEdit(null)
     }
@@ -70,7 +84,7 @@ const VendorAddProductForm = (props) => {
         <div className="product-input-container">
             <ProductSearchBar handleOnOptionSelect={handleOnProductSelect}/>
             <Button text="New product"
-                    onClick={() => onClickEditProduct(null)}
+                    onClick={() => editProduct(null)}
                     icon={<AddIcon/>}/>
         </div>
     )
@@ -80,21 +94,21 @@ const VendorAddProductForm = (props) => {
             <div className="add-product-form-container">
                 <ProductInputs/>
                 <ManageProductsList products={products}
-                                    onClickHandleEdit={onClickEditProduct}
+                                    onClickHandleEdit={editProduct}
                                     onClickHandleDelete={onClickDeleteProduct}/>
                 <Button text="Done"
                         onClick={handleOnClose}/>
 
                 <Modal
                     open={editProductFormOpen}
-                    onClose={() => setEditProductFormOpen(false)} // todo onClickCancelEditProduct
+                    onClose={closeEditProduct}
                     aria-labelledby="server-modal-title"
                     aria-describedby="server-modal-description"
                     className="modal-container"
                 >
                     <div>
                         <EditProductForm product={productToEdit}
-                                         handleOnClose={onClickCancelEditProduct}
+                                         handleOnClose={closeEditProduct}
                                          handleOnSubmit={handleOnEditProductSubmit}
                                          loading={fileUploadLoading}/>
                     </div>

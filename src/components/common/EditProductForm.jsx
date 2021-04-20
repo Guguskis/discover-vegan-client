@@ -40,8 +40,16 @@ const EditProductForm = (props) => {
                                    className="input-field"
                                    label="Product name"
                                    variant="filled"
-                                   name="title"
+                                   name="name"
                                    value={product.name}
+                                   onChange={onChangeUpdateProduct}
+                                   required={true}/>
+                        <TextField id="filled-basic"
+                                   className="input-field"
+                                   label="Product name"
+                                   variant="filled"
+                                   name="producer"
+                                   value={product.producer}
                                    onChange={onChangeUpdateProduct}
                                    required={true}/>
                         <TextField id="filled-start-adornment"
