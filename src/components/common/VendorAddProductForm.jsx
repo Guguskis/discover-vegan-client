@@ -11,6 +11,7 @@ import {ArraysState} from "../../utils/utils.jsx";
 import {toast} from "react-toastify";
 import {API} from "../../config/config.jsx";
 import Button from "./Button.jsx";
+import {DICTIONARY} from "../../config/dictionary.jsx";
 
 const VendorAddProductForm = (props) => {
     const {handleOnClose, products, setProducts, vendor} = props;
@@ -97,7 +98,7 @@ const VendorAddProductForm = (props) => {
     const ProductInputs = () => (
         <div className="product-input-container">
             <ProductSearchBar handleOnOptionSelect={handleOnProductSelect}/>
-            <Button text="New product"
+            <Button text={DICTIONARY.newProduct}
                     onClick={() => editProduct(null)}
                     icon={<AddIcon/>}/>
         </div>
@@ -110,7 +111,7 @@ const VendorAddProductForm = (props) => {
                 <ManageProductsList products={products}
                                     onClickHandleEdit={editProduct}
                                     onClickHandleDelete={onClickDeleteProduct}/>
-                <Button text="Done"
+                <Button text={DICTIONARY.done}
                         onClick={handleOnClose}/>
 
                 <Modal

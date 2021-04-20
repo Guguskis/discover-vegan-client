@@ -7,6 +7,7 @@ import ImageDropzone from "./ImageDropzone.jsx";
 import {toast} from "react-toastify";
 import {ObjectState} from "../../utils/utils.jsx";
 import Button from "./Button.jsx";
+import {DICTIONARY} from "../../config/dictionary.jsx";
 
 const EditProductForm = (props) => {
     const {handleOnClose, handleOnSubmit, loading} = props;
@@ -21,16 +22,16 @@ const EditProductForm = (props) => {
             const response = ex.response;
             switch (response.status) {
                 case 500:
-                    toast.error("Please try again later")
+                    toast.error(DICTIONARY.pleaseTryAgainLater)
                     break;
                 case 404:
-                    toast.error("Vendor might be deleted")
+                    toast.error(DICTIONARY.vendorMightBeDeleted)
                     break;
                 case 400:
-                    toast.error("Check your input")
+                    toast.error(DICTIONARY.checkYourInput)
                     break;
                 default:
-                    toast.error("Something bad happened, please try again later")
+                    toast.error(DICTIONARY.somethingBadHappenedPleaseTryAgainLater)
                     break;
             }
         }
@@ -52,7 +53,7 @@ const EditProductForm = (props) => {
                     <div className="details-container">
                         <TextField id="filled-basic"
                                    className="input-field"
-                                   label="Product name"
+                                   label={DICTIONARY.productName}
                                    variant="filled"
                                    name="name"
                                    value={product.name}
@@ -60,7 +61,7 @@ const EditProductForm = (props) => {
                                    required={true}/>
                         <TextField id="filled-basic"
                                    className="input-field"
-                                   label="Producer"
+                                   label={DICTIONARY.producer}
                                    variant="filled"
                                    name="producer"
                                    value={product.producer}
@@ -68,7 +69,7 @@ const EditProductForm = (props) => {
                                    required={true}/>
                         <TextField id="filled-start-adornment"
                                    className="input-field"
-                                   label="Price"
+                                   label={DICTIONARY.price}
                                    variant="filled"
                                    required={true}
                                    type="number"
@@ -82,7 +83,7 @@ const EditProductForm = (props) => {
                     <ImageDropzone imageUrl={product.imageUrl}
                                    setImage={setImage}/>
                 </div>
-                <Button text="Submit"
+                <Button text={DICTIONARY.submit}
                         onClick={handleOnClickSubmit}
                         isLoading={loading}/>
 

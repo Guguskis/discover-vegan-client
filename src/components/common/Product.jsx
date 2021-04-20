@@ -1,5 +1,6 @@
 import React from 'react';
 import './Product.less'
+import {DICTIONARY} from "../../config/dictionary.jsx";
 
 const Product = (props) => {
     const {product} = props;
@@ -8,7 +9,7 @@ const Product = (props) => {
 
     return (
         <div className="product-container" key={product.productId}>
-            <img src={product.imageUrl} alt="Product image"/>
+            <img src={product.imageUrl} alt={DICTIONARY.productImage}/>
             <div className='details'>
                 <p className='name'>{product.name}</p>
                 <p className='price'>{product.price}€</p>

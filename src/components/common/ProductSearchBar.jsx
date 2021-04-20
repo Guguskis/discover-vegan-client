@@ -5,6 +5,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import './ProductSearchBar.less'
 import PRODUCTS from "../../data-sample/product.jsx";
 import Product from "./Product.jsx";
+import {DICTIONARY} from "../../config/dictionary.jsx";
 
 function sleep(delay = 0) {
     return new Promise((resolve) => {
@@ -64,7 +65,7 @@ const ProductSearchBar = (props) => {
             renderInput={(params) => (
                 <TextField
                     {...params}
-                    label="Search vegan goods"
+                    label={DICTIONARY.searchVeganGoods}
                     variant="outlined"
                     onChange={event => console.log(event.target.value)}
                     InputProps={{

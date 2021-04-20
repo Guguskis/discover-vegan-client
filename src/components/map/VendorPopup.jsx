@@ -9,6 +9,7 @@ import Modal from "@material-ui/core/Modal";
 import VendorAddProductForm from "../common/VendorAddProductForm.jsx";
 import SmallButton from "../common/SmallButton.jsx";
 import {API} from "../../config/config.jsx";
+import {DICTIONARY} from "../../config/dictionary.jsx";
 
 const VendorPopup = (props) => {
     const {vendor, setVendor} = props;
@@ -56,10 +57,10 @@ const VendorPopup = (props) => {
                 {products.map(product => <Product key={product.productId} product={product}/>)}
             </div>
             <div className="button-container">
-                <SmallButton text="Product"
+                <SmallButton text={DICTIONARY.product}
                              icon={<AddIcon/>}
                              onClick={onClickHandleAddProduct}/>
-                <SmallButton text="View all"
+                <SmallButton text={DICTIONARY.viewAll}
                              icon={<ListIcon/>}/>
             </div>
             <Modal

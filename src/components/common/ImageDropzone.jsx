@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import Dropzone from "react-dropzone";
 import "./ImageDropzone.less"
 import ImageIcon from '@material-ui/icons/Image';
+import {DICTIONARY} from "../../config/dictionary.jsx";
 
 const ImageDropzone = (props) => {
     const {imageUrl, setImage} = props;
@@ -24,7 +25,7 @@ const ImageDropzone = (props) => {
             <div {...props.getRootProps({className: 'empty-dropzone'})}>
                 <input {...props.getInputProps()} />
                 <ImageIcon fontSize="large"/>
-                <p>Upload image</p>
+                <p>{DICTIONARY.uploadImage}</p>
             </div>
         );
     }
@@ -33,7 +34,7 @@ const ImageDropzone = (props) => {
         return (
             <div {...props.getRootProps({className: 'uploaded-dropzone'})}>
                 <input {...props.getInputProps()} />
-                <img src={files[0].url} alt="Uploaded image"/>
+                <img src={files[0].url} alt={DICTIONARY.uploadedImage}/>
             </div>
         );
     }
