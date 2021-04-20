@@ -24,6 +24,7 @@ const VendorPopup = (props) => {
             method: 'GET'
         }
     )
+    const {DICTIONARY} = useDictionary();
     const [addProductFormOpen, setAddProductFormOpen] = useState(false);
     const [products, setProducts] = useState([]);
 
