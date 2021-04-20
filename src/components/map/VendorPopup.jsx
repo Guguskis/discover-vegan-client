@@ -29,7 +29,7 @@ const VendorPopup = (props) => {
 
     useEffect(() => {
         if (productsData) {
-            setProducts(productsData);
+            setProducts(productsData.products);
         }
     }, [productsData])
 
