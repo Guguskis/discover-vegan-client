@@ -2,7 +2,7 @@ import LocalizedStrings from 'react-localization';
 import {useState} from "react";
 
 const useDictionary = () => {
-    const [DICTIONARY, SET_DICTIONARY] = useState(new LocalizedStrings({
+    const [DICTIONARY] = useState(new LocalizedStrings({
             en: {
                 map: "Map",
                 products: "Products",
@@ -61,7 +61,12 @@ const useDictionary = () => {
             }
         })
     )
-    return {DICTIONARY};
+
+    const setLanguage = (language) => {
+        DICTIONARY.setLanguage(language)
+    }
+
+    return {DICTIONARY, setLanguage};
 }
 
 
