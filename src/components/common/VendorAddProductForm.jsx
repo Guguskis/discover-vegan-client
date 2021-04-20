@@ -18,7 +18,7 @@ const VendorAddProductForm = (props) => {
     const [editProductFormOpen, setEditProductFormOpen] = useState(false);
     const [productToEdit, setProductToEdit] = useState();
 
-    const [{data: fileUploadData, loading: fileUploadLoading, error: fileUploadError}, executeFileUpload] = API.useStorageAxios(
+    const [{data: fileUploadData, loading: fileUploadLoading, error: fileUploadError}, executeFileUpload] = API.useFileServiceAxios(
         {
             url: "/api/storage/file",
             method: 'POST'
