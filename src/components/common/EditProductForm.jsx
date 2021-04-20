@@ -60,7 +60,7 @@ const EditProductForm = (props) => {
                                    required={true}/>
                         <TextField id="filled-basic"
                                    className="input-field"
-                                   label="Product name"
+                                   label="Producer"
                                    variant="filled"
                                    name="producer"
                                    value={product.producer}
