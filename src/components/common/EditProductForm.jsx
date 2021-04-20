@@ -18,7 +18,21 @@ const EditProductForm = (props) => {
         try {
             await handleOnSubmit(isNewProduct, product);
         } catch (ex) {
-            toast.error(ex.message)
+            const response = ex.response;
+            switch (response.status) {
+                case 500:
+                    toast.error("Please try again later")
+                    break;
+                case 404:
+                    toast.error("Vendor might be deleted")
+                    break;
+                case 400:
+                    toast.error("Check your input")
+                    break;
+                default:
+                    toast.error("Something bad happened, please try again later")
+                    break;
+            }
         }
     }
 
