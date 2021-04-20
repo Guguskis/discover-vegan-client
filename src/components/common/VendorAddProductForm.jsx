@@ -4,7 +4,7 @@ import ProductSearchBar from "./ProductSearchBar.jsx";
 import EditProductForm from "./EditProductForm.jsx";
 import Modal from "@material-ui/core/Modal";
 
-import "./AddProductForm.less";
+import "./VendorAddProductForm.less";
 import AddIcon from "@material-ui/icons/Add.js";
 import ManageProductsList from "./ManageProductsList.jsx";
 import {ArraysState} from "../../utils/utils.jsx";
@@ -12,7 +12,7 @@ import {toast} from "react-toastify";
 import {API} from "../../config/config.jsx";
 import Button from "./Button.jsx";
 
-const AddProductForm = (props) => {
+const VendorAddProductForm = (props) => {
     const {handleOnClose, products, setProducts} = props;
 
     const [editProductFormOpen, setEditProductFormOpen] = useState(false);
@@ -106,4 +106,4 @@ const AddProductForm = (props) => {
     );
 }
 
-export default AddProductForm;
+export default VendorAddProductForm;

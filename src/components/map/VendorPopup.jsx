@@ -6,7 +6,7 @@ import './VendorPopup.less'
 import AddIcon from "@material-ui/icons/Add.js";
 import ListIcon from '@material-ui/icons/List';
 import Modal from "@material-ui/core/Modal";
-import AddProductForm from "../common/AddProductForm.jsx";
+import VendorAddProductForm from "../common/VendorAddProductForm.jsx";
 import SmallButton from "../common/SmallButton.jsx";
 import {API} from "../../config/config.jsx";
 
@@ -69,9 +69,9 @@ const VendorPopup = (props) => {
                 aria-describedby="server-modal-description"
                 className="modal-container"
             >
-                <div><AddProductForm products={products}
-                                     setProducts={setProducts}
-                                     handleOnClose={onClickHandleAddProductClose}/></div>
+                <div><VendorAddProductForm products={products}
+                                           setProducts={setProducts}
+                                           handleOnClose={onClickHandleAddProductClose}/></div>
             </Modal>
         </Popup>
     );
