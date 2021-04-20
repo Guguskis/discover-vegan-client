@@ -7,10 +7,12 @@ import ImageDropzone from "./ImageDropzone.jsx";
 import {toast} from "react-toastify";
 import {ObjectState} from "../../utils/utils.jsx";
 import Button from "./Button.jsx";
-import {DICTIONARY} from "../../config/dictionary.jsx";
+import {useDictionary} from "../../config/dictionary.jsx";
+
 
 const EditProductForm = (props) => {
     const {handleOnClose, handleOnSubmit, loading} = props;
+    const {DICTIONARY} = useDictionary();
     const isNewProduct = !props.product;
     const [product, setProduct] = useState(isNewProduct ? {} : props.product);
 

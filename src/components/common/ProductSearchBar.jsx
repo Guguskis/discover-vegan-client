@@ -5,7 +5,8 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import './ProductSearchBar.less'
 import PRODUCTS from "../../data-sample/product.jsx";
 import Product from "./Product.jsx";
-import {DICTIONARY} from "../../config/dictionary.jsx";
+import {useDictionary} from "../../config/dictionary.jsx";
+
 
 function sleep(delay = 0) {
     return new Promise((resolve) => {
@@ -19,6 +20,7 @@ const fetchProducts = (start, items) => {
 
 const ProductSearchBar = (props) => {
     const {handleOnOptionSelect} = props;
+    const {DICTIONARY} = useDictionary();
 
     const [open, setOpen] = useState(false);
     const [options, setOptions] = useState([]);

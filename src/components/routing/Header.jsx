@@ -1,9 +1,12 @@
 import React from 'react';
 import {NavLink} from "react-router-dom";
 import "./Header.less"
-import {DICTIONARY} from "../../config/dictionary.jsx";
+import {useDictionary} from "../../config/dictionary.jsx";
+
 
 function Header() {
+    const {DICTIONARY} = useDictionary();
+
     return (
         <div className="header">
             <div className='routing-container'>

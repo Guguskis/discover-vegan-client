@@ -1,9 +1,11 @@
 import React from 'react';
 import './Product.less'
-import {DICTIONARY} from "../../config/dictionary.jsx";
+import {useDictionary} from "../../config/dictionary.jsx";
+
 
 const Product = (props) => {
     const {product} = props;
+    const {DICTIONARY} = useDictionary();
 
     // todo add gamintojas
 

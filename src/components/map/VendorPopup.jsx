@@ -9,13 +9,15 @@ import Modal from "@material-ui/core/Modal";
 import VendorAddProductForm from "../common/VendorAddProductForm.jsx";
 import SmallButton from "../common/SmallButton.jsx";
 import {API} from "../../config/config.jsx";
-import {DICTIONARY} from "../../config/dictionary.jsx";
+import {useDictionary} from "../../config/dictionary.jsx";
+
 
 const VendorPopup = (props) => {
     const {vendor, setVendor} = props;
 
     if (!vendor) return null;
 
+    const {DICTIONARY} = useDictionary();
     const [{data: productsData, loading: productsLoading, error: productsError}, executeProducts] = API.useDiscoverVeganApiAxios(
         {
             url: `/api/vendor/${vendor.vendorId}/product`,

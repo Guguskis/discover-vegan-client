@@ -11,10 +11,12 @@ import {ArraysState} from "../../utils/utils.jsx";
 import {toast} from "react-toastify";
 import {API} from "../../config/config.jsx";
 import Button from "./Button.jsx";
-import {DICTIONARY} from "../../config/dictionary.jsx";
+import {useDictionary} from "../../config/dictionary.jsx";
+
 
 const VendorAddProductForm = (props) => {
     const {handleOnClose, products, setProducts, vendor} = props;
+    const {DICTIONARY} = useDictionary();
 
     const [editProductFormOpen, setEditProductFormOpen] = useState(false);
     const [productToEdit, setProductToEdit] = useState();

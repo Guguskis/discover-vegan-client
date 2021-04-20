@@ -2,10 +2,12 @@ import React, {useState} from 'react';
 import Dropzone from "react-dropzone";
 import "./ImageDropzone.less"
 import ImageIcon from '@material-ui/icons/Image';
-import {DICTIONARY} from "../../config/dictionary.jsx";
+import {useDictionary} from "../../config/dictionary.jsx";
+
 
 const ImageDropzone = (props) => {
     const {imageUrl, setImage} = props;
+    const {DICTIONARY} = useDictionary();
 
     const [files, setFiles] = useState(imageUrl ?
         [{url: imageUrl}] : []
