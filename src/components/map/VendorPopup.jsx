@@ -71,6 +71,7 @@ const VendorPopup = (props) => {
             >
                 <div><VendorAddProductForm products={products}
                                            setProducts={setProducts}
+                                           vendor={vendor}
                                            handleOnClose={onClickHandleAddProductClose}/></div>
             </Modal>
         </Popup>

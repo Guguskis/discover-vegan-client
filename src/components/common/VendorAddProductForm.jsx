@@ -13,7 +13,7 @@ import {API} from "../../config/config.jsx";
 import Button from "./Button.jsx";
 
 const VendorAddProductForm = (props) => {
-    const {handleOnClose, products, setProducts} = props;
+    const {handleOnClose, products, setProducts, vendor} = props;
 
     const [editProductFormOpen, setEditProductFormOpen] = useState(false);
     const [productToEdit, setProductToEdit] = useState();
@@ -29,6 +29,13 @@ const VendorAddProductForm = (props) => {
     const [{data: createProductData, loading: createProductLoading, error: createProductError}, executeCreateProduct] = API.useDiscoverVeganApiAxios(
         {
             url: "/api/product",
+            method: 'POST'
+        },
+        {manual: true}
+    )
+    const [{data: addProductToVendorData, loading: addProductToVendorLoading, error: addProductToVendorError}, executeAddProductToVendor] = API.useDiscoverVeganApiAxios(
+        {
+            url: `/api/vendor/${vendor.vendorId}/product`,
             method: 'POST'
         },
         {manual: true}
@@ -56,9 +63,16 @@ const VendorAddProductForm = (props) => {
         }
 
         if (isNewProduct) {
-            const newProduct = await executeCreateProduct({...createProductData, data: editedProduct}).data;
-            // todo add product to vendor
-            ArraysState.add(setProducts, newProduct);
+            const createProductResponse = await executeCreateProduct({...createProductData, data: editedProduct});
+            const newProduct = createProductResponse.data;
+            const addProductToVendorResponse = await executeAddProductToVendor({
+                ...addProductToVendorData, data: {
+                    productId: newProduct.productId,
+                    price: editedProduct.price
+                }
+            })
+            const vendorProduct = addProductToVendorResponse.data;
+            ArraysState.add(setProducts, vendorProduct);
             closeEditProduct()
         } else {
             throw new Error("PUT api/vendor/product")
