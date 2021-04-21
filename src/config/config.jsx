@@ -15,4 +15,8 @@ const API = {
     }),
 }
 
-export {API};
+const DEFAULTS = {
+    STEP_DISTANCE_METERS: 3000
+}
+
+export {API, DEFAULTS};
