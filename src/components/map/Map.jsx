@@ -13,7 +13,7 @@ const Map = (props) => {
         zoom: 13
     });
 
-    const [vendors, handleMouseMove] = useOnDragUpdateVendors({viewport: viewport});
+    const [vendors, handleMouseMove] = useOnDragUpdateVendors(viewport);
     const [selectedVendor, setSelectedVendor] = useState(null);
 
     return (

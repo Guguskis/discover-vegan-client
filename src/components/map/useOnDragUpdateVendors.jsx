@@ -2,10 +2,8 @@ import React, {useEffect, useState} from 'react';
 
 import harvesine from "haversine-distance";
 import {API, DEFAULTS} from "../../config/config.jsx";
-import {ArraysState} from "../../utils/utils.jsx";
 
-const useOnDragUpdateVendors = (props) => {
-    const {viewport} = props;
+const useOnDragUpdateVendors = (viewport) => {
 
     const [vendors, setVendors] = useState([])
     const [{data: vendorData, loading: vendorLoading, error: vendorError}, executeVendor] = API.useDiscoverVeganApiAxios(
@@ -16,11 +14,16 @@ const useOnDragUpdateVendors = (props) => {
         {manual: true}
     )
 
+    const [fetchCooldown, setFetchCooldown] = useState(false)
+
     const [lastStepPosition, setLastStepPosition] = useState(getPosition(viewport));
-    const [visitedCoordinates, setVisitedCoordinates] = useState([])
+
+    function canFetchData() {
+        return !vendorLoading && !fetchCooldown;
+    }
 
     const fetchVendors = () => {
-        if (vendorLoading)
+        if (!canFetchData())
             return;
 
         executeVendor(
@@ -48,23 +51,13 @@ const useOnDragUpdateVendors = (props) => {
 
         const currentPosition = getPosition(viewport)
         const distance = harvesine(currentPosition, lastStepPosition)
+        let canDoStep = distance > DEFAULTS.STEP_DISTANCE_METERS;
 
-        if (distance > DEFAULTS.STEP_DISTANCE_METERS && doesNotIntersectOtherPoints(currentPosition)) {
+        if (canDoStep && canFetchData()) {
             setLastStepPosition(currentPosition)
-            ArraysState.add(setVisitedCoordinates, currentPosition)
             fetchVendors()
         }
     }
-
-    const doesNotIntersectOtherPoints = (position) => {
-        const intersectedCoordinates = visitedCoordinates.filter(visitedCoordinate => {
-            const distance = harvesine(visitedCoordinate, position)
-            return distance < DEFAULTS.STEP_DISTANCE_METERS;
-        });
-
-        return intersectedCoordinates.length === 0;
-    }
-
     return [vendors, handleMouseMove];
 };
 
