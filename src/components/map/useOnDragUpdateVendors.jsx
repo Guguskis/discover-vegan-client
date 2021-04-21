@@ -1,13 +1,45 @@
 import React, {useEffect, useState} from 'react';
 
 import harvesine from "haversine-distance";
-import {DEFAULTS} from "../../config/config.jsx";
+import {API, DEFAULTS} from "../../config/config.jsx";
 import {ArraysState} from "../../utils/utils.jsx";
 
-const useOnDragUpdateVendors = (viewport, setVendors) => {
+const useOnDragUpdateVendors = (props) => {
+    const {viewport} = props;
+
+    const [vendors, setVendors] = useState([])
+    const [{data: vendorData, loading: vendorLoading, error: vendorError}, executeVendor] = API.useDiscoverVeganApiAxios(
+        {
+            url: "/api/vendor",
+            method: 'GET'
+        },
+        {manual: true}
+    )
 
     const [lastStepPosition, setLastStepPosition] = useState(getPosition(viewport));
     const [visitedCoordinates, setVisitedCoordinates] = useState([])
+
+    const fetchVendors = () => {
+        if (vendorLoading)
+            return;
+
+        executeVendor(
+            {
+                ...vendorData,
+                params: {latitude: viewport.latitude, longitude: viewport.longitude}
+            }
+        );
+    }
+
+    useEffect(() => {
+        fetchVendors();
+    }, [])
+
+    useEffect(() => {
+        if (vendorData) {
+            setVendors(vendorData);
+        }
+    }, [vendorData]);
 
     const handleMouseMove = (event) => {
 
@@ -20,6 +52,7 @@ const useOnDragUpdateVendors = (viewport, setVendors) => {
         if (distance > DEFAULTS.STEP_DISTANCE_METERS && doesNotIntersectOtherPoints(currentPosition)) {
             setLastStepPosition(currentPosition)
             ArraysState.add(setVisitedCoordinates, currentPosition)
+            fetchVendors()
         }
     }
 
@@ -32,11 +65,7 @@ const useOnDragUpdateVendors = (viewport, setVendors) => {
         return intersectedCoordinates.length === 0;
     }
 
-    useEffect(() => {
-        setVendors();
-    }, [visitedCoordinates])
-
-    return [handleMouseMove];
+    return [vendors, handleMouseMove];
 };
 
 function getPosition(viewport) {
