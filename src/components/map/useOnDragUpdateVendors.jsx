@@ -52,9 +52,9 @@ const useOnDragUpdateVendors = (viewport) => {
         return () => clearTimeout(timer);
     }, [fetchCooldown]);
 
-    const handleMouseMove = (event) => {
+    const onViewStateChange = (event) => {
 
-        if (!event.leftButton)
+        if (!mapPositionChange(event))
             return;
 
         const currentPosition = getPosition(viewport)
@@ -66,8 +66,16 @@ const useOnDragUpdateVendors = (viewport) => {
             fetchVendors()
         }
     }
-    return [vendors, handleMouseMove];
+    return [vendors, onViewStateChange];
 };
+
+const mapPositionChange = (event) => {
+    if (event.isRotating)
+        return false;
+    if (event.isDragging && event.isPanning)
+        return true;
+    return true;
+}
 
 function getPosition(viewport) {
     return {

@@ -13,7 +13,7 @@ const Map = (props) => {
         zoom: 13
     });
 
-    const [vendors, handleMouseMove] = useOnDragUpdateVendors(viewport);
+    const [vendors, oneViewStateChange] = useOnDragUpdateVendors(viewport);
     const [selectedVendor, setSelectedVendor] = useState(null);
 
     return (
@@ -25,7 +25,7 @@ const Map = (props) => {
                 mapboxApiAccessToken={process.env.MAPBOX_ACCESS_TOKEN}
                 width='100%'
                 height='100%'
-                onMouseMove={handleMouseMove}>
+                onInteractionStateChange={oneViewStateChange}>
                 <VendorMarkers vendors={vendors} setVendors={setSelectedVendor}/>
                 <VendorPopup vendor={selectedVendor} setVendor={setSelectedVendor}/>
                 <div className='ui-overlay'>
