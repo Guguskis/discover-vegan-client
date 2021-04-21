@@ -41,8 +41,16 @@ const useOnDragUpdateVendors = (viewport) => {
     useEffect(() => {
         if (vendorData) {
             setVendors(vendorData);
+            setFetchCooldown(true)
         }
     }, [vendorData]);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setFetchCooldown(false)
+        }, DEFAULTS.VENDORS_FETCH_COOLDOWN_MS);
+        return () => clearTimeout(timer);
+    }, [fetchCooldown]);
 
     const handleMouseMove = (event) => {
 
