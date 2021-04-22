@@ -1,0 +1,53 @@
+@import "../common";
+
+.login-page-body {
+    padding: 2ch;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .login-form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        background-color: @secondary-color;
+
+        padding: 20ch;
+
+        > * {
+            max-width: 50ch;
+        }
+    }
+
+    .input-field {
+        margin-bottom: 2ch;
+    }
+
+    .small-text {
+        font-size: @font-size-small;
+        color: @font-color;
+
+        .underscored-text {
+            text-decoration: underline;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+
+    .MuiFilledInput-input, .MuiFormLabel-root, .MuiTypography-colorTextSecondary {
+        color: @font-color;
+    }
+
+    .MuiFormLabel-root.Mui-focused {
+        color: @primary-color;
+    }
+
+    .MuiFilledInput-root {
+        background-color: @secondary-color;
+    }
+}
