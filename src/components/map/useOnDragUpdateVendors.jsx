@@ -48,7 +48,7 @@ const useOnDragUpdateVendors = (viewport) => {
     useEffect(() => {
         const timer = setTimeout(() => {
             setFetchCooldown(false)
-        }, DEFAULTS.VENDORS_FETCH_COOLDOWN_MS);
+        }, DEFAULTS.MAP.VENDORS_FETCH_COOLDOWN_MS);
         return () => clearTimeout(timer);
     }, [fetchCooldown]);
 
@@ -59,7 +59,7 @@ const useOnDragUpdateVendors = (viewport) => {
 
         const currentPosition = getPosition(viewport)
         const distance = harvesine(currentPosition, lastStepPosition)
-        let canDoStep = distance > DEFAULTS.STEP_DISTANCE_METERS;
+        let canDoStep = distance > DEFAULTS.MAP.STEP_DISTANCE_METERS;
 
         if (canDoStep && canFetchData()) {
             setLastStepPosition(currentPosition)

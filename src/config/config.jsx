@@ -16,8 +16,10 @@ const API = {
 }
 
 const DEFAULTS = {
-    STEP_DISTANCE_METERS: 500,
-    VENDORS_FETCH_COOLDOWN_MS: 500
+    MAP: {
+        STEP_DISTANCE_METERS: 500,
+        VENDORS_FETCH_COOLDOWN_MS: 500
+    }
 }
 
 export {API, DEFAULTS};
