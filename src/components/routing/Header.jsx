@@ -24,8 +24,8 @@ function Header() {
             <div className='account-container'>
                 <NavLink exact to='/login' className="routing-item"
                          activeClassName="active">{DICTIONARY.login}</NavLink>
-                <NavLink exact to='/register' className="routing-item"
-                         activeClassName="active">{DICTIONARY.register}</NavLink>
+                <NavLink exact to='/signup' className="routing-item"
+                         activeClassName="active">{DICTIONARY.signUp}</NavLink>
             </div>
         </div>
     );

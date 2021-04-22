@@ -5,12 +5,14 @@ import {useDictionary} from "../../config/dictionary.jsx";
 import TextField from "@material-ui/core/TextField";
 import {ObjectState} from "../../utils/utils.jsx";
 import Button from "../common/Button.jsx";
-
+import {useHistory} from "react-router-dom";
+import {toast} from "react-toastify";
 
 export default HomePage;
 
 function HomePage() {
     const {DICTIONARY} = useDictionary();
+    const history = useHistory();
 
     const [user, setUser] = useState({
         email: "",
@@ -22,11 +24,11 @@ function HomePage() {
     }
 
     const onClickHandleLogin = () => {
-        console.log(user)
+        toast.error("Implement login");
     }
 
     const onClickHandleRegister = () => {
-        console.log("Register")
+        history.push("/signup")
     }
 
     return (

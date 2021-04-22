@@ -6,6 +6,7 @@ import NotFoundPage from "./components/routing/NotFoundPage.jsx";
 import {toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"
 import LoginPage from "./components/routing/LoginPage.jsx";
+import SignUpPage from "./components/routing/SignUpPage.jsx";
 
 toast.configure({
     position: "top-center",
@@ -18,7 +19,8 @@ function App() {
             <Router>
                 <Switch>
                     <Route exact path="/" component={HomePage}/>
-                    <Route path="/" component={LoginPage}/>
+                    <Route path="/login" component={LoginPage}/>
+                    <Route path="/signup" component={SignUpPage}/>
                     <Route component={NotFoundPage}/>
                 </Switch>
             </Router>
