@@ -33,36 +33,32 @@ function HomePage() {
         <div>
             <Header/>
             <div className="login-page-body">
-                <div className="login-page-body">
+                <div className="login-form">
+                    <TextField id="filled-basic"
+                               className="input-field"
+                               label={DICTIONARY.email}
+                               variant="filled"
+                               name="email"
+                               value={user.email}
+                               onChange={onChangeUpdateUser}
+                               required={true}/>
+                    <TextField id="filled-basic"
+                               className="input-field"
+                               label={DICTIONARY.password}
+                               variant="filled"
+                               name="password"
+                               type="password"
+                               value={user.password}
+                               onChange={onChangeUpdateUser}
+                               required={true}/>
 
-                    <div className="login-form">
-                        <TextField id="filled-basic"
-                                   className="input-field"
-                                   label={DICTIONARY.email}
-                                   variant="filled"
-                                   name="email"
-                                   value={user.email}
-                                   onChange={onChangeUpdateUser}
-                                   required={true}/>
-                        <TextField id="filled-basic"
-                                   className="input-field"
-                                   label={DICTIONARY.password}
-                                   variant="filled"
-                                   name="password"
-                                   type="password"
-                                   value={user.password}
-                                   onChange={onChangeUpdateUser}
-                                   required={true}/>
+                    <p className="small-text">
+                        Don't have account? <span className="underscored-text"
+                                                  onClick={onClickHandleRegister}>Register</span>
+                    </p>
 
-                        <p className="small-text">
-                            Don't have account? <span className="underscored-text"
-                                                      onClick={onClickHandleRegister}>Register</span>
-                        </p>
-
-                        <Button text={DICTIONARY.login}
-                                onClick={onClickHandleLogin}/>
-
-                    </div>
+                    <Button text={DICTIONARY.login}
+                            onClick={onClickHandleLogin}/>
 
                 </div>
             </div>
