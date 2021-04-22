@@ -55,6 +55,10 @@ const VendorPopup = (props) => {
             captureClick={true}
             capturePointerMove={true}
         >
+            <div className="vendor-details">
+                <div className="name">{vendor.name}</div>
+                <div className="address">{vendor.address}</div>
+            </div>
             <div className="products-container">
                 {products.map(product => <Product key={product.productId} product={product}/>)}
             </div>
