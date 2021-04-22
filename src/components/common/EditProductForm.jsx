@@ -14,7 +14,11 @@ const EditProductForm = (props) => {
     const {handleOnClose, handleOnSubmit, loading} = props;
     const {DICTIONARY} = useDictionary();
     const isNewProduct = !props.product;
-    const [product, setProduct] = useState(isNewProduct ? {} : props.product);
+    const [product, setProduct] = useState(isNewProduct ? {
+        name: "",
+        producer: "",
+        price: ""
+    } : props.product);
 
     const handleOnClickSubmit = async () => {
         // todo input validation
