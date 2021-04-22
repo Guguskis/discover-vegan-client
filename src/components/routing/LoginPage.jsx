@@ -53,8 +53,8 @@ function HomePage() {
                                required={true}/>
 
                     <p className="small-text">
-                        Don't have account? <span className="underscored-text"
-                                                  onClick={onClickHandleRegister}>Register</span>
+                        {DICTIONARY.dontHaveAccount} <span className="underscored-text"
+                                                           onClick={onClickHandleRegister}>{DICTIONARY.signUp}</span>
                     </p>
 
                     <Button text={DICTIONARY.login}

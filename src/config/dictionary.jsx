@@ -10,7 +10,7 @@ const useDictionary = () => {
                 trends: "Trends",
                 wishList: "WishList",
                 login: "Login",
-                register: "Register",
+                signUp: "Sign up",
                 addVendor: "Add vendor",
                 pageNotFound: "Page Not Found 404",
                 product: "Product",
@@ -33,6 +33,7 @@ const useDictionary = () => {
                 listIsEmpty: "List is empty",
                 email: "Username",
                 password: "Password",
+                dontHaveAccount: "Don't have account?"
             },
             lt: {
                 map: "Žemėlapis",
@@ -41,7 +42,7 @@ const useDictionary = () => {
                 trends: "Tendencijos",
                 wishList: "Norų sąrašas",
                 login: "Prisijungti",
-                register: "Registruotis",
+                signUp: "Sukurti paskyrą",
                 addVendor: "Pridėti prekyviatę",
                 pageNotFound: "Puslapis nerastas 404",
                 product: "Produktas",
@@ -64,6 +65,7 @@ const useDictionary = () => {
                 listIsEmpty: "Sąrašas tusčias",
                 email: "Naudotojo vardas",
                 password: "Slaptažodis",
+                dontHaveAccount: "Neturi paskyros?"
             }
         })
     )
