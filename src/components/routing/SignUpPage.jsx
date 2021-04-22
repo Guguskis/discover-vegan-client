@@ -32,7 +32,7 @@ function HomePage() {
             return;
         }
 
-        console.log("SignUp")
+        console.log("SignUp") // todo implement
     }
 
     const validate = () => {

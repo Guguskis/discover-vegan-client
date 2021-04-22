@@ -24,7 +24,7 @@ function HomePage() {
     }
 
     const onClickHandleLogin = () => {
-        toast.error("Implement login");
+        toast.error("Implement login"); // todo implement
     }
 
     const onClickHandleRegister = () => {
