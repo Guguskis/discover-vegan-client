@@ -59,8 +59,12 @@ const VendorPopup = (props) => {
                 <div className="name">{vendor.name}</div>
                 <div className="address">{vendor.address}</div>
             </div>
-            <div className="products-container">
-                {products.map(product => <Product key={product.productId} product={product}/>)}
+            <div className={`products-container ${products.length === 0 ? "empty" : ""}`}>{
+                products.length > 0 ?
+                    products.map(product => <Product key={product.productId} product={product}/>)
+                    :
+                    <div>{DICTIONARY.listIsEmpty}</div>
+            }
             </div>
             <div className="button-container">
                 <SmallButton text={DICTIONARY.product}

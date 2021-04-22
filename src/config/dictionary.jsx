@@ -30,6 +30,7 @@ const useDictionary = () => {
                 vendorMightBeDeleted: "Vendor might be deleted",
                 checkYourInput: "Check your input",
                 somethingBadHappenedPleaseTryAgainLater: "Something bad happened, please try again later",
+                listIsEmpty: "List is empty"
             },
             lt: {
                 map: "Žemėlapis",
@@ -58,6 +59,7 @@ const useDictionary = () => {
                 vendorMightBeDeleted: "Prekyviatė gali būti ištrinta",
                 checkYourInput: "Patikrinkite įvesties formą",
                 somethingBadHappenedPleaseTryAgainLater: "Nutiko kažkas blogo, prašome pamėginti vėliau",
+                listIsEmpty: "Sąrašas tusčias"
             }
         })
     )
