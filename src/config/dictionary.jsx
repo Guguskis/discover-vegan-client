@@ -31,9 +31,13 @@ const useDictionary = () => {
                 checkYourInput: "Check your input",
                 somethingBadHappenedPleaseTryAgainLater: "Something bad happened, please try again later",
                 listIsEmpty: "List is empty",
-                email: "Username",
+                email: "Email",
                 password: "Password",
-                dontHaveAccount: "Don't have account?"
+                repeatPassword: "Repeat password",
+                dontHaveAccount: "Don't have account?",
+                passwordMustBeAtLeastNCharacters: "Password must be at least 8 characters",
+                passwordsMustMatch: "Passwords must match",
+                invalidEmail: "Invalid email"
             },
             lt: {
                 map: "Žemėlapis",
@@ -63,9 +67,13 @@ const useDictionary = () => {
                 checkYourInput: "Patikrinkite įvesties formą",
                 somethingBadHappenedPleaseTryAgainLater: "Nutiko kažkas blogo, prašome pamėginti vėliau",
                 listIsEmpty: "Sąrašas tusčias",
-                email: "Naudotojo vardas",
+                email: "El. paštas",
                 password: "Slaptažodis",
-                dontHaveAccount: "Neturi paskyros?"
+                repeatPassword: "Pakartokite slaptažodį",
+                dontHaveAccount: "Neturi paskyros?",
+                passwordMustBeAtLeastNCharacters: "Slaptažodis turi būti bent 8 simbolių",
+                passwordsMustMatch: "Slaptažodžiai turi sutapti",
+                invalidEmail: "Netaisyklingas el. paštas"
             }
         })
     )

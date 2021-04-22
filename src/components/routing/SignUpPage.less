@@ -1,0 +1,40 @@
+@import "../common";
+
+.sign-up-page-body {
+    padding: 2ch;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .sign-up-form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        background-color: @secondary-color;
+
+        padding: 20ch;
+
+        > * {
+            width: 30ch;
+        }
+    }
+
+    .input-field {
+        margin-bottom: 2ch;
+    }
+
+    .MuiFilledInput-input, .MuiFormLabel-root, .MuiTypography-colorTextSecondary {
+        color: @font-color;
+    }
+
+    .MuiFormLabel-root.Mui-focused {
+        color: @primary-color;
+    }
+
+    .MuiFilledInput-root {
+        background-color: @secondary-color;
+    }
+}
