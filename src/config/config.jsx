@@ -18,7 +18,8 @@ const API = {
 const DEFAULTS = {
     MAP: {
         STEP_DISTANCE_METERS: 500,
-        VENDORS_FETCH_COOLDOWN_MS: 500
+        VENDORS_FETCH_COOLDOWN_MS: 500,
+        MAX_ZOOM: 16
     }
 }
 

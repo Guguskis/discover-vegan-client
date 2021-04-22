@@ -5,12 +5,14 @@ import './Map.less'
 import VendorMarkers from "./VendorMarkers.jsx";
 import VendorPopup from "./VendorPopup.jsx";
 import useOnDragUpdateVendors from "./useOnDragUpdateVendors.jsx";
+import {DEFAULTS} from "../../config/config.jsx";
 
 const Map = (props) => {
     const [viewport, setViewport] = useState({
         latitude: 54.72744555070343,
         longitude: 25.341746138622348,
-        zoom: 13
+        zoom: 13,
+        maxZoom: DEFAULTS.MAP.MAX_ZOOM
     });
 
     const [vendors, oneViewStateChange] = useOnDragUpdateVendors(viewport);
