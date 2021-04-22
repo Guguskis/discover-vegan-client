@@ -10,11 +10,14 @@ function Header() {
     return (
         <div className="header">
             <div className='routing-container'>
-                <NavLink exact to='/' className="routing-item" activeClassName="active">{DICTIONARY.map}</NavLink>
+                <NavLink exact to='/' className="routing-item"
+                         activeClassName="active">{DICTIONARY.map}</NavLink>
                 <NavLink to='/products' className="routing-item"
                          activeClassName="active">{DICTIONARY.products}</NavLink>
-                <NavLink to='/scan' className="routing-item" activeClassName="active">{DICTIONARY.scan}</NavLink>
-                <NavLink to='/trends' className="routing-item" activeClassName="active">{DICTIONARY.trends}</NavLink>
+                <NavLink to='/scan' className="routing-item"
+                         activeClassName="active">{DICTIONARY.scan}</NavLink>
+                <NavLink to='/trends' className="routing-item"
+                         activeClassName="active">{DICTIONARY.trends}</NavLink>
                 <NavLink to='/wishlist' className="routing-item"
                          activeClassName="active">{DICTIONARY.wishList}</NavLink>
             </div>
