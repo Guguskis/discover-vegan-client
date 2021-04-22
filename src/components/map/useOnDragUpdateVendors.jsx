@@ -59,7 +59,7 @@ const useOnDragUpdateVendors = (viewport) => {
 
         const currentPosition = getPosition(viewport)
         const distance = harvesine(currentPosition, lastStepPosition)
-        let canDoStep = distance > DEFAULTS.MAP.STEP_DISTANCE_METERS;
+        let canDoStep = getCanDoStep(distance, viewport.zoom);
 
         if (canDoStep && canFetchData()) {
             setLastStepPosition(currentPosition)
@@ -82,6 +82,19 @@ function getPosition(viewport) {
         latitude: viewport.latitude,
         longitude: viewport.longitude
     };
+}
+
+function getCanDoStep(distance, zoom) {
+
+    if (zoom > 15 && 250 > distance) {
+        return true;
+    } else if (zoom < 15 && 350 > distance) {
+        return true;
+    } else if (zoom < 14 && 500 > distance) {
+        return true;
+    }
+
+    return distance > DEFAULTS.MAP.MAX_STEP_DISTANCE_METERS;
 }
 
 export default useOnDragUpdateVendors;
