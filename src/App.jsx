@@ -21,6 +21,9 @@ function App() {
                     <Route exact path="/" component={HomePage}/>
                     <Route path="/login" component={LoginPage}/>
                     <Route path="/signup" component={SignUpPage}/>
+                    <Route path="/products" component={NotFoundPage}/>
+                    <Route path="/scan" component={NotFoundPage}/>
+                    <Route path="/wishlist" component={NotFoundPage}/>
                     <Route component={NotFoundPage}/>
                 </Switch>
             </Router>
