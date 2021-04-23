@@ -12,7 +12,7 @@ import {useDictionary} from "../../config/dictionary.jsx";
 
 
 const VendorPopup = (props) => {
-    const {vendor, setVendor} = props;
+    const {vendor, setSelectedVendor} = props;
 
     if (!vendor) return null;
 
@@ -48,7 +48,7 @@ const VendorPopup = (props) => {
             longitude={vendor.longitude}
             latitude={vendor.latitude}
             closeOnClick={false}
-            onClose={setVendor}
+            onClose={setSelectedVendor}
             className='popup-container'
             captureScroll={true}
             captureClick={true}

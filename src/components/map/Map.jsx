@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import ReactMapGL from 'react-map-gl'
 
 import './Map.less'
@@ -18,6 +18,17 @@ const Map = (props) => {
     const [vendors, oneViewStateChange] = useOnDragUpdateVendors(viewport);
     const [selectedVendor, setSelectedVendor] = useState(null);
 
+    useEffect(() => {
+        if (!selectedVendor) {
+            return;
+        }
+        if (vendors.some(fetchedVendor => fetchedVendor.id === selectedVendor.id)) {
+            return;
+        }
+
+        setSelectedVendor({});
+    }, [vendors])
+
     return (
         <div className='map'>
             <ReactMapGL
@@ -28,8 +39,8 @@ const Map = (props) => {
                 width='100%'
                 height='100%'
                 onInteractionStateChange={oneViewStateChange}>
-                <VendorMarkers vendors={vendors} setVendors={setSelectedVendor}/>
-                <VendorPopup vendor={selectedVendor} setVendor={setSelectedVendor}/>
+                <VendorMarkers vendors={vendors} setSelectedVendor={setSelectedVendor}/>
+                <VendorPopup vendor={selectedVendor} setSelectedVendor={setSelectedVendor}/>
                 <div className='ui-overlay'>
                     {props.children}
                 </div>

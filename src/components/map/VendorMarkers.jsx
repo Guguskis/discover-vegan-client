@@ -5,7 +5,7 @@ import IconButton from "@material-ui/core/IconButton";
 import "./VendorMarkers.less"
 
 const VendorMarkers = (props) => {
-    const {vendors, setVendors} = props;
+    const {vendors, setSelectedVendor} = props;
 
     return vendors.map(vendor => (
         <Marker
@@ -16,7 +16,7 @@ const VendorMarkers = (props) => {
             offsetLeft={-26} // center
             className="vendor-marker"
         >
-            <IconButton onClick={() => setVendors(vendor)}>
+            <IconButton onClick={() => setSelectedVendor(vendor)}>
                 <StorefrontIcon className='vendorIcon'/>
             </IconButton>
         </Marker>
