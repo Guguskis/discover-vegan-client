@@ -4,7 +4,6 @@ import Product from "../common/Product.jsx";
 
 import './VendorPopup.less'
 import AddIcon from "@material-ui/icons/Add.js";
-import ListIcon from '@material-ui/icons/List';
 import Modal from "@material-ui/core/Modal";
 import VendorAddProductForm from "../common/VendorAddProductForm.jsx";
 import SmallButton from "../common/SmallButton.jsx";
@@ -70,8 +69,6 @@ const VendorPopup = (props) => {
                 <SmallButton text={DICTIONARY.product}
                              icon={<AddIcon/>}
                              onClick={onClickHandleAddProduct}/>
-                <SmallButton text={DICTIONARY.viewAll}
-                             icon={<ListIcon/>}/>
             </div>
             <Modal
                 open={addProductFormOpen}
