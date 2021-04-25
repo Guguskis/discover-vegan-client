@@ -19,12 +19,12 @@ const fetchProducts = (start, items) => {
 }
 
 const ProductSearchBar = (props) => {
-    const {handleOnOptionSelect} = props;
+    const {handleOnProductSelect} = props;
     const {DICTIONARY} = useDictionary();
 
     const [open, setOpen] = useState(false);
-    const [options, setOptions] = useState([]);
-    const loading = open && options.length === 0;
+    const [products, setProducts] = useState([]);
+    const loading = open && products.length === 0;
 
     useEffect(() => {
         let active = true;
@@ -39,7 +39,7 @@ const ProductSearchBar = (props) => {
             await sleep(500)
 
             if (active) {
-                setOptions(products);
+                setProducts(products);
             }
         })();
 
@@ -50,7 +50,7 @@ const ProductSearchBar = (props) => {
 
     useEffect(() => {
         if (!open) {
-            setOptions([]);
+            setProducts([]);
         }
     }, [open]);
 
@@ -61,8 +61,8 @@ const ProductSearchBar = (props) => {
             onOpen={() => setOpen(true)}
             onClose={() => setOpen(false)}
             getOptionSelected={(product, value) => product.productId === value.productId}
-            getOptionLabel={(option) => option.name}
-            options={options}
+            getOptionLabel={(product) => product.name}
+            options={products}
             loading={loading}
             renderInput={(params) => (
                 <TextField
@@ -82,7 +82,7 @@ const ProductSearchBar = (props) => {
                 />
             )}
             renderOption={(product, state) => (
-                <div onClick={() => handleOnOptionSelect(product)}>
+                <div onClick={() => handleOnProductSelect(product)}>
                     <Product className='product' key={product.productId} product={product}/>
                 </div>
             )}

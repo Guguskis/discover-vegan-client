@@ -99,7 +99,7 @@ const VendorAddProductForm = (props) => {
 
     const ProductInputs = () => (
         <div className="product-input-container">
-            <ProductSearchBar handleOnOptionSelect={handleOnProductSelect}/>
+            <ProductSearchBar handleOnProductSelect={handleOnProductSelect}/>
             <Button text={DICTIONARY.newProduct}
                     onClick={() => editProduct(null)}
                     icon={<AddIcon/>}/>

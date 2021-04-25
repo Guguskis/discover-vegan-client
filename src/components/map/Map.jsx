@@ -23,11 +23,21 @@ const Map = (props) => {
             return;
         }
         if (vendors.some(fetchedVendor => fetchedVendor.id === selectedVendor.id)) {
+            // const fetchedVendor = vendors.filter(fetchedVendor => fetchedVendor.id === selectedVendor.id)[0];
+        //     console.log("Selected vendor should remain")
+        //     console.log(fetchedVendor)
+        //     console.log(vendors)
             return;
         }
-
+        //
+        // console.log("Vendor unselected")
         setSelectedVendor({});
     }, [vendors])
+
+    useEffect(() => {
+        console.log("Selected vendor changed to")
+        console.log(selectedVendor)
+    }, [selectedVendor])
 
     return (
         <div className='map'>
