@@ -121,7 +121,8 @@ function HomePage() {
                                required={true}/>
 
                     <Button text={DICTIONARY.signUp}
-                            onClick={onClickHandleRegister}/>
+                            onClick={onClickHandleRegister}
+                            isLoading={signUpLoading}/>
 
                 </div>
 

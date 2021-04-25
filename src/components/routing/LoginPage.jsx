@@ -7,12 +7,21 @@ import {ObjectState} from "../../utils/utils.jsx";
 import Button from "../common/Button.jsx";
 import {useHistory} from "react-router-dom";
 import {toast} from "react-toastify";
+import {API} from "../../config/config.jsx";
 
 export default HomePage;
 
 function HomePage() {
     const {DICTIONARY} = useDictionary();
     const history = useHistory();
+
+    const [{data: signUpData, loading: signUpLoading, error: signUpError}, executeSignUp] = API.useAuthenticationServiceAxios(
+        {
+            url: "/api/user/token",
+            method: 'POST'
+        },
+        {manual: true}
+    )
 
     const [user, setUser] = useState({
         email: "",
@@ -23,8 +32,40 @@ function HomePage() {
         ObjectState.update(setUser, event.target.name, event.target.value)
     }
 
-    const onClickHandleLogin = () => {
-        toast.error("Implement login"); // todo implement
+    const handleLoginRequestError = (ex) => {
+        const response = ex.response;
+        switch (response.status) {
+            case 500:
+                toast.error(DICTIONARY.pleaseTryAgainLater)
+                break;
+            case 404:
+                toast.error(DICTIONARY.userDoesNotExist)
+                break;
+            case 400:
+                if ("INCORRECT_PASSWORD" === response.data.errorCode)
+                    toast.error(DICTIONARY.incorrectPassword);
+                else
+                    toast.error(DICTIONARY.checkYourInput)
+                break;
+            default:
+                toast.error(DICTIONARY.somethingBadHappenedPleaseTryAgainLater)
+                break;
+        }
+    }
+
+    const onClickHandleLogin = async () => {
+        try {
+            const loginRequest = {
+                email: user.email,
+                password: user.password
+            }
+            const loginResponse = await executeSignUp({...signUpData, data: loginRequest});
+            const token = loginResponse.data.token;
+            // todo save token in global state
+            history.push("/")
+        } catch (ex) {
+            handleLoginRequestError(ex)
+        }
     }
 
     const onClickHandleRegister = () => {
@@ -60,7 +101,8 @@ function HomePage() {
                     </p>
 
                     <Button text={DICTIONARY.login}
-                            onClick={onClickHandleLogin}/>
+                            onClick={onClickHandleLogin}
+                            isLoading={signUpLoading}/>
 
                 </div>
             </div>

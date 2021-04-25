@@ -39,6 +39,8 @@ const useDictionary = () => {
                 passwordsMustMatch: "Passwords must match",
                 invalidEmail: "Invalid email",
                 emailIsAlreadyInUse: "Email is already in use",
+                incorrectPassword: "Incorrect password",
+                userDoesNotExist: "User does not exist",
             },
             lt: {
                 map: "Žemėlapis",
@@ -76,6 +78,8 @@ const useDictionary = () => {
                 passwordsMustMatch: "Slaptažodžiai turi sutapti",
                 invalidEmail: "Netaisyklingas el. paštas",
                 emailIsAlreadyInUse: "El. paštas užimtas",
+                incorrectPassword: "Neteisingas slaptažodis",
+                userDoesNotExist: "Toks naudotojas neegzistuoja",
             }
         })
     )
