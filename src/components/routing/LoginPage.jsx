@@ -61,7 +61,7 @@ function HomePage() {
             }
             const loginResponse = await executeSignUp({...signUpData, data: loginRequest});
             const token = loginResponse.data.token;
-            // todo save token in global state
+            localStorage.setItem("token", token);
             history.push("/")
         } catch (ex) {
             handleLoginRequestError(ex)
