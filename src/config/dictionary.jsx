@@ -37,7 +37,8 @@ const useDictionary = () => {
                 dontHaveAccount: "Don't have account?",
                 passwordMustBeAtLeastNCharacters: "Password must be at least 8 characters",
                 passwordsMustMatch: "Passwords must match",
-                invalidEmail: "Invalid email"
+                invalidEmail: "Invalid email",
+                emailIsAlreadyInUse: "Email is already in use",
             },
             lt: {
                 map: "Žemėlapis",
@@ -73,7 +74,8 @@ const useDictionary = () => {
                 dontHaveAccount: "Neturi paskyros?",
                 passwordMustBeAtLeastNCharacters: "Slaptažodis turi būti bent 8 simbolių",
                 passwordsMustMatch: "Slaptažodžiai turi sutapti",
-                invalidEmail: "Netaisyklingas el. paštas"
+                invalidEmail: "Netaisyklingas el. paštas",
+                emailIsAlreadyInUse: "El. paštas užimtas",
             }
         })
     )

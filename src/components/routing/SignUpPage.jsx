@@ -6,12 +6,22 @@ import TextField from "@material-ui/core/TextField";
 import {ObjectState} from "../../utils/utils.jsx";
 import Button from "../common/Button.jsx";
 import {toast} from "react-toastify";
-
+import {API} from "../../config/config.jsx";
+import {useHistory} from "react-router-dom";
 
 export default HomePage;
 
 function HomePage() {
     const {DICTIONARY} = useDictionary();
+    const history = useHistory();
+
+    const [{data: signUpData, loading: signUpLoading, error: signUpError}, executeSignUp] = API.useAuthenticationServiceAxios(
+        {
+            url: "/api/user",
+            method: 'POST'
+        },
+        {manual: true}
+    )
 
     const [user, setUser] = useState({
         email: "",
@@ -23,7 +33,25 @@ function HomePage() {
         ObjectState.update(setUser, event.target.name, event.target.value)
     }
 
-    const onClickHandleRegister = () => {
+    function handleSignUpRequestError(ex) {
+        const response = ex.response;
+        switch (response.status) {
+            case 500:
+                toast.error(DICTIONARY.pleaseTryAgainLater)
+                break;
+            case 400:
+                if ("EMAIL_TAKEN" === response.data.errorCode)
+                    toast.error(DICTIONARY.emailIsAlreadyInUse);
+                else
+                    toast.error(DICTIONARY.checkYourInput)
+                break;
+            default:
+                toast.error(DICTIONARY.somethingBadHappenedPleaseTryAgainLater)
+                break;
+        }
+    }
+
+    const onClickHandleRegister = async () => {
 
         try {
             validate()
@@ -32,7 +60,17 @@ function HomePage() {
             return;
         }
 
-        console.log("SignUp") // todo implement
+        try {
+            const signUpRequest = {
+                email: user.email,
+                password: user.password,
+                userType: "BASIC"
+            };
+            await executeSignUp({...signUpData, data: signUpRequest});
+            history.push("/login");
+        } catch (ex) {
+            handleSignUpRequestError(ex);
+        }
     }
 
     const validate = () => {

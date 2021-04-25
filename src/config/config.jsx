@@ -1,11 +1,12 @@
 import axios from 'axios'
 import {makeUseAxios} from "axios-hooks";
 
-const ROOT_HOST = "http://e26ed5545de0.ngrok.io";
+const ROOT_HOST = "http://localhost";
 
 const HOST = {
-    FILE_SERVICE: ROOT_HOST + "/file-service",
-    DISCOVER_VEGAN_API: ROOT_HOST + "/discover-vegan-api",
+    FILE_SERVICE: ROOT_HOST + ":8081",
+    DISCOVER_VEGAN_API: ROOT_HOST + ":8080",
+    AUTHENTICATION_SERVICE: ROOT_HOST + ":8082"
 }
 
 const API = {
@@ -14,6 +15,9 @@ const API = {
     }),
     useDiscoverVeganApiAxios: makeUseAxios({
         axios: axios.create({baseURL: HOST.DISCOVER_VEGAN_API})
+    }),
+    useAuthenticationServiceAxios: makeUseAxios({
+        axios: axios.create({baseURL: HOST.AUTHENTICATION_SERVICE})
     }),
 }
 
