@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
 
 import harvesine from "haversine-distance";
-import {API, DEFAULTS} from "../../config/config.jsx";
+import {DEFAULTS} from "../../config/config.jsx";
+import {API} from "../../config/axiosConfig.jsx";
 
 const useOnDragUpdateVendors = (viewport) => {
 

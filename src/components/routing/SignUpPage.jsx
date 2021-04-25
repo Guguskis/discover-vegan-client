@@ -6,8 +6,8 @@ import TextField from "@material-ui/core/TextField";
 import {ObjectState} from "../../utils/utils.jsx";
 import Button from "../common/Button.jsx";
 import {toast} from "react-toastify";
-import {API} from "../../config/config.jsx";
 import {useHistory} from "react-router-dom";
+import {API} from "../../config/axiosConfig.jsx";
 
 export default HomePage;
 

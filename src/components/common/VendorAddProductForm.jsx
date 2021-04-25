@@ -9,9 +9,9 @@ import AddIcon from "@material-ui/icons/Add.js";
 import ManageProductsList from "./ManageProductsList.jsx";
 import {ArraysState} from "../../utils/utils.jsx";
 import {toast} from "react-toastify";
-import {API} from "../../config/config.jsx";
 import Button from "./Button.jsx";
 import {useDictionary} from "../../config/dictionary.jsx";
+import {API} from "../../config/axiosConfig.jsx";
 
 
 const VendorAddProductForm = (props) => {

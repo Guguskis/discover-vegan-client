@@ -7,8 +7,8 @@ import AddIcon from "@material-ui/icons/Add.js";
 import Modal from "@material-ui/core/Modal";
 import VendorAddProductForm from "../common/VendorAddProductForm.jsx";
 import SmallButton from "../common/SmallButton.jsx";
-import {API} from "../../config/config.jsx";
 import {useDictionary} from "../../config/dictionary.jsx";
+import {API} from "../../config/axiosConfig.jsx";
 
 
 const VendorPopup = (props) => {

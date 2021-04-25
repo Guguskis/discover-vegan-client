@@ -7,7 +7,7 @@ import {ObjectState} from "../../utils/utils.jsx";
 import Button from "../common/Button.jsx";
 import {useHistory} from "react-router-dom";
 import {toast} from "react-toastify";
-import {API} from "../../config/config.jsx";
+import {API} from "../../config/axiosConfig.jsx";
 
 export default HomePage;
 
