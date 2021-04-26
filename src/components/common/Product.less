@@ -37,7 +37,10 @@
   }
 
   img {
-    width: 100px;
-    height: auto;
+    @width: 128px;
+    width: @width;
+
+    height: 100%;
+    max-height: @width*1.5;
   }
 }
