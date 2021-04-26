@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import './HomePage.less'
 import Map from "../map/Map.jsx";
 import ProductSearchBar from "../common/ProductSearchBar.jsx";
@@ -17,6 +17,7 @@ export default HomePage;
 function HomePage() {
     const {DICTIONARY} = useDictionary();
 
+    const mapRef = useRef();
     const [viewport, setViewport] = useState({
         latitude: 54.72744555070343,
         longitude: 25.341746138622348,
@@ -39,13 +40,28 @@ function HomePage() {
         setDisplayVendorDetailsOpen(false);
     }
 
+    const flyToVendor = (vendor) => {
+        const map = mapRef.current.getMap();
+        onCloseHideVendorDetails()
+        map.once("moveend", () => {
+            console.log("WELCOME TO THE G SPOT OF EUROPE")
+        })
+        map.flyTo({
+            center: [vendor.longitude, vendor.latitude],
+            essential: true
+        })
+
+        // DOESN'T PERSIST LOCATION DATA AND MARKERS STAY STATIC ON SCREEN!!!!
+    }
+
     return (
         <Map vendors={vendors}
              selectedVendor={selectedVendor}
              setSelectedVendor={setSelectedVendor}
              onViewStateChange={onViewStateChange}
              viewport={viewport}
-             setViewport={setViewport}>
+             setViewport={setViewport}
+             mapRef={mapRef}>
 
             <Header/>
             <div className="map-overlay-container">
@@ -61,7 +77,8 @@ function HomePage() {
             >
                 <div><ProductVendorDetailsForm
                     product={searchBarSelectedProduct}
-                    onClose={onCloseHideVendorDetails}/></div>
+                    onClose={onCloseHideVendorDetails}
+                    flyToVendor={flyToVendor}/></div>
             </Modal>
         </Map>
     );

@@ -4,7 +4,7 @@ import {API} from "../../config/axiosConfig.jsx";
 import ProductVendorsList from "./ProductVendorsList.jsx";
 
 const ProductVendorDetailsForm = (props) => {
-    const {product, onClose} = props;
+    const {product, onClose, flyToVendor} = props;
 
     const [{data: productVendorDetailsData, loading: productVendorDetailsLoading, error: productVendorDetailsError}, executeProductVendorDetails] = API.useDiscoverVeganApiAxios(
         {
@@ -24,7 +24,8 @@ const ProductVendorDetailsForm = (props) => {
     return (
         <FormContainer handleOnClose={onClose}>
             <div className="product-vendor-details-container">
-                <ProductVendorsList productVendorDetails={productVendorDetails}/>
+                <ProductVendorsList productVendorDetails={productVendorDetails}
+                                    flyToVendor={flyToVendor}/>
             </div>
         </FormContainer>
     );

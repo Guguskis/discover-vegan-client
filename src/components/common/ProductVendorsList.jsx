@@ -12,7 +12,7 @@ import StorefrontIcon from "@material-ui/icons/Storefront";
 import "./ProductVendorsList.less"
 
 const ProductVendorsList = (props) => {
-    const {productVendorDetails} = props;
+    const {productVendorDetails, flyToVendor} = props;
 
     return (
         <List dense={false} className="manage-products-container">
@@ -35,7 +35,8 @@ const ProductVendorsList = (props) => {
                                 className="list-item-text"
                                 primary={price}/>
                             <ListItemSecondaryAction>
-                                <IconButton edge="end" aria-label="edit">
+                                <IconButton edge="end" aria-label="edit"
+                                            onClick={() => flyToVendor(vendor)}>
                                     <MapIcon/>
                                 </IconButton>
                             </ListItemSecondaryAction>
