@@ -9,7 +9,8 @@ import VendorAddProductForm from "../common/VendorAddProductForm.jsx";
 import SmallButton from "../common/SmallButton.jsx";
 import {useDictionary} from "../../config/dictionary.jsx";
 import {API} from "../../config/axiosConfig.jsx";
-
+import {useStore} from "react-context-hook";
+import {useHistory} from "react-router-dom";
 
 const VendorPopup = (props) => {
     const {vendor, setSelectedVendor} = props;
@@ -23,6 +24,9 @@ const VendorPopup = (props) => {
         }
     )
     const {DICTIONARY} = useDictionary();
+    const [user] = useStore('user');
+    const history = useHistory();
+
     const [addProductFormOpen, setAddProductFormOpen] = useState(false);
     const [products, setProducts] = useState([]);
 
@@ -32,9 +36,14 @@ const VendorPopup = (props) => {
         }
     }, [productsData])
 
-
     const onClickHandleAddProduct = () => {
-        setAddProductFormOpen(true);
+
+        if (!user) {
+            history.push("/login")
+        } else {
+            setAddProductFormOpen(true);
+        }
+
     }
     const onClickHandleAddProductClose = () => {
         setAddProductFormOpen(false);
