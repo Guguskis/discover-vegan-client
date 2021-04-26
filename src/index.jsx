@@ -3,12 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.less';
 import App from './App.jsx';
 import reportWebVitals from './reportWebVitals.js';
+import {withStore} from "react-context-hook";
+
+const AppWithStore = withStore(App);
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <React.StrictMode>
+        <AppWithStore/>
+    </React.StrictMode>,
+    document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function

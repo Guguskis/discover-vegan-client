@@ -8,12 +8,15 @@ import Button from "../common/Button.jsx";
 import {useHistory} from "react-router-dom";
 import {toast} from "react-toastify";
 import {API} from "../../config/axiosConfig.jsx";
+import {useStore} from "react-context-hook";
+import jwt_decode from "jwt-decode";
 
 export default HomePage;
 
 function HomePage() {
     const {DICTIONARY} = useDictionary();
     const history = useHistory();
+    const [storedUser, setStoredUser] = useStore('user')
 
     const [{data: signUpData, loading: signUpLoading, error: signUpError}, executeSignUp] = API.useAuthenticationServiceAxios(
         {
@@ -61,6 +64,11 @@ function HomePage() {
             }
             const loginResponse = await executeSignUp({...signUpData, data: loginRequest});
             const token = loginResponse.data.token;
+            const decodedUser = jwt_decode(token)
+            setStoredUser({
+                userId: decodedUser.userId,
+                userType: decodedUser.userType
+            })
             localStorage.setItem("token", token);
             history.push("/")
         } catch (ex) {

@@ -41,6 +41,8 @@ const useDictionary = () => {
                 emailIsAlreadyInUse: "Email is already in use",
                 incorrectPassword: "Incorrect password",
                 userDoesNotExist: "User does not exist",
+                account: "Account",
+                logout: "Logout",
             },
             lt: {
                 map: "Žemėlapis",
@@ -80,6 +82,8 @@ const useDictionary = () => {
                 emailIsAlreadyInUse: "El. paštas užimtas",
                 incorrectPassword: "Neteisingas slaptažodis",
                 userDoesNotExist: "Toks naudotojas neegzistuoja",
+                account: "Paskyra",
+                logout: "Atsijungti",
             }
         })
     )
