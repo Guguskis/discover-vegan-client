@@ -3,50 +3,41 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import './ProductSearchBar.less'
-import PRODUCTS from "../../data-sample/product.jsx";
 import Product from "./Product.jsx";
 import {useDictionary} from "../../config/dictionary.jsx";
-
-
-function sleep(delay = 0) {
-    return new Promise((resolve) => {
-        setTimeout(resolve, delay);
-    });
-}
-
-const fetchProducts = (start, items) => {
-    return PRODUCTS.slice(start, start + items);
-}
+import {API} from "../../config/axiosConfig.jsx";
 
 const ProductSearchBar = (props) => {
     const {handleOnProductSelect} = props;
     const {DICTIONARY} = useDictionary();
 
+    const [{data: productsData, loading: productsLoading, error: productsError}, executeProducts] = API.useDiscoverVeganApiAxios(
+        {
+            url: `/api/product`,
+            method: 'GET'
+        }, {manual: true}
+    )
+
     const [open, setOpen] = useState(false);
+    const [query, setQuery] = useState("")
     const [products, setProducts] = useState([]);
-    const loading = open && products.length === 0;
 
     useEffect(() => {
-        let active = true;
-
-        if (!loading) {
+        if (productsLoading)
             return undefined;
-        }
 
         (async () => {
-            const products = fetchProducts(0, 5);
-
-            await sleep(500)
-
-            if (active) {
-                setProducts(products);
+            if (query.length >= 2) {
+                executeProducts({...productsData, params: {query: query}});
             }
         })();
+    }, [query]);
 
-        return () => {
-            active = false;
-        };
-    }, [loading]);
+    useEffect(() => {
+        if (productsData) {
+            setProducts(productsData.products)
+        }
+    }, [productsData])
 
     useEffect(() => {
         if (!open) {
@@ -54,27 +45,37 @@ const ProductSearchBar = (props) => {
         }
     }, [open]);
 
+    const handleOnOpen = () => {
+        setOpen(true)
+    }
+    const handleOnClose = () => {
+        setOpen(false)
+    }
+    const handleOnChange = (event) => {
+        setQuery(event.target.value)
+    }
+
     return (
         <Autocomplete
             className='search-bar'
             open={open}
-            onOpen={() => setOpen(true)}
-            onClose={() => setOpen(false)}
+            onOpen={handleOnOpen}
+            onClose={handleOnClose}
             getOptionSelected={(product, value) => product.productId === value.productId}
             getOptionLabel={(product) => product.name}
             options={products}
-            loading={loading}
+            loading={productsLoading}
             renderInput={(params) => (
                 <TextField
                     {...params}
                     label={DICTIONARY.searchVeganGoods}
                     variant="outlined"
-                    onChange={event => console.log(event.target.value)}
+                    onChange={handleOnChange}
                     InputProps={{
                         ...params.InputProps,
                         endAdornment: (
                             <React.Fragment>
-                                {loading ? <CircularProgress color="inherit" size={20}/> : null}
+                                {productsLoading ? <CircularProgress color="inherit" size={20}/> : null}
                                 {params.InputProps.endAdornment}
                             </React.Fragment>
                         ),
