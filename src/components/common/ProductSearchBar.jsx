@@ -83,7 +83,8 @@ const ProductSearchBar = (props) => {
                 />
             )}
             renderOption={(product, state) => (
-                <div onClick={() => handleOnProductSelect(product)}>
+                <div className="click-wrap"
+                     onClick={() => handleOnProductSelect(product)}>
                     <Product className='product' key={product.productId} product={product}/>
                 </div>
             )}

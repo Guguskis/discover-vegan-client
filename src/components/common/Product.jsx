@@ -7,14 +7,17 @@ const Product = (props) => {
     const {product} = props;
     const {DICTIONARY} = useDictionary();
 
-    // todo add gamintojas
-
     return (
         <div className="product-container" key={product.productId}>
             <img src={product.imageUrl} alt={DICTIONARY.productImage}/>
             <div className='details'>
                 <p className='name'>{product.name}</p>
-                <p className='price'>{product.price}€</p>
+                <p className='producer'>{product.producer}</p>
+                {product.price ?
+                    <p className='price'>{product.price}€</p>
+                    :
+                    null
+                }
             </div>
         </div>
     );
