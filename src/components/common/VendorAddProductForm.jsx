@@ -119,8 +119,6 @@ const VendorAddProductForm = (props) => {
                 <Modal
                     open={editProductFormOpen}
                     onClose={closeEditProduct}
-                    aria-labelledby="server-modal-title"
-                    aria-describedby="server-modal-description"
                     className="modal-container"
                 >
                     <div>

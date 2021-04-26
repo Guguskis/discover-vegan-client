@@ -73,8 +73,6 @@ const VendorPopup = (props) => {
             <Modal
                 open={addProductFormOpen}
                 onClose={onClickHandleAddProductClose}
-                aria-labelledby="server-modal-title"
-                aria-describedby="server-modal-description"
                 className="modal-container"
             >
                 <div><VendorAddProductForm products={products}
