@@ -13,11 +13,16 @@ export default HomePage;
 function HomePage() {
     const {DICTIONARY} = useDictionary();
 
+    const handleOnProductSelect = (product) => {
+        // todo show modal to display vendors
+        console.log(product)
+    }
+
     return (
         <Map>
             <Header/>
             <div className="map-overlay-container">
-                <ProductSearchBar handleOnProductSelect={(product) => console.log(product)}/>
+                <ProductSearchBar handleOnProductSelect={handleOnProductSelect}/>
                 <SmallButton text={DICTIONARY.addVendor}
                              icon={<AddIcon/>}/>
             </div>
