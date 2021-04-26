@@ -59,7 +59,9 @@ function HomePage() {
                 onClose={onCloseHideVendorDetails}
                 className="modal-container"
             >
-                <div><ProductVendorDetailsForm product={searchBarSelectedProduct}/></div>
+                <div><ProductVendorDetailsForm
+                    product={searchBarSelectedProduct}
+                    onClose={onCloseHideVendorDetails}/></div>
             </Modal>
         </Map>
     );
