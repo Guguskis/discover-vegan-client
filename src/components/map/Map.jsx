@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import ReactMapGL from 'react-map-gl'
 
 import './Map.less'
@@ -15,29 +15,8 @@ const Map = (props) => {
         maxZoom: DEFAULTS.MAP.MAX_ZOOM
     });
 
-    const [vendors, oneViewStateChange] = useOnDragUpdateVendors(viewport);
     const [selectedVendor, setSelectedVendor] = useState(null);
-
-    useEffect(() => {
-        if (!selectedVendor) {
-            return;
-        }
-        if (vendors.some(fetchedVendor => fetchedVendor.id === selectedVendor.id)) {
-            // const fetchedVendor = vendors.filter(fetchedVendor => fetchedVendor.id === selectedVendor.id)[0];
-        //     console.log("Selected vendor should remain")
-        //     console.log(fetchedVendor)
-        //     console.log(vendors)
-            return;
-        }
-        //
-        // console.log("Vendor unselected")
-        setSelectedVendor({});
-    }, [vendors])
-
-    useEffect(() => {
-        console.log("Selected vendor changed to")
-        console.log(selectedVendor)
-    }, [selectedVendor])
+    const [vendors, oneViewStateChange] = useOnDragUpdateVendors(viewport, selectedVendor);
 
     return (
         <div className='map'>

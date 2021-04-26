@@ -4,7 +4,7 @@ import harvesine from "haversine-distance";
 import {DEFAULTS} from "../../config/config.jsx";
 import {API} from "../../config/axiosConfig.jsx";
 
-const useOnDragUpdateVendors = (viewport) => {
+const useOnDragUpdateVendors = (viewport, selectedVendor) => {
 
     const [vendors, setVendors] = useState([])
     const [{data: vendorData, loading: vendorLoading, error: vendorError}, executeVendor] = API.useDiscoverVeganApiAxios(
@@ -41,6 +41,11 @@ const useOnDragUpdateVendors = (viewport) => {
 
     useEffect(() => {
         if (vendorData) {
+            if (selectedVendor) {
+                if (!vendorData.some(vendor => vendor.vendorId === selectedVendor.vendorId)) {
+                    vendorData.push(selectedVendor)
+                }
+            }
             setVendors(vendorData);
             setFetchCooldown(true)
         }
