@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useState} from 'react';
 import './HomePage.less'
 import Map from "../map/Map.jsx";
 import ProductSearchBar from "../common/ProductSearchBar.jsx";
@@ -10,14 +10,14 @@ import Modal from "@material-ui/core/Modal";
 import ProductVendorDetailsForm from "../common/ProductVendorDetailsForm.jsx";
 import useOnDragUpdateVendors from "../map/useOnDragUpdateVendors.jsx";
 import {DEFAULTS} from "../../config/config.jsx";
-
+import {FlyToInterpolator} from "react-map-gl";
+import {easeCubic} from "d3-ease";
 
 export default HomePage;
 
 function HomePage() {
     const {DICTIONARY} = useDictionary();
 
-    const mapRef = useRef();
     const [viewport, setViewport] = useState({
         latitude: 54.72744555070343,
         longitude: 25.341746138622348,
@@ -41,17 +41,17 @@ function HomePage() {
     }
 
     const flyToVendor = (vendor) => {
-        const map = mapRef.current.getMap();
         onCloseHideVendorDetails()
-        map.once("moveend", () => {
-            console.log("WELCOME TO THE G SPOT OF EUROPE")
-        })
-        map.flyTo({
-            center: [vendor.longitude, vendor.latitude],
-            essential: true
-        })
 
-        // DOESN'T PERSIST LOCATION DATA AND MARKERS STAY STATIC ON SCREEN!!!!
+        setViewport({
+            ...viewport,
+            longitude: vendor.longitude,
+            latitude: vendor.latitude,
+            zoom: 15,
+            transitionDuration: 1000,
+            transitionInterpolator: new FlyToInterpolator(),
+            transitionEasing: easeCubic
+        });
     }
 
     return (
@@ -60,8 +60,7 @@ function HomePage() {
              setSelectedVendor={setSelectedVendor}
              onViewStateChange={onViewStateChange}
              viewport={viewport}
-             setViewport={setViewport}
-             mapRef={mapRef}>
+             setViewport={setViewport}>
 
             <Header/>
             <div className="map-overlay-container">

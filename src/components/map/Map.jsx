@@ -13,14 +13,12 @@ const Map = (props) => {
         onViewStateChange,
         viewport,
         setViewport,
-        mapRef
     } = props;
 
     return (
         <div className='map'>
             <ReactMapGL
                 {...viewport}
-                ref={mapRef}
                 onViewportChange={setViewport}
                 mapStyle="mapbox://styles/mapbox/dark-v9"
                 mapboxApiAccessToken={process.env.MAPBOX_ACCESS_TOKEN}
