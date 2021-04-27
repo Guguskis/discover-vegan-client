@@ -128,6 +128,10 @@ const VendorAddProductForm = (props) => {
         </div>
     )
 
+    const isLoading = () => {
+        return fileUploadLoading || createProductLoading || addProductToVendorLoading || updateVendorProductLoading;
+    }
+
     return (
         <FormContainer handleOnClose={handleOnClose}>
             <div className="add-product-form-container">
@@ -148,7 +152,7 @@ const VendorAddProductForm = (props) => {
                                          formType={formType}
                                          handleOnClose={closeEditProduct}
                                          handleOnSubmit={handleOnEditProductSubmit}
-                                         loading={fileUploadLoading}/>
+                                         loading={isLoading()}/>
                     </div>
                 </Modal>
             </div>
