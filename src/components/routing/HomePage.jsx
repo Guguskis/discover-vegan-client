@@ -53,8 +53,17 @@ function HomePage() {
         });
     }
 
+    const getFilterVendors = () => {
+        if (showEmptyVendors) {
+            return vendors;
+        }
+
+        return vendors
+            .filter(vendor => vendor.productCount > 0);
+    }
+
     return (
-        <Map vendors={vendors}
+        <Map vendors={getFilterVendors()}
              selectedVendor={selectedVendor}
              setSelectedVendor={setSelectedVendor}
              onViewStateChange={onViewStateChange}
