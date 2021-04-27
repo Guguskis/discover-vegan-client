@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './HomePage.less'
 import Map from "../map/Map.jsx";
 import ProductSearchBar from "../common/ProductSearchBar.jsx";
@@ -11,11 +11,15 @@ import {DEFAULTS} from "../../config/config.jsx";
 import {FlyToInterpolator} from "react-map-gl";
 import {easeCubic} from "d3-ease";
 import {ToggleButton} from "@material-ui/lab";
+import {usePosition} from 'use-position';
+import {ObjectState} from "../../utils/utils.jsx";
 
 export default HomePage;
 
 function HomePage() {
     const {DICTIONARY} = useDictionary();
+
+    const {latitude, longitude} = usePosition(false);
 
     const [viewport, setViewport] = useState({
         latitude: 54.72744555070343,
@@ -61,6 +65,13 @@ function HomePage() {
         return vendors
             .filter(vendor => vendor.productCount > 0);
     }
+
+    useEffect(() => {
+        if (latitude !== undefined && longitude !== undefined) {
+            ObjectState.update(setViewport, "latitude", latitude)
+            ObjectState.update(setViewport, "longitude", longitude)
+        }
+    }, [latitude, longitude])
 
     return (
         <Map vendors={getFilterVendors()}
