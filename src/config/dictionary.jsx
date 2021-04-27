@@ -43,6 +43,7 @@ const useDictionary = () => {
                 userDoesNotExist: "User does not exist",
                 account: "Account",
                 logout: "Logout",
+                showEmpty: "Show empty"
             },
             lt: {
                 map: "Žemėlapis",
@@ -84,6 +85,7 @@ const useDictionary = () => {
                 userDoesNotExist: "Toks naudotojas neegzistuoja",
                 account: "Paskyra",
                 logout: "Atsijungti",
+                showEmpty: "Rodyti tusčius"
             }
         })
     )

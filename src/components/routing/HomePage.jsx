@@ -3,8 +3,6 @@ import './HomePage.less'
 import Map from "../map/Map.jsx";
 import ProductSearchBar from "../common/ProductSearchBar.jsx";
 import Header from "./Header.jsx";
-import AddIcon from '@material-ui/icons/Add';
-import SmallButton from "../common/SmallButton.jsx";
 import {useDictionary} from "../../config/dictionary.jsx";
 import Modal from "@material-ui/core/Modal";
 import ProductVendorDetailsForm from "../common/ProductVendorDetailsForm.jsx";
@@ -12,6 +10,7 @@ import useOnDragUpdateVendors from "../map/useOnDragUpdateVendors.jsx";
 import {DEFAULTS} from "../../config/config.jsx";
 import {FlyToInterpolator} from "react-map-gl";
 import {easeCubic} from "d3-ease";
+import {ToggleButton} from "@material-ui/lab";
 
 export default HomePage;
 
@@ -29,7 +28,7 @@ function HomePage() {
     const [searchBarSelectedProduct, setSearchBarSelectedProduct] = useState();
     const [selectedVendor, setSelectedVendor] = useState(null);
     const [vendors, onViewStateChange] = useOnDragUpdateVendors(viewport, selectedVendor);
-
+    const [showEmptyVendors, setShowEmptyVendors] = useState(false)
 
     const handleOnProductSelect = (product) => {
         setSearchBarSelectedProduct(product)
@@ -65,8 +64,12 @@ function HomePage() {
             <Header/>
             <div className="map-overlay-container">
                 <ProductSearchBar handleOnProductSelect={handleOnProductSelect}/>
-                <SmallButton text={DICTIONARY.addVendor}
-                             icon={<AddIcon/>}/>
+                <ToggleButton className="small-toggle-button"
+                              value="italic"
+                              selected={showEmptyVendors}
+                              onChange={() => setShowEmptyVendors(!showEmptyVendors)}>
+                    {DICTIONARY.showEmpty}
+                </ToggleButton>
             </div>
 
             <Modal

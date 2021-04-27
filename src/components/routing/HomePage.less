@@ -8,6 +8,21 @@
     > * {
         pointer-events: auto;
     }
+
+    .small-toggle-button.MuiToggleButton-root {
+        color: black;
+        padding: 0.25ch 0.5ch 0.25ch 0.5ch;
+        background-color: @primary-color;
+        font-size: @font-size-small;
+
+        :hover {
+            background-color: fadeout(@primary-color, 20%);
+        }
+    }
+
+    .small-toggle-button.MuiToggleButton-root.Mui-selected {
+        background-color: lighten(@primary-color, 20%);
+    }
 }
 
 .modal-container {
