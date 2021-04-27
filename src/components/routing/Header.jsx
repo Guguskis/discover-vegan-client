@@ -9,7 +9,7 @@ function Header() {
     const {DICTIONARY} = useDictionary();
 
     const [user, setUser] = useStore('user')
-    const userLoggedIn = user !== null;
+    const userLoggedIn = user !== null && user !== undefined;
 
     const logout = () => {
         setUser(null)

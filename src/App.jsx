@@ -1,12 +1,14 @@
 import './App.less';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import HomePage from "./components/routing/HomePage.jsx";
-import React from "react";
+import React, {useEffect} from "react";
 import NotFoundPage from "./components/routing/NotFoundPage.jsx";
 import {toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"
 import LoginPage from "./components/routing/LoginPage.jsx";
 import SignUpPage from "./components/routing/SignUpPage.jsx";
+import jwt_decode from "jwt-decode";
+import {useStore} from "react-context-hook";
 
 toast.configure({
     position: "top-center",
@@ -14,6 +16,21 @@ toast.configure({
 })
 
 function App() {
+
+    const [user, setUser] = useStore('user')
+
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+
+        if (token) {
+            const decodedUser = jwt_decode(token)
+            setUser({
+                userId: decodedUser.userId,
+                userType: decodedUser.userType
+            })
+        }
+    }, [])
+
     return (
         <>
             <Router>
