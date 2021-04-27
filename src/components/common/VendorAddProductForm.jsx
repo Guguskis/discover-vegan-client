@@ -19,6 +19,7 @@ const VendorAddProductForm = (props) => {
     const {DICTIONARY} = useDictionary();
 
     const [editProductFormOpen, setEditProductFormOpen] = useState(false);
+    const [formType, setFormType] = useState("")
     const [productToEdit, setProductToEdit] = useState();
 
     const [{data: fileUploadData, loading: fileUploadLoading, error: fileUploadError}, executeFileUpload] = API.useFileServiceAxios(
@@ -44,17 +45,20 @@ const VendorAddProductForm = (props) => {
         {manual: true}
     )
 
-    const handleOnProductSelect = (product) => {
+    const handleOnProductSelect = async (product) => {
         if (products.find(productInArray => productInArray.productId === product.productId)) {
             toast.error("This product already added", {
                 position: toast.POSITION.TOP_CENTER
             })
         } else {
+            editProduct(product, "ADD")
             ArraysState.add(setProducts, product);
         }
     };
 
-    const handleOnEditProductSubmit = async (isNewProduct, editedProductState) => {
+    const handleOnEditProductSubmit = async (formType, editedProductState) => {
+        const isNewProduct = formType === "CREATE"
+
         const formData = new FormData();
         formData.append("file", editedProductState.image)
 
@@ -83,11 +87,13 @@ const VendorAddProductForm = (props) => {
 
     }
 
-    const editProduct = (product) => {
+    const editProduct = (product, formType) => {
+        setFormType(formType)
         setEditProductFormOpen(true)
         setProductToEdit(product)
     }
     const closeEditProduct = () => {
+        setFormType("")
         setEditProductFormOpen(false)
         setProductToEdit(null)
     }
@@ -101,7 +107,7 @@ const VendorAddProductForm = (props) => {
         <div className="product-input-container">
             <ProductSearchBar handleOnProductSelect={handleOnProductSelect}/>
             <Button text={DICTIONARY.newProduct}
-                    onClick={() => editProduct(null)}
+                    onClick={() => editProduct(null, "CREATE")}
                     icon={<AddIcon/>}/>
         </div>
     )
@@ -123,6 +129,7 @@ const VendorAddProductForm = (props) => {
                 >
                     <div>
                         <EditProductForm product={productToEdit}
+                                         formType={formType}
                                          handleOnClose={closeEditProduct}
                                          handleOnSubmit={handleOnEditProductSubmit}
                                          loading={fileUploadLoading}/>

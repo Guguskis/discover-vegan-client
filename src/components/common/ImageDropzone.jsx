@@ -6,7 +6,7 @@ import {useDictionary} from "../../config/dictionary.jsx";
 
 
 const ImageDropzone = (props) => {
-    const {imageUrl, setImage} = props;
+    const {imageUrl, disabled, setImage} = props;
     const {DICTIONARY} = useDictionary();
 
     const [files, setFiles] = useState(imageUrl ?
@@ -43,7 +43,8 @@ const ImageDropzone = (props) => {
 
     return (
         <Dropzone onDrop={handleOnDrop}
-                  maxFiles={1}>
+                  maxFiles={1}
+                  disabled={disabled}>
             {({getRootProps, getInputProps}) => {
                 return (
                     <div className="dropzone-container">

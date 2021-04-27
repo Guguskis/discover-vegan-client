@@ -11,19 +11,21 @@ import {useDictionary} from "../../config/dictionary.jsx";
 
 
 const EditProductForm = (props) => {
-    const {handleOnClose, handleOnSubmit, loading} = props;
+    const {handleOnClose, formType, handleOnSubmit, loading} = props;
     const {DICTIONARY} = useDictionary();
-    const isNewProduct = !props.product;
-    const [product, setProduct] = useState(isNewProduct ? {
+    const [product, setProduct] = useState(formType === "CREATE" ? {
         name: "",
         producer: "",
-        price: ""
-    } : props.product);
+        price: 0
+    } : {
+        ...props.product,
+        price: !props.product.price ? 0 : props.product.price
+    });
 
     const handleOnClickSubmit = async () => {
         // todo input validation
         try {
-            await handleOnSubmit(isNewProduct, product);
+            await handleOnSubmit(formType, product);
         } catch (ex) {
             const response = ex.response;
             switch (response.status) {
@@ -62,6 +64,7 @@ const EditProductForm = (props) => {
                                    label={DICTIONARY.productName}
                                    variant="filled"
                                    name="name"
+                                   disabled={formType === "EDIT" || formType === "ADD"}
                                    value={product.name}
                                    onChange={onChangeUpdateProduct}
                                    required={true}/>
@@ -70,6 +73,7 @@ const EditProductForm = (props) => {
                                    label={DICTIONARY.producer}
                                    variant="filled"
                                    name="producer"
+                                   disabled={formType === "EDIT" || formType === "ADD"}
                                    value={product.producer}
                                    onChange={onChangeUpdateProduct}
                                    required={true}/>
@@ -87,6 +91,7 @@ const EditProductForm = (props) => {
                                    }}/>
                     </div>
                     <ImageDropzone imageUrl={product.imageUrl}
+                                   disabled={formType === "EDIT" || formType === "ADD"}
                                    setImage={setImage}/>
                 </div>
                 <Button text={DICTIONARY.submit}

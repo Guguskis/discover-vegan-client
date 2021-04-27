@@ -13,6 +13,7 @@ import {easeCubic} from "d3-ease";
 import {ToggleButton} from "@material-ui/lab";
 import {usePosition} from 'use-position';
 import {ObjectState} from "../../utils/utils.jsx";
+import {useStore} from "react-context-hook";
 
 export default HomePage;
 
@@ -20,6 +21,7 @@ function HomePage() {
     const {DICTIONARY} = useDictionary();
 
     const {latitude, longitude} = usePosition(false);
+    const [location, setLocation] = useStore('location')
 
     const [viewport, setViewport] = useState({
         latitude: 54.72744555070343,
@@ -70,6 +72,10 @@ function HomePage() {
         if (latitude !== undefined && longitude !== undefined) {
             ObjectState.update(setViewport, "latitude", latitude)
             ObjectState.update(setViewport, "longitude", longitude)
+            setLocation({
+                latitude: latitude,
+                longitude: longitude
+            })
         }
     }, [latitude, longitude])
 
