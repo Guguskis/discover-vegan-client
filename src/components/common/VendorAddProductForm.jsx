@@ -78,7 +78,7 @@ const VendorAddProductForm = (props) => {
             ArraysState.add(setProducts, vendorProduct);
             closeEditProduct()
         } else {
-            throw new Error("PUT api/vendor/product")
+            toast.error("PUT api/vendor/product"); // todo implement
         }
 
     }
