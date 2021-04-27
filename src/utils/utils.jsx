@@ -34,13 +34,16 @@ class ArraysState {
         })
     }
 
-    static updateByKey(setArray, item, key) {
+    static replaceByKey(setArray, item, key) {
         setArray(array => {
             return array.map(itemInArray => {
+                if (!itemInArray) return itemInArray;
                 if (!itemInArray[key] || !item[key]) return itemInArray;
                 if (itemInArray[key] === item[key]) {
                     return item;
                 }
+
+                return itemInArray;
             });
         })
     }

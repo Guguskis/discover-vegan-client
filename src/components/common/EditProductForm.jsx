@@ -64,7 +64,7 @@ const EditProductForm = (props) => {
                                    label={DICTIONARY.productName}
                                    variant="filled"
                                    name="name"
-                                   disabled={formType === "EDIT" || formType === "ADD"}
+                                   disabled={formType === "UPDATE" || formType === "ADD"}
                                    value={product.name}
                                    onChange={onChangeUpdateProduct}
                                    required={true}/>
@@ -73,7 +73,7 @@ const EditProductForm = (props) => {
                                    label={DICTIONARY.producer}
                                    variant="filled"
                                    name="producer"
-                                   disabled={formType === "EDIT" || formType === "ADD"}
+                                   disabled={formType === "UPDATE" || formType === "ADD"}
                                    value={product.producer}
                                    onChange={onChangeUpdateProduct}
                                    required={true}/>
@@ -91,7 +91,7 @@ const EditProductForm = (props) => {
                                    }}/>
                     </div>
                     <ImageDropzone imageUrl={product.imageUrl}
-                                   disabled={formType === "EDIT" || formType === "ADD"}
+                                   disabled={formType === "UPDATE" || formType === "ADD"}
                                    setImage={setImage}/>
                 </div>
                 <Button text={DICTIONARY.submit}

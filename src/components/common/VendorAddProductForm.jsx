@@ -45,6 +45,14 @@ const VendorAddProductForm = (props) => {
         {manual: true}
     )
 
+    const [{data: updateVendorProductData, loading: updateVendorProductLoading, error: updateVendorProductError}, executeUpdateVendorProduct] = API.useDiscoverVeganApiAxios(
+        {
+            url: ``,
+            method: 'PATCH'
+        },
+        {manual: true}
+    )
+
     const handleOnProductSelect = async (product) => {
         if (products.find(productInArray => productInArray.productId === product.productId)) {
             toast.error("This product already added", {
@@ -57,7 +65,6 @@ const VendorAddProductForm = (props) => {
     };
 
     const handleOnEditProductSubmit = async (formType, editedProductState) => {
-        const isNewProduct = formType === "CREATE"
 
         const formData = new FormData();
         formData.append("file", editedProductState.image)
@@ -69,7 +76,7 @@ const VendorAddProductForm = (props) => {
             editedProduct.imageUrl = response.data.fileUrl;
         }
 
-        if (isNewProduct) {
+        if (formType === "CREATE" || formType === "ADD") {
             const createProductResponse = await executeCreateProduct({...createProductData, data: editedProduct});
             const newProduct = createProductResponse.data;
             const addProductToVendorResponse = await executeAddProductToVendor({
@@ -81,8 +88,17 @@ const VendorAddProductForm = (props) => {
             const vendorProduct = addProductToVendorResponse.data;
             ArraysState.add(setProducts, vendorProduct);
             closeEditProduct()
-        } else {
-            toast.error("PUT api/vendor/product"); // todo implement
+        } else if (formType === "UPDATE") {
+            const updateVendorProductResponse = await executeUpdateVendorProduct({
+                ...updateVendorProductData,
+                url: `/api/vendor/${vendor.vendorId}/product/${productToEdit.productId}`,
+                data: {
+                    price: editedProductState.price
+                }
+            })
+            const vendorProduct = updateVendorProductResponse.data;
+            ArraysState.replaceByKey(setProducts, vendorProduct, "productId")
+            closeEditProduct()
         }
 
     }

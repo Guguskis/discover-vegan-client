@@ -28,7 +28,7 @@ const ManageProductsList = (props) => {
                         primary={product.name}
                     />
                     <ListItemSecondaryAction>
-                        <IconButton onClick={() => onClickHandleEdit(product, "EDIT")} edge="end" aria-label="edit">
+                        <IconButton onClick={() => onClickHandleEdit(product, "UPDATE")} edge="end" aria-label="edit">
                             <EditIcon/>
                         </IconButton>
                         <IconButton onClick={() => onClickHandleDelete(product)} edge="end" aria-label="delete">
