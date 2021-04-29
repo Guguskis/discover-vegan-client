@@ -9,9 +9,7 @@ const ImageDropzone = (props) => {
     const {imageUrl, disabled, setImage} = props;
     const {DICTIONARY} = useDictionary();
 
-    const [files, setFiles] = useState(imageUrl ?
-        [{url: imageUrl}] : []
-    );
+    const [files, setFiles] = useState([{url: imageUrl}]);
 
     const handleOnDrop = async (acceptedFiles) => {
         setImage(acceptedFiles[0])
@@ -31,6 +29,9 @@ const ImageDropzone = (props) => {
             </div>
         );
     }
+    const isEmpty = () => {
+        return !imageUrl;
+    }
 
     const UploadedDropzone = (props) => {
         return (
@@ -48,7 +49,7 @@ const ImageDropzone = (props) => {
             {({getRootProps, getInputProps}) => {
                 return (
                     <div className="dropzone-container">
-                        {files.length === 0 ?
+                        {isEmpty() ?
                             <EmptyDropzone getRootProps={getRootProps} getInputProps={getInputProps}/>
                             :
                             <UploadedDropzone getRootProps={getRootProps} getInputProps={getInputProps}/>
