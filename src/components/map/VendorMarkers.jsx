@@ -2,10 +2,31 @@ import React from 'react';
 import {Marker} from "react-map-gl";
 import StorefrontIcon from "@material-ui/icons/Storefront";
 import IconButton from "@material-ui/core/IconButton";
+import RestaurantIcon from '@material-ui/icons/Restaurant';
 import "./VendorMarkers.less"
 
 const VendorMarkers = (props) => {
     const {vendors, setSelectedVendor} = props;
+
+
+    const getVendorIcon = (vendor) => {
+        let icon;
+
+        switch (vendor.vendorType) {
+            case "STORE":
+                icon = <StorefrontIcon className='vendorIcon'/>
+                break;
+            case "RESTAURANT":
+                icon = <RestaurantIcon className='vendorIcon'/>
+                break;
+            default:
+                console.log(`Icon for {vendorType: ${vendor.vendorType}} not specified`)
+                icon = <StorefrontIcon className='vendorIcon'/>
+                break;
+        }
+
+        return icon;
+    }
 
     return vendors.map(vendor => (
         <Marker
@@ -17,7 +38,7 @@ const VendorMarkers = (props) => {
             className="vendor-marker"
         >
             <IconButton onClick={() => setSelectedVendor(vendor)}>
-                <StorefrontIcon className='vendorIcon'/>
+                {getVendorIcon(vendor)}
             </IconButton>
         </Marker>
     ))
