@@ -60,7 +60,6 @@ const VendorAddProductForm = (props) => {
             })
         } else {
             editProduct(product, "ADD")
-            ArraysState.add(setProducts, product);
         }
     };
 
