@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import FormContainer from "./FormContainer.jsx";
 import "./EditProductForm.less";
 import TextField from "@material-ui/core/TextField";
@@ -13,14 +13,23 @@ import {useDictionary} from "../../config/dictionary.jsx";
 const EditProductForm = (props) => {
     const {handleOnClose, formType, handleOnSubmit, loading} = props;
     const {DICTIONARY} = useDictionary();
-    const [product, setProduct] = useState(formType === "CREATE" ? {
-        name: "",
-        producer: "",
-        price: 0
-    } : {
-        ...props.product,
-        price: !props.product.price ? 0 : props.product.price
-    });
+    const [product, setProduct] = useState({});
+
+    useEffect(() => {
+        if (formType === "CREATE") {
+            setProduct({
+                name: "",
+                producer: "",
+                price: 0
+            })
+        } else {
+            const propsProduct = props.product;
+            if (propsProduct.price === null) {
+                propsProduct.price = 0;
+            }
+            setProduct(propsProduct)
+        }
+    }, [])
 
     const handleOnClickSubmit = async () => {
         // todo input validation
