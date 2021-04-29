@@ -12,7 +12,7 @@ import {FlyToInterpolator} from "react-map-gl";
 import {easeCubic} from "d3-ease";
 import {ToggleButton} from "@material-ui/lab";
 import {usePosition} from 'use-position';
-import {ObjectState} from "../../utils/utils.jsx";
+import {ArraysState, ObjectState} from "../../utils/utils.jsx";
 import {useStore} from "react-context-hook";
 
 export default HomePage;
@@ -33,7 +33,7 @@ function HomePage() {
     const [displayVendorDetailsOpen, setDisplayVendorDetailsOpen] = useState(false);
     const [searchBarSelectedProduct, setSearchBarSelectedProduct] = useState();
     const [selectedVendor, setSelectedVendor] = useState(null);
-    const [vendors, onViewStateChange] = useOnDragUpdateVendors(viewport, selectedVendor);
+    const [vendors, onViewStateChange, setAlwaysDisplayVendors] = useOnDragUpdateVendors(viewport, selectedVendor);
     const [showEmptyVendors, setShowEmptyVendors] = useState(false)
 
     const handleOnProductSelect = (product) => {
@@ -48,6 +48,9 @@ function HomePage() {
     const flyToVendor = (vendor) => {
         onCloseHideVendorDetails()
 
+        ArraysState.add(setAlwaysDisplayVendors, vendor)
+        // todo add callback on transition end to remove from setAlwaysDisplayVendors
+
         setViewport({
             ...viewport,
             longitude: vendor.longitude,
@@ -55,7 +58,7 @@ function HomePage() {
             zoom: 15,
             transitionDuration: 1000,
             transitionInterpolator: new FlyToInterpolator(),
-            transitionEasing: easeCubic
+            transitionEasing: easeCubic,
         });
     }
 

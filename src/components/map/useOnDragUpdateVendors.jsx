@@ -7,6 +7,8 @@ import {API} from "../../config/axiosConfig.jsx";
 const useOnDragUpdateVendors = (viewport, selectedVendor) => {
 
     const [vendors, setVendors] = useState([])
+    const [fetchedVendors, setFetchedVendors] = useState([])
+    const [alwaysDisplayVendors, setAlwaysDisplayVendors] = useState([]);
     const [{data: vendorData, loading: vendorLoading, error: vendorError}, executeVendor] = API.useDiscoverVeganApiAxios(
         {
             url: "/api/vendor",
@@ -41,15 +43,34 @@ const useOnDragUpdateVendors = (viewport, selectedVendor) => {
 
     useEffect(() => {
         if (vendorData) {
-            if (selectedVendor) {
-                if (!vendorData.some(vendor => vendor.vendorId === selectedVendor.vendorId)) {
-                    vendorData.push(selectedVendor)
-                }
-            }
-            setVendors(vendorData);
+            setFetchedVendors(vendorData);
             setFetchCooldown(true)
         }
     }, [vendorData]);
+
+    useEffect(() => {
+
+        let allVendors = [];
+
+        allVendors = allVendors.concat(fetchedVendors)
+
+        const nonDuplicateAlwaysDisplayVendors = removeDuplicateVendors(allVendors, alwaysDisplayVendors)
+        allVendors = allVendors.concat(nonDuplicateAlwaysDisplayVendors);
+
+        if (selectedVendor) {
+            const nonDuplicateSelectedVendors = removeDuplicateVendors(allVendors, [selectedVendor]);
+            allVendors = allVendors.concat(nonDuplicateSelectedVendors);
+        }
+
+        setVendors(allVendors)
+    }, [fetchedVendors, alwaysDisplayVendors, selectedVendor])
+
+    const removeDuplicateVendors = (fromVendors, toRemoveVendors) => {
+        return toRemoveVendors.filter(vendor => {
+            return !fromVendors.some(
+                existingVendor => existingVendor.vendorId === vendor.vendorId);
+        });
+    }
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -72,7 +93,7 @@ const useOnDragUpdateVendors = (viewport, selectedVendor) => {
             fetchVendors()
         }
     }
-    return [vendors, onViewStateChange];
+    return [vendors, onViewStateChange, setAlwaysDisplayVendors];
 };
 
 const mapPositionChange = (event) => {
