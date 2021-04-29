@@ -62,7 +62,6 @@ const EditProductForm = (props) => {
         ObjectState.update(setProduct, "image", image)
     }
 
-    // todo if edit disable title change
     return (
         <FormContainer handleOnClose={handleOnClose}>
             <div className="edit-product-form-container">
