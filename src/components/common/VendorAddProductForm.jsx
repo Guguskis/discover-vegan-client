@@ -76,7 +76,7 @@ const VendorAddProductForm = (props) => {
             editedProduct.imageUrl = response.data.fileUrl;
         }
 
-        if (formType === "CREATE" || formType === "ADD") {
+        if (formType === "CREATE") {
             const createProductResponse = await executeCreateProduct({...createProductData, data: editedProduct});
             const newProduct = createProductResponse.data;
             const addProductToVendorResponse = await executeAddProductToVendor({
@@ -87,7 +87,15 @@ const VendorAddProductForm = (props) => {
             })
             const vendorProduct = addProductToVendorResponse.data;
             ArraysState.add(setProducts, vendorProduct);
-            closeEditProduct()
+        } else if (formType === "ADD") {
+            const addProductToVendorResponse = await executeAddProductToVendor({
+                ...addProductToVendorData, data: {
+                    productId: editedProduct.productId,
+                    price: editedProduct.price
+                }
+            })
+            const vendorProduct = addProductToVendorResponse.data;
+            ArraysState.add(setProducts, vendorProduct);
         } else if (formType === "UPDATE") {
             const updateVendorProductResponse = await executeUpdateVendorProduct({
                 ...updateVendorProductData,
@@ -98,9 +106,9 @@ const VendorAddProductForm = (props) => {
             })
             const vendorProduct = updateVendorProductResponse.data;
             ArraysState.replaceByKey(setProducts, vendorProduct, "productId")
-            closeEditProduct()
         }
 
+        closeEditProduct()
     }
 
     const editProduct = (product, formType) => {
