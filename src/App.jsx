@@ -9,6 +9,7 @@ import LoginPage from "./components/routing/LoginPage.jsx";
 import SignUpPage from "./components/routing/SignUpPage.jsx";
 import jwt_decode from "jwt-decode";
 import {useStore} from "react-context-hook";
+import TrendsPage from "./components/routing/TrendsPage.jsx";
 
 toast.configure({
     position: "top-center",
@@ -40,7 +41,7 @@ function App() {
                     <Route path="/login" component={LoginPage}/>
                     <Route path="/signup" component={SignUpPage}/>
                     <Route path="/wishlist" component={NotFoundPage}/>
-                    <Route path="/trends" component={NotFoundPage}/>
+                    <Route path="/trends" component={TrendsPage}/>
                     <Route component={NotFoundPage}/>
                 </Switch>
             </Router>
