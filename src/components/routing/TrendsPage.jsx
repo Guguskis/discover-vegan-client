@@ -50,8 +50,12 @@ const TrendsPage = () => {
         const product = productsTrend.product;
         const searchCount = productsTrend.searchCount;
 
+        const handleOnProductsTrendClick = () => {
+            console.log(product.productId)
+        }
+
         return (
-            <TableRow key={product.productId}>
+            <TableRow key={product.productId} hover onClick={handleOnProductsTrendClick}>
                 <TableCell component="th" scope="row">{product.name}</TableCell>
                 <TableCell align="right">{searchCount}</TableCell>
             </TableRow>
