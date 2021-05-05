@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {NavLink} from "react-router-dom";
 import "./Header.less"
 import {useDictionary} from "../../config/dictionary.jsx";
@@ -7,13 +7,6 @@ import LanguageDropdown from "../common/LanguageDropdown.jsx";
 
 function Header() {
     const {DICTIONARY} = useDictionary();
-    const [forceUpdate, setForceUpdate] = useState({});
-
-    const setLanguage = () => {
-        DICTIONARY.setLanguage("lt")
-        setForceUpdate({})
-    }
-
     const [user, setUser] = useStore('user')
     const userLoggedIn = user !== null && user !== undefined;
 

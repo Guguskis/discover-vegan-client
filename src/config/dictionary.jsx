@@ -90,18 +90,8 @@ const DEFAULT_DICTIONARY = new LocalizedStrings({
 
 const useDictionary = () => {
     const [DICTIONARY] = useStore('dictionary', DEFAULT_DICTIONARY)
-    // const [language, setLanguage] = useState("en")
-
-    // const setLanguage = (language) => {
-    //     DICTIONARY.setLanguage(language)
-    // }
-
-    // useEffect(() => {
-    //     DICTIONARY.setLanguage(language)
-    // }, [language])
 
     return {DICTIONARY};
-    // return {DICTIONARY, setLanguage};
 }
 
 export {useDictionary};
