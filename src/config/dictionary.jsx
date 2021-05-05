@@ -42,7 +42,8 @@ const DEFAULT_DICTIONARY = new LocalizedStrings({
         userDoesNotExist: "User does not exist",
         account: "Account",
         logout: "Logout",
-        showEmpty: "Show empty"
+        showEmpty: "Show empty",
+        searchCount: "Search count",
     },
     lt: {
         map: "Žemėlapis",
@@ -84,7 +85,8 @@ const DEFAULT_DICTIONARY = new LocalizedStrings({
         userDoesNotExist: "Toks naudotojas neegzistuoja",
         account: "Paskyra",
         logout: "Atsijungti",
-        showEmpty: "Rodyti tusčius"
+        showEmpty: "Rodyti tusčius",
+        searchCount: "Paieškų kiekis",
     }
 });
 

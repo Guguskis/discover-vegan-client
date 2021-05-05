@@ -8,19 +8,15 @@
     background-color: @secondary-color;
     display: flex;
     //justify-content: center;
-    align-items: center;
-    color: @font-color;
+    //align-items: center;
 
-    .products-trends-list {
-      .product-trend-item {
-        .product-name {
-          background-color: red;
-          width: 25ch;
-        }
+    .products-trends-table {
+      max-width: 33ch;
+      background-color: lighten(@secondary-color, 5%);
 
-        .search-count {
-          background-color: blue;
-        }
+      .MuiTableCell-root.MuiTableCell-head, .MuiTableCell-root {
+        border-bottom: 1px solid rgba(black, 100%);
+        color: @font-color;
       }
     }
   }

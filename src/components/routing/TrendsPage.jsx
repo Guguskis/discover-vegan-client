@@ -5,9 +5,13 @@ import {useDictionary} from "../../config/dictionary.jsx";
 import {API} from "../../config/axiosConfig.jsx";
 import Header from "./Header.jsx";
 import "date-utils";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
+import TableContainer from "@material-ui/core/TableContainer";
+import Paper from "@material-ui/core/Paper";
+import Table from "@material-ui/core/Table";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import TableCell from "@material-ui/core/TableCell";
+import TableBody from "@material-ui/core/TableBody";
 
 const TrendsPage = () => {
     const {DICTIONARY} = useDictionary();
@@ -42,15 +46,15 @@ const TrendsPage = () => {
         }
     }, [productsTrendsData])
 
-    const getProductsTrendItem = (productsTrend) => {
+    const getProductsTrendRow = (productsTrend) => {
         const product = productsTrend.product;
         const searchCount = productsTrend.searchCount;
 
         return (
-            <ListItem button key={product.productId} className="product-trend-item">
-                <ListItemText primary={product.name} className="product-name"/>
-                <ListItemText primary={searchCount} className="search-count"/>
-            </ListItem>
+            <TableRow key={product.productId}>
+                <TableCell component="th" scope="row">{product.name}</TableCell>
+                <TableCell align="right">{searchCount}</TableCell>
+            </TableRow>
         );
     }
 
@@ -58,9 +62,19 @@ const TrendsPage = () => {
         <div className="trends-page">
             <Header/>
             <div className="page-body">
-                <List component="nav" className="products-trends-list">
-                    {productsTrends.trends.map(getProductsTrendItem)}
-                </List>
+                <TableContainer component={Paper} className="products-trends-table">
+                    <Table size="small">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>{DICTIONARY.productName}</TableCell>
+                                <TableCell align="right">{DICTIONARY.searchCount}</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {productsTrends.trends.map(getProductsTrendRow)}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
             </div>
         </div>
     );
