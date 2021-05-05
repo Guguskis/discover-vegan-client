@@ -34,7 +34,7 @@ function HomePage() {
     }
 
     function handleSignUpRequestError(ex) {
-        const response = ex.response;
+        const response = ex.response ? ex.response : 666;
         switch (response.status) {
             case 500:
                 toast.error(DICTIONARY.pleaseTryAgainLater)
