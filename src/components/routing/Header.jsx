@@ -27,20 +27,12 @@ function Header() {
             <div className='routing-container'>
                 <NavLink exact to='/' className="routing-item"
                          activeClassName="active">{DICTIONARY.map}</NavLink>
-                <NavLink to='/products' className="routing-item"
-                         activeClassName="active">{DICTIONARY.products}</NavLink>
-                <NavLink to='/scan' className="routing-item"
-                         activeClassName="active">{DICTIONARY.scan}</NavLink>
                 <NavLink to='/trends' className="routing-item"
                          activeClassName="active">{DICTIONARY.trends}</NavLink>
                 <NavLink to='/wishlist' className="routing-item"
                          activeClassName="active">{DICTIONARY.wishList}</NavLink>
             </div>
             <div className='user-container'>
-                {userLoggedIn ?
-                    <NavLink exact to='/' className="routing-item"
-                             activeClassName="active">{DICTIONARY.account}</NavLink>
-                    : null}
                 {userLoggedIn ?
                     <NavLink exact to='/' className="routing-item" onClick={logout}
                              activeClassName="active">{DICTIONARY.logout}</NavLink>
