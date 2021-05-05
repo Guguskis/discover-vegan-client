@@ -18,7 +18,7 @@ toast.configure({
 function App() {
 
     const [user, setUser] = useStore('user')
-    const [forceRerender] = useStore('forceRerender')
+    const [forceRerender] = useStore('forceRerender') // don't delete - forces react state update from root on language change
 
     useEffect(() => {
         const token = localStorage.getItem("token");
