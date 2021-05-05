@@ -18,6 +18,7 @@ toast.configure({
 function App() {
 
     const [user, setUser] = useStore('user')
+    const [forceRerender] = useStore('forceRerender')
 
     useEffect(() => {
         const token = localStorage.getItem("token");

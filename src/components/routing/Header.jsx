@@ -1,12 +1,18 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {NavLink} from "react-router-dom";
 import "./Header.less"
 import {useDictionary} from "../../config/dictionary.jsx";
 import {useStore} from "react-context-hook";
-
+import LanguageDropdown from "../common/LanguageDropdown.jsx";
 
 function Header() {
     const {DICTIONARY} = useDictionary();
+    const [forceUpdate, setForceUpdate] = useState({});
+
+    const setLanguage = () => {
+        DICTIONARY.setLanguage("lt")
+        setForceUpdate({})
+    }
 
     const [user, setUser] = useStore('user')
     const userLoggedIn = user !== null && user !== undefined;
@@ -30,7 +36,7 @@ function Header() {
                 <NavLink to='/wishlist' className="routing-item"
                          activeClassName="active">{DICTIONARY.wishList}</NavLink>
             </div>
-            <div className='account-container'>
+            <div className='user-container'>
                 {userLoggedIn ?
                     <NavLink exact to='/' className="routing-item"
                              activeClassName="active">{DICTIONARY.account}</NavLink>
@@ -47,6 +53,7 @@ function Header() {
                     <NavLink exact to='/signup' className="routing-item"
                              activeClassName="active">{DICTIONARY.signUp}</NavLink>
                     : null}
+                <LanguageDropdown/>
             </div>
         </div>
     );
