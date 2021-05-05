@@ -8,10 +8,12 @@ import {useDictionary} from "../../config/dictionary.jsx";
 const ImageDropzone = (props) => {
     const {imageUrl, disabled, setImage} = props;
     const {DICTIONARY} = useDictionary();
+    const [isEmpty, setIsEmpty] = useState(!imageUrl)
 
     const [files, setFiles] = useState([{url: imageUrl}]);
 
     const handleOnDrop = async (acceptedFiles) => {
+        setIsEmpty(false);
         setImage(acceptedFiles[0])
         setFiles(acceptedFiles.map(file =>
             Object.assign(file, {
@@ -28,9 +30,6 @@ const ImageDropzone = (props) => {
                 <p>{DICTIONARY.uploadImage}</p>
             </div>
         );
-    }
-    const isEmpty = () => {
-        return !imageUrl;
     }
 
     const UploadedDropzone = (props) => {
@@ -49,7 +48,7 @@ const ImageDropzone = (props) => {
             {({getRootProps, getInputProps}) => {
                 return (
                     <div className="dropzone-container">
-                        {isEmpty() ?
+                        {isEmpty ?
                             <EmptyDropzone getRootProps={getRootProps} getInputProps={getInputProps}/>
                             :
                             <UploadedDropzone getRootProps={getRootProps} getInputProps={getInputProps}/>

@@ -12,7 +12,7 @@ import {useDictionary} from "../../config/dictionary.jsx";
 const initProduct = (product, formType) => {
     let initProduct;
 
-    if (formType === "CREATE") {
+    if (formType === "CREATE" || product === null) {
         initProduct = {
             name: "",
             producer: "",
