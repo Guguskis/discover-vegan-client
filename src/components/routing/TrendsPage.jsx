@@ -11,6 +11,7 @@ import {ArraysState} from "../../utils/utils.jsx";
 import ProductSearchBar from "../common/ProductSearchBar.jsx";
 import {KeyboardDatePicker} from '@material-ui/pickers';
 import SortingToggle from "../common/SortingToggle.jsx";
+import ProductTrendAnalysis from "../common/ProductTrendAnalysis.jsx";
 
 
 const TrendsPage = () => {
@@ -102,9 +103,8 @@ const TrendsPage = () => {
         <div className="trends-page">
             <Header/>
             <div className="page-body">
-                <div className="products-trends-container">
+                <div className="product-selection-container">
                     <ProductSearchBar handleOnProductSelect={setSelectedProduct}/>
-
                     <div className="filtering-container">
                         <KeyboardDatePicker
                             disableToolbar
@@ -134,7 +134,6 @@ const TrendsPage = () => {
                         />
                         <SortingToggle setSortingValue={setSortDirection}/>
                     </div>
-
                     <div className="container-headers">
                         <div className="product-name-column">{DICTIONARY.productName}</div>
                         <div className="search-count-column">{DICTIONARY.searchCount}</div>
@@ -152,6 +151,7 @@ const TrendsPage = () => {
                         </InfiniteScroll>
                     </div>
                 </div>
+                <ProductTrendAnalysis product={selectedProduct}/>
             </div>
         </div>
     );
