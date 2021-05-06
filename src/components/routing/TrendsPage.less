@@ -9,26 +9,27 @@
     display: flex;
     padding: 3ch;
 
-    .products-trends-table {
-      max-width: 30ch;
-      height: auto;
+    #products-trends-container {
+      height: 80vh;
+      width: 30ch;
+      overflow: auto;
       background-color: lighten(@secondary-color, 5%);
 
-      .MuiTableCell-head, .MuiTableCell-root {
+      .product-trend-row {
+        padding: 1ch;
         border-bottom: 1px solid rgba(black, 100%);
         color: @font-color;
-      }
 
-      .MuiTableBody-root {
-        .MuiTableRow-root:hover {
+        &:hover {
           background-color: rgba(black, 20%);
           cursor: pointer;
         }
       }
-    }
 
-    .MuiTableCell-stickyHeader {
-      background-color: lighten(@secondary-color, 10%);
+      .loading-message, .end-message {
+        color: @font-color;
+        text-align: center;
+      }
     }
   }
 }

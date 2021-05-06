@@ -45,6 +45,8 @@ const DEFAULT_DICTIONARY = new LocalizedStrings({
         showEmpty: "Show empty",
         searchCount: "Search count",
         locationsToBuy: "Locations to buy",
+        end: "End",
+        loading: "Loading",
     },
     lt: {
         map: "Žemėlapis",
@@ -89,6 +91,8 @@ const DEFAULT_DICTIONARY = new LocalizedStrings({
         showEmpty: "Rodyti tusčius",
         searchCount: "Paieškų kiekis",
         locationsToBuy: "Vietos, kur atrasite",
+        end: "Pabaiga",
+        loading: "Kraunasi"
     }
 });
 
