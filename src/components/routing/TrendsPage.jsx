@@ -151,7 +151,7 @@ const TrendsPage = () => {
                         </InfiniteScroll>
                     </div>
                 </div>
-                <ProductTrendAnalysis product={selectedProduct}/>
+                <ProductTrendAnalysis product={selectedProduct} fromDate={fromDate} toDate={toDate}/>
             </div>
         </div>
     );

@@ -9,12 +9,10 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 
 
 const ProductTrendAnalysis = (props) => {
-    const {product} = props;
+    const {product, fromDate, toDate} = props;
 
     const {DICTIONARY} = useDictionary();
 
-    const [fromDate, setFromDate] = useState(Date.today().add({days: -1}))
-    const [toDate, setToDate] = useState(Date.today())
     const [searchRequests, setSearchRequests] = useState([])
 
     const [{data: productSearchRequestsData, loading: productSearchRequestsLoading, error: productSearchRequestsError}, executeProductSearchRequests] = API.useDiscoverVeganApiAxios(
@@ -33,7 +31,7 @@ const ProductTrendAnalysis = (props) => {
         if (product) {
             executeProductSearchRequests()
         }
-    }, [product])
+    }, [product, fromDate, toDate])
 
     useEffect(() => {
         if (!productSearchRequestsLoading && productSearchRequestsData) {
@@ -62,7 +60,7 @@ const ProductTrendAnalysis = (props) => {
         } else if (daysBetween >= 2) {
             return date.toFormat("MM-DD")
         } else {
-            return date.toFormat("DD HH") + "H"
+            return date.toFormat("DD HH24") + "h"
         }
     }
 
