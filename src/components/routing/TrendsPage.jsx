@@ -10,6 +10,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import {ArraysState} from "../../utils/utils.jsx";
 import ProductSearchBar from "../common/ProductSearchBar.jsx";
 import {KeyboardDatePicker} from '@material-ui/pickers';
+import SortingToggle from "../common/SortingToggle.jsx";
 
 
 const TrendsPage = () => {
@@ -129,6 +130,7 @@ const TrendsPage = () => {
                                 'aria-label': 'change date',
                             }}
                         />
+                        <SortingToggle setSortingValue={() => ""}/>
                     </div>
 
                     <div className="container-headers">
