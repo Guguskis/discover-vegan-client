@@ -27,7 +27,9 @@ const ProductSearchBar = (props) => {
             return undefined;
 
         (async () => {
-            fetchProducts();
+            if (open) {
+                fetchProducts();
+            }
         })();
     }, [query]);
 
