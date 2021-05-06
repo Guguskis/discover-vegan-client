@@ -58,7 +58,8 @@ const TrendsPage = () => {
         return (
             <div className="product-trend-row"
                  key={productsTrend.product.productId}>
-                {productsTrend.product.name}
+                <div className="product-name-column">{product.name}</div>
+                <div className="search-count-column">{searchCount}</div>
             </div>
         );
     }
@@ -68,26 +69,34 @@ const TrendsPage = () => {
     }
 
     const EndMessage = () => {
-        return <p className="end-message">
-            <b>{`${DICTIONARY.end}...`}</b>
-        </p>;
+        return (
+            <p className="end-message">
+                {`${DICTIONARY.end}...`}
+            </p>
+        )
     }
 
     return (
         <div className="trends-page">
             <Header/>
             <div className="page-body">
-                <div id="products-trends-container">
-                    <InfiniteScroll
-                        dataLength={productsTrends.length}
-                        next={fetchTrends}
-                        hasMore={nextPageToken}
-                        loader={<Loader/>}
-                        scrollableTarget="products-trends-container"
-                        endMessage={<EndMessage/>}
-                    >
-                        {productsTrends.map(ProductsTrendRow)}
-                    </InfiniteScroll>
+                <div className="products-trends-container">
+                    <div className="container-headers">
+                        <div className="product-name-column">{DICTIONARY.productName}</div>
+                        <div className="search-count-column">{DICTIONARY.searchCount}</div>
+                    </div>
+                    <div id="infinite-scroll-container">
+                        <InfiniteScroll
+                            dataLength={productsTrends.length}
+                            next={fetchTrends}
+                            hasMore={nextPageToken}
+                            loader={<Loader/>}
+                            scrollableTarget="products-trends-container"
+                            endMessage={<EndMessage/>}
+                        >
+                            {productsTrends.map(ProductsTrendRow)}
+                        </InfiniteScroll>
+                    </div>
                 </div>
             </div>
         </div>
