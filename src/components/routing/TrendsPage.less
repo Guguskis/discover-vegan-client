@@ -7,9 +7,11 @@
   .page-body {
     background-color: @secondary-color;
     display: flex;
+    padding: 3ch;
 
     .products-trends-table {
-      max-width: 33ch;
+      max-width: 30ch;
+      height: auto;
       background-color: lighten(@secondary-color, 5%);
 
       .MuiTableCell-head, .MuiTableCell-root {
@@ -23,6 +25,10 @@
           cursor: pointer;
         }
       }
+    }
+
+    .MuiTableCell-stickyHeader {
+      background-color: lighten(@secondary-color, 10%);
     }
   }
 }

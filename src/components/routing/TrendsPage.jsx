@@ -12,6 +12,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import TableBody from "@material-ui/core/TableBody";
+import {toast} from "react-toastify";
 
 const TrendsPage = () => {
     const {DICTIONARY} = useDictionary();
@@ -37,14 +38,13 @@ const TrendsPage = () => {
 
     useEffect(() => {
         if (productsTrendsError) {
-            console.log(productsTrendsError)
+            toast.error(DICTIONARY.somethingBadHappenedPleaseTryAgainLater);
         }
 
-        if (productsTrendsData) {
-            console.log(productsTrendsData)
+        if (!productsTrendsLoading && productsTrendsData) {
             setProductsTrends(productsTrendsData);
         }
-    }, [productsTrendsData])
+    }, [productsTrendsLoading])
 
     const getProductsTrendRow = (productsTrend) => {
         const product = productsTrend.product;
@@ -67,7 +67,7 @@ const TrendsPage = () => {
             <Header/>
             <div className="page-body">
                 <TableContainer component={Paper} className="products-trends-table">
-                    <Table size="small">
+                    <Table size="small" stickyHeader>
                         <TableHead>
                             <TableRow>
                                 <TableCell>{DICTIONARY.productName}</TableCell>
