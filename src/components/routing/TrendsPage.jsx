@@ -96,7 +96,7 @@ const TrendsPage = () => {
                 <div className="products-trends-container">
                     <ProductSearchBar handleOnProductSelect={setSelectedProduct}/>
 
-                    <div className="date-pickers-container">
+                    <div className="filtering-container">
                         <KeyboardDatePicker
                             disableToolbar
                             variant="inline"
