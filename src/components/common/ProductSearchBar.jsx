@@ -27,9 +27,7 @@ const ProductSearchBar = (props) => {
             return undefined;
 
         (async () => {
-            if (query.length >= 2) {
-                fetchProducts();
-            }
+            fetchProducts();
         })();
     }, [query]);
 
