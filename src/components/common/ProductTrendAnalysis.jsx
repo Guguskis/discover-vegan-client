@@ -2,8 +2,7 @@ import React, {useEffect, useState} from 'react';
 
 import "date-utils";
 import "./ProductTrendAnalysis.less"
-import {CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, XAxis, YAxis} from "recharts";
-import Tooltip from "@material-ui/core/Tooltip";
+import {CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis} from "recharts";
 import {API} from "../../config/axiosConfig.jsx";
 import {useDictionary} from "../../config/dictionary.jsx";
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -14,7 +13,7 @@ const ProductTrendAnalysis = (props) => {
 
     const {DICTIONARY} = useDictionary();
 
-    const [fromDate, setFromDate] = useState(Date.today().add({days: -3}))
+    const [fromDate, setFromDate] = useState(Date.today().add({days: -1}))
     const [toDate, setToDate] = useState(Date.today())
     const [searchRequests, setSearchRequests] = useState([])
 
@@ -54,6 +53,19 @@ const ProductTrendAnalysis = (props) => {
         )
     }
 
+    const formatXAxisTick = (dateString) => {
+        const daysBetween = fromDate.getDaysBetween(toDate);
+
+        const date = new Date(dateString);
+        if (daysBetween >= 30) {
+            return date.toFormat("YYYY-MM-DD")
+        } else if (daysBetween >= 2) {
+            return date.toFormat("MM-DD")
+        } else {
+            return date.toFormat("DD HH") + "H"
+        }
+    }
+
     return (
         <div className="product-trend-analysis">
             <ResponsiveContainer width="100%" height="100%">
@@ -69,11 +81,12 @@ const ProductTrendAnalysis = (props) => {
                     }}
                 >
                     <CartesianGrid strokeDasharray="3 3"/>
-                    <XAxis dataKey="dateTime" stroke="#ffffff" rotate={-45}/>
+                    <XAxis dataKey="dateTime" stroke="#ffffff" angle={-45} tickFormatter={formatXAxisTick}/>
                     <YAxis stroke="#ffffff"/>
                     <Tooltip/>
                     <Legend/>
-                    <Line type="monotone" dataKey="count" stroke="#000000" activeDot={{r: 8}}/>
+                    <Line type="monotone" dataKey="count" name={DICTIONARY.searchCount} stroke="#000000"
+                          activeDot={{r: 8}} strokeWidth={3}/>
                 </LineChart>
             </ResponsiveContainer>
         </div>
