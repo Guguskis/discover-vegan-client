@@ -4,7 +4,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import IconButton from "@material-ui/core/IconButton";
 
 const FormContainer = (props) => {
-    const {handleOnClose} = props;
+    const {handleOnClose, title} = props;
 
     return (
         <div className="form-container">
@@ -13,6 +13,11 @@ const FormContainer = (props) => {
                     <CloseIcon/>
                 </IconButton>
             </div>
+            {title ?
+                <div className="title">{title}</div>
+                :
+                null
+            }
             <div className="form-body">
                 {props.children}
             </div>
