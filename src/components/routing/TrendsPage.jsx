@@ -17,14 +17,18 @@ import {toast} from "react-toastify";
 const TrendsPage = () => {
     const {DICTIONARY} = useDictionary();
 
-    const [productsTrends, setProductsTrends] = useState({trends: []});
-    const [fromDate, setFromDate] = useState(Date.today().add({months: -1}).toFormat("YYYY-MM-DD"))
+    const [productsTrends, setProductsTrends] = useState([]);
+    const [nextPageToken, setNextPageToken] = useState(0);
 
+    const [fromDate, setFromDate] = useState(Date.today().add({months: -1}).toFormat("YYYY-MM-DD"))
     const [{data: productsTrendsData, loading: productsTrendsLoading, error: productsTrendsError}, executeProductsTrends] = API.useDiscoverVeganApiAxios(
         {
             url: `/api/trend/products`,
             method: 'GET',
-            params: {fromDate: fromDate}
+            params: {
+                fromDate: fromDate,
+                pageToken: nextPageToken
+            }
         }, {manual: true}
     )
 
@@ -42,7 +46,7 @@ const TrendsPage = () => {
         }
 
         if (!productsTrendsLoading && productsTrendsData) {
-            setProductsTrends(productsTrendsData);
+            ArraysState.add(setProductsTrends, productsTrendsData.trends);
         }
     }, [productsTrendsLoading])
 
@@ -71,11 +75,11 @@ const TrendsPage = () => {
                         <TableHead>
                             <TableRow>
                                 <TableCell>{DICTIONARY.productName}</TableCell>
-                                <TableCell align="right">{DICTIONARY.searchCount}</TableCell>
+                                <TableCell align="center">{DICTIONARY.searchCount}</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {productsTrends.trends.map(getProductsTrendRow)}
+                            {productsTrends.map(getProductsTrendRow)}
                         </TableBody>
                     </Table>
                 </TableContainer>
