@@ -8,12 +8,14 @@ import "date-utils";
 import {toast} from "react-toastify";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import {ArraysState} from "../../utils/utils.jsx";
+import ProductSearchBar from "../common/ProductSearchBar.jsx";
 
 const TrendsPage = () => {
     const {DICTIONARY} = useDictionary();
 
     const [productsTrends, setProductsTrends] = useState([]);
     const [nextPageToken, setNextPageToken] = useState(0);
+    const [selectedProduct, setSelectedProduct] = useState();
 
     const [fromDate, setFromDate] = useState(Date.today().add({months: -1}).toFormat("YYYY-MM-DD"))
     const [{data: productsTrendsData, loading: productsTrendsLoading, error: productsTrendsError}, executeProductsTrends] = API.useDiscoverVeganApiAxios(
@@ -47,17 +49,24 @@ const TrendsPage = () => {
         }
     }, [productsTrendsLoading])
 
+    useEffect(() => {
+        if (selectedProduct) {
+            console.log(selectedProduct)
+        }
+    }, [selectedProduct])
+
     const ProductsTrendRow = (productsTrend) => {
         const product = productsTrend.product;
         const searchCount = productsTrend.searchCount;
 
         const handleOnProductsTrendClick = () => {
-            console.log(product.productId)
+            setSelectedProduct(product)
         }
 
         return (
             <div className="product-trend-row"
-                 key={productsTrend.product.productId}>
+                 key={productsTrend.product.productId}
+                 onClick={handleOnProductsTrendClick}>
                 <div className="product-name-column">{product.name}</div>
                 <div className="search-count-column">{searchCount}</div>
             </div>
@@ -81,6 +90,7 @@ const TrendsPage = () => {
             <Header/>
             <div className="page-body">
                 <div className="products-trends-container">
+                    <ProductSearchBar handleOnProductSelect={setSelectedProduct}/>
                     <div className="container-headers">
                         <div className="product-name-column">{DICTIONARY.productName}</div>
                         <div className="search-count-column">{DICTIONARY.searchCount}</div>
