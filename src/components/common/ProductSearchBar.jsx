@@ -28,10 +28,14 @@ const ProductSearchBar = (props) => {
 
         (async () => {
             if (query.length >= 2) {
-                executeProducts({...productsData, params: {query: query}});
+                fetchProducts();
             }
         })();
     }, [query]);
+
+    const fetchProducts = () => {
+        executeProducts({...productsData, params: {query: query}});
+    }
 
     useEffect(() => {
         if (productsData) {
@@ -46,6 +50,7 @@ const ProductSearchBar = (props) => {
     }, [open]);
 
     const handleOnOpen = () => {
+        fetchProducts()
         setOpen(true)
     }
     const handleOnClose = () => {
