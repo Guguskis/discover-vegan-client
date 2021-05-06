@@ -42,9 +42,11 @@ const ProductVendorsList = (props) => {
                 const price = `${product.price} €`;
 
 
-                let distanceMeters;
+                let distanceKilometersFormatted;
                 if (location) {
-                    distanceMeters = getDistance(vendor);
+                    const distanceMeters = getDistance(vendor);
+                    const distanceKilometers = distanceMeters / 1000;
+                    distanceKilometersFormatted = distanceKilometers.toFixed(1)
                 }
 
 
@@ -61,10 +63,10 @@ const ProductVendorsList = (props) => {
                         <ListItemText
                             className="list-item-text"
                             primary={price}/>
-                        {distanceMeters ?
+                        {distanceKilometersFormatted ?
                             <ListItemText
                                 className="list-item-text"
-                                primary={`${distanceMeters.toFixed(0)}m`}/>
+                                primary={`${distanceKilometersFormatted}km`}/>
                             :
                             null}
                         <ListItemSecondaryAction>
