@@ -5,10 +5,14 @@ import "./ProductTrendAnalysis.less"
 import {CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, XAxis, YAxis} from "recharts";
 import Tooltip from "@material-ui/core/Tooltip";
 import {API} from "../../config/axiosConfig.jsx";
+import {useDictionary} from "../../config/dictionary.jsx";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 
 const ProductTrendAnalysis = (props) => {
     const {product} = props;
+
+    const {DICTIONARY} = useDictionary();
 
     const [fromDate, setFromDate] = useState(Date.today().add({days: -3}))
     const [toDate, setToDate] = useState(Date.today())
@@ -38,50 +42,17 @@ const ProductTrendAnalysis = (props) => {
         }
     }, [productSearchRequestsLoading])
 
-    const data = [
-        {
-            name: 'Page A',
-            uv: 4000,
-            pv: 2400,
-            amt: 2400,
-        },
-        {
-            name: 'Page B',
-            uv: 3000,
-            pv: 1398,
-            amt: 2210,
-        },
-        {
-            name: 'Page C',
-            uv: 2000,
-            pv: 9800,
-            amt: 2290,
-        },
-        {
-            name: 'Page D',
-            uv: 2780,
-            pv: 3908,
-            amt: 2000,
-        },
-        {
-            name: 'Page E',
-            uv: 1890,
-            pv: 4800,
-            amt: 2181,
-        },
-        {
-            name: 'Page F',
-            uv: 2390,
-            pv: 3800,
-            amt: 2500,
-        },
-        {
-            name: 'Page G',
-            uv: 3490,
-            pv: 4300,
-            amt: 2100,
-        },
-    ];
+    if (productSearchRequestsLoading) {
+        return (
+            <div className="no-product-selected"><CircularProgress/></div>
+        )
+    }
+
+    if (!product) {
+        return (
+            <div className="no-product-selected">{DICTIONARY.selectProduct}</div>
+        )
+    }
 
     return (
         <div className="product-trend-analysis">
@@ -89,7 +60,7 @@ const ProductTrendAnalysis = (props) => {
                 <LineChart
                     width={500}
                     height={300}
-                    data={data}
+                    data={searchRequests}
                     margin={{
                         top: 5,
                         right: 30,
@@ -98,12 +69,11 @@ const ProductTrendAnalysis = (props) => {
                     }}
                 >
                     <CartesianGrid strokeDasharray="3 3"/>
-                    <XAxis dataKey="name"/>
-                    <YAxis/>
+                    <XAxis dataKey="dateTime" stroke="#ffffff" rotate={-45}/>
+                    <YAxis stroke="#ffffff"/>
                     <Tooltip/>
                     <Legend/>
-                    <Line type="monotone" dataKey="pv" stroke="#000000" activeDot={{r: 8}}/>
-                    <Line type="monotone" dataKey="uv" stroke="#ffffff"/>
+                    <Line type="monotone" dataKey="count" stroke="#000000" activeDot={{r: 8}}/>
                 </LineChart>
             </ResponsiveContainer>
         </div>

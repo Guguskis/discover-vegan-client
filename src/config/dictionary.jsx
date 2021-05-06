@@ -49,6 +49,7 @@ const DEFAULT_DICTIONARY = new LocalizedStrings({
         loading: "Loading",
         from: "From",
         to: "To",
+        selectProduct: "Select product",
     },
     lt: {
         map: "Žemėlapis",
@@ -97,6 +98,7 @@ const DEFAULT_DICTIONARY = new LocalizedStrings({
         loading: "Kraunasi",
         from: "Nuo",
         to: "Iki",
+        selectProduct: "Pasirinkite produktą",
     }
 });
 
