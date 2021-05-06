@@ -19,6 +19,7 @@ const TrendsPage = () => {
     const [productsTrends, setProductsTrends] = useState([]);
     const [nextPageToken, setNextPageToken] = useState(0);
     const [selectedProduct, setSelectedProduct] = useState();
+    const [sortDirection, setSortDirection] = useState("DESC")
 
     const [fromDate, setFromDate] = useState(Date.today().add({months: -1}))
     const [toDate, setToDate] = useState(Date.today())
@@ -31,7 +32,8 @@ const TrendsPage = () => {
                 fromDate: fromDate.toFormat("YYYY-MM-DD"),
                 toDate: toDate.toFormat("YYYY-MM-DD"),
                 pageToken: nextPageToken,
-                pageSize: 20
+                pageSize: 20,
+                sortDirection: sortDirection
             }
         }, {manual: true}
     )
@@ -47,7 +49,7 @@ const TrendsPage = () => {
     useEffect(() => {
         setProductsTrends([])
         fetchTrends();
-    }, [fromDate, toDate])
+    }, [fromDate, toDate, sortDirection])
 
     useEffect(() => {
         if (productsTrendsError) {
@@ -130,7 +132,7 @@ const TrendsPage = () => {
                                 'aria-label': 'change date',
                             }}
                         />
-                        <SortingToggle setSortingValue={() => ""}/>
+                        <SortingToggle setSortingValue={setSortDirection}/>
                     </div>
 
                     <div className="container-headers">

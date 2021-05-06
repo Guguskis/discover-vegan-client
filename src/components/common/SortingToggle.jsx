@@ -11,7 +11,7 @@ const SortingToggle = (props) => {
     const [sorting, setSorting] = useState("DESC")
 
     const handlePress = () => {
-        setSorting(sorting === "DESC" ? "ASD" : "DESC")
+        setSorting(sorting === "DESC" ? "ASC" : "DESC")
     }
 
     useEffect(() => {
