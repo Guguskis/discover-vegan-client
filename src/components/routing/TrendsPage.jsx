@@ -19,7 +19,7 @@ const TrendsPage = () => {
     const [nextPageToken, setNextPageToken] = useState(0);
     const [selectedProduct, setSelectedProduct] = useState();
 
-    const [fromDate, setFromDate] = useState(Date.today().add({months: -1}).toFormat("YYYY-MM-DD"))
+    const [fromDate, setFromDate] = useState(Date.today().add({months: -1}))
     const [toDate, setToDate] = useState(Date.today())
 
     const [{data: productsTrendsData, loading: productsTrendsLoading, error: productsTrendsError}, executeProductsTrends] = API.useDiscoverVeganApiAxios(
@@ -27,7 +27,8 @@ const TrendsPage = () => {
             url: `/api/trend/products`,
             method: 'GET',
             params: {
-                fromDate: fromDate,
+                fromDate: fromDate.toFormat("YYYY-MM-DD"),
+                toDate: toDate.toFormat("YYYY-MM-DD"),
                 pageToken: nextPageToken,
                 pageSize: 20
             }
@@ -39,8 +40,13 @@ const TrendsPage = () => {
     }
 
     useEffect(() => {
-        fetchTrends()
+        fetchTrends();
     }, [])
+
+    useEffect(() => {
+        setProductsTrends([])
+        fetchTrends();
+    }, [fromDate, toDate])
 
     useEffect(() => {
         if (productsTrendsError) {
