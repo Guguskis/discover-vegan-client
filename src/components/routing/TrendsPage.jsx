@@ -9,6 +9,8 @@ import {toast} from "react-toastify";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import {ArraysState} from "../../utils/utils.jsx";
 import ProductSearchBar from "../common/ProductSearchBar.jsx";
+import {KeyboardDatePicker} from '@material-ui/pickers';
+
 
 const TrendsPage = () => {
     const {DICTIONARY} = useDictionary();
@@ -18,6 +20,8 @@ const TrendsPage = () => {
     const [selectedProduct, setSelectedProduct] = useState();
 
     const [fromDate, setFromDate] = useState(Date.today().add({months: -1}).toFormat("YYYY-MM-DD"))
+    const [toDate, setToDate] = useState(Date.today())
+
     const [{data: productsTrendsData, loading: productsTrendsLoading, error: productsTrendsError}, executeProductsTrends] = API.useDiscoverVeganApiAxios(
         {
             url: `/api/trend/products`,
@@ -91,6 +95,36 @@ const TrendsPage = () => {
             <div className="page-body">
                 <div className="products-trends-container">
                     <ProductSearchBar handleOnProductSelect={setSelectedProduct}/>
+
+                    <div className="date-pickers-container">
+                        <KeyboardDatePicker
+                            disableToolbar
+                            variant="inline"
+                            format="yyyy/MM/dd"
+                            margin="normal"
+                            id="date-picker-inline"
+                            label={DICTIONARY.from}
+                            value={fromDate}
+                            onChange={setFromDate}
+                            KeyboardButtonProps={{
+                                'aria-label': 'change date',
+                            }}
+                        />
+                        <KeyboardDatePicker
+                            disableToolbar
+                            variant="inline"
+                            format="yyyy/MM/dd"
+                            margin="normal"
+                            id="date-picker-inline"
+                            label={DICTIONARY.to}
+                            value={toDate}
+                            onChange={setToDate}
+                            KeyboardButtonProps={{
+                                'aria-label': 'change date',
+                            }}
+                        />
+                    </div>
+
                     <div className="container-headers">
                         <div className="product-name-column">{DICTIONARY.productName}</div>
                         <div className="search-count-column">{DICTIONARY.searchCount}</div>
