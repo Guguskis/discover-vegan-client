@@ -60,7 +60,7 @@ const ProductDetailsForm = (props) => {
     useEffect(() => {
         if (!priceTrendsLoading && priceTrendsData) {
             const todayPriceTrend = {
-                dateTime: Date.today(),
+                dateTime: Date.UTCtoday(),
                 price: priceTrendsData[priceTrendsData.length - 1].price
             }
 
@@ -129,7 +129,7 @@ const ProductDetailsForm = (props) => {
                                 <CartesianGrid strokeDasharray="3 3"/>
                                 <YAxis stroke="#ffffff"/>
                                 <XAxis dataKey="dateTime" stroke="#ffffff" angle={-45} tickFormatter={formatXAxisTick}/>
-                                <Tooltip/>
+                                <Tooltip wrapperClassName="tooltip-container"/>
                                 <Legend/>
                                 <Line type="monotone" dataKey="price" name={`${DICTIONARY.price} €`} stroke="#000000"
                                       activeDot={{r: 8}} strokeWidth={3}/>
@@ -150,10 +150,9 @@ const ProductDetailsForm = (props) => {
                                     bottom: 5,
                                 }}
                             >
-                                <CartesianGrid strokeDasharray="3 3"/>
                                 <XAxis dataKey="name" stroke="#ffffff"/>
                                 <YAxis stroke="#ffffff"/>
-                                <Tooltip/>
+                                <Tooltip wrapperClassName="tooltip-container"/>
                                 <Legend/>
                                 <Bar dataKey="RECOMMENDED" name={DICTIONARY.recommended} stackId="a" fill="#38ec38"/>
                                 <Bar dataKey="NOT_RECOMMENDED" name={DICTIONARY.notRecommended} stackId="a"
