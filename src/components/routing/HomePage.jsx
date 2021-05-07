@@ -56,7 +56,7 @@ function HomePage() {
             longitude: vendor.longitude,
             latitude: vendor.latitude,
             zoom: 15,
-            transitionDuration: 1000,
+            transitionDuration: 2000,
             transitionInterpolator: new FlyToInterpolator(),
             transitionEasing: easeCubic,
         });
