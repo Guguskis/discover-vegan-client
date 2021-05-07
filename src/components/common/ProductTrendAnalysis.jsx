@@ -17,7 +17,7 @@ const ProductTrendAnalysis = (props) => {
 
     const [{data: productSearchRequestsData, loading: productSearchRequestsLoading, error: productSearchRequestsError}, executeProductSearchRequests] = API.useDiscoverVeganApiAxios(
         {
-            url: `/api/trend/${product?.productId}/search`,
+            url: `/api/trend/product/${product?.productId}/search`,
             method: 'GET',
             params: {
                 fromDate: fromDate.toFormat("YYYY-MM-DD"),
