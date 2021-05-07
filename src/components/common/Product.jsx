@@ -4,11 +4,11 @@ import {useDictionary} from "../../config/dictionary.jsx";
 
 
 const Product = (props) => {
-    const {product} = props;
+    const {product, onClick} = props;
     const {DICTIONARY} = useDictionary();
 
     return (
-        <div className="product-container" key={product.productId}>
+        <div className="product-container" key={product.productId} onClick={onClick}>
             <img src={product.imageUrl} alt={DICTIONARY.productImage}/>
             <div className='details'>
                 <p className='name'>{product.name}</p>

@@ -49,6 +49,20 @@ const VendorPopup = (props) => {
         setAddProductFormOpen(false);
     }
 
+    const onCLickHandleProduct = (product) => {
+
+    }
+
+    const ClickableProduct = (product) => {
+
+        return (
+            <div className="click-wrap"
+                 onClick={() => onClickHandleAddProduct(product)}>
+                <Product key={product.productId} product={product}/>
+            </div>
+        )
+    }
+
     return (
         <Popup
             tipSize={15}
@@ -69,7 +83,7 @@ const VendorPopup = (props) => {
             </div>
             <div className={`products-container ${products.length === 0 ? "empty" : ""}`}>{
                 products.length > 0 ?
-                    products.map(product => <Product key={product.productId} product={product}/>)
+                    products.map(ClickableProduct)
                     :
                     <div>{DICTIONARY.listIsEmpty}</div>
             }

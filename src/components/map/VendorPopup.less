@@ -26,6 +26,15 @@
     justify-content: center;
     align-items: center;
     min-height: 5ch;
+
+    .click-wrap {
+      display: flex;
+      width: 100%;
+
+      &:hover {
+        background-color: darken(@secondary-color, 5%);
+      }
+    }
   }
 
   .products-container.empty {
