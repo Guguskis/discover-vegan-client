@@ -86,8 +86,7 @@ const EditProductForm = (props) => {
                                    name="producer"
                                    disabled={formType === "UPDATE" || formType === "ADD"}
                                    value={product.producer}
-                                   onChange={onChangeUpdateProduct}
-                                   required={true}/>
+                                   onChange={onChangeUpdateProduct}/>
                         <TextField id="filled-start-adornment"
                                    className="input-field"
                                    label={DICTIONARY.price}
