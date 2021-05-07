@@ -110,7 +110,7 @@ const ProductDetailsForm = (props) => {
         return (
             <div className="price-tooltip">
                 <div>{data.dateTime.toFormat("YYYY-MM-DD")}</div>
-                <div>Price {data.price.toFixed(2)}€</div>
+                <div>{`${DICTIONARY.price} ${data.price.toFixed(2)}€`}</div>
             </div>
         )
     }
