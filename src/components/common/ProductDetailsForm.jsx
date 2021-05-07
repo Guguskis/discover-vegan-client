@@ -113,7 +113,7 @@ const ProductDetailsForm = (props) => {
                 </div>
                 <div className="charts-container">
                     <div className="price-details-container">
-                        <div className="title">{`${DICTIONARY.priceChange} ${product.name}`}</div>
+                        <div className="title">{`${DICTIONARY.priceChange}`}</div>
                         <ResponsiveContainer width="100%" height="100%">
                             <LineChart
                                 width={400}
@@ -137,6 +137,7 @@ const ProductDetailsForm = (props) => {
                         </ResponsiveContainer>
                     </div>
                     <div className="reviews-details-container">
+                        <div className="title">{`${DICTIONARY.reviews}`}</div>
                         <ResponsiveContainer width="100%" height="100%">
                             <BarChart
                                 width={500}

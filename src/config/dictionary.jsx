@@ -58,6 +58,7 @@ const DEFAULT_DICTIONARY = new LocalizedStrings({
         notRecommended: "Not recommended",
         cantFind: "Can't find",
         notVegan: "Not vegan",
+        reviews: "Reviews",
     },
     lt: {
         map: "Žemėlapis",
@@ -115,6 +116,7 @@ const DEFAULT_DICTIONARY = new LocalizedStrings({
         notRecommended: "Nerekomenduoja",
         cantFind: "Neberanda",
         notVegan: "Neveganiška",
+        reviews: "Įvertinimai",
     }
 });
 
