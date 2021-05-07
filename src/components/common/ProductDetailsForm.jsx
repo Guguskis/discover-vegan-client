@@ -140,7 +140,7 @@ const ProductDetailsForm = (props) => {
                         <div className="title">{`${DICTIONARY.reviews}`}</div>
                         <ResponsiveContainer width="100%" height="100%">
                             <BarChart
-                                width={500}
+                                width={400}
                                 height={300}
                                 data={reviewTrends}
                                 margin={{
