@@ -35,7 +35,17 @@ const ProductTrendAnalysis = (props) => {
 
     useEffect(() => {
         if (!productSearchRequestsLoading && productSearchRequestsData) {
-            setSearchRequests(productSearchRequestsData)
+
+            console.log(productSearchRequestsData)
+
+            const parsedProductSearchRequests = productSearchRequestsData.map(searchRequests => {
+                return {
+                    dateTime: new Date(searchRequests.dateTime),
+                    count: searchRequests.count
+                }
+            })
+
+            setSearchRequests(parsedProductSearchRequests)
         }
     }, [productSearchRequestsLoading])
 
@@ -51,17 +61,32 @@ const ProductTrendAnalysis = (props) => {
         )
     }
 
-    const formatXAxisTick = (dateString) => {
+    const formatDateTime = (dateTime) => {
         const daysBetween = fromDate.getDaysBetween(toDate);
 
-        const date = new Date(dateString);
         if (daysBetween >= 30) {
-            return date.toFormat("YYYY-MM-DD")
+            return dateTime.toFormat("YYYY-MM-DD")
         } else if (daysBetween >= 2) {
-            return date.toFormat("MM-DD")
+            return dateTime.toFormat("MM-DD")
         } else {
-            return date.toFormat("DD HH24") + "h"
+            return dateTime.toFormat("DD HH24") + "h"
         }
+    }
+
+    const PriceTooltip = ({payload}) => {
+
+        if (payload.length === 0) {
+            return null;
+        }
+
+        const data = payload[0].payload;
+
+        return (
+            <div className="tooltip-container">
+                <div>{data.dateTime.toFormat("YYYY-MM-DD HH24:MM")}</div>
+                <div>{`${DICTIONARY.searchCount} ${data.count}`}</div>
+            </div>
+        )
     }
 
     return (
@@ -80,9 +105,9 @@ const ProductTrendAnalysis = (props) => {
                     }}
                 >
                     <CartesianGrid strokeDasharray="3 3"/>
-                    <XAxis dataKey="dateTime" stroke="#ffffff" angle={-45} tickFormatter={formatXAxisTick}/>
+                    <XAxis dataKey="dateTime" stroke="#ffffff" angle={-45} tickFormatter={formatDateTime}/>
                     <YAxis stroke="#ffffff"/>
-                    <Tooltip/>
+                    <Tooltip content={<PriceTooltip/>}/>
                     <Legend/>
                     <Line type="monotone" dataKey="count" name={DICTIONARY.searchCount} stroke="#ffffff"
                           activeDot={{r: 8}} strokeWidth={3}/>
