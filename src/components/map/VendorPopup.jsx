@@ -11,6 +11,7 @@ import {useDictionary} from "../../config/dictionary.jsx";
 import {API} from "../../config/axiosConfig.jsx";
 import {useStore} from "react-context-hook";
 import {useHistory} from "react-router-dom";
+import ProductDetailsForm from "../common/ProductDetailsForm.jsx";
 
 const VendorPopup = (props) => {
     const {vendor, setSelectedVendor} = props;
@@ -29,6 +30,8 @@ const VendorPopup = (props) => {
 
     const [addProductFormOpen, setAddProductFormOpen] = useState(false);
     const [products, setProducts] = useState([]);
+    const [productDetailsFormOpen, setProductDetailsFormOpen] = useState(false);
+    const [selectedProduct, setSelectedProduct] = useState()
 
     useEffect(() => {
         if (productsData) {
@@ -43,21 +46,28 @@ const VendorPopup = (props) => {
         } else {
             setAddProductFormOpen(true);
         }
-
     }
+
     const onClickHandleAddProductClose = () => {
         setAddProductFormOpen(false);
     }
 
-    const onCLickHandleProduct = (product) => {
+    const onClickHandleProductDetailsClose = () => {
+        setProductDetailsFormOpen(false);
+        setSelectedProduct(null)
+    }
 
+    const onCLickHandleProductDetails = (product) => {
+        setProductDetailsFormOpen(true)
+        setSelectedProduct(product)
     }
 
     const ClickableProduct = (product) => {
 
         return (
             <div className="click-wrap"
-                 onClick={() => onClickHandleAddProduct(product)}>
+                 onClick={() => onCLickHandleProductDetails(product)}
+                 key={product.productId}>
                 <Product key={product.productId} product={product}/>
             </div>
         )
@@ -102,6 +112,16 @@ const VendorPopup = (props) => {
                                            setProducts={setProducts}
                                            vendor={vendor}
                                            handleOnClose={onClickHandleAddProductClose}/></div>
+            </Modal>
+            <Modal
+                open={productDetailsFormOpen}
+                onClose={onClickHandleProductDetailsClose}
+                className="modal-container"
+            >
+                <div><ProductDetailsForm
+                    product={selectedProduct}
+                    onClose={onClickHandleProductDetailsClose}
+                /></div>
             </Modal>
         </Popup>
     );
