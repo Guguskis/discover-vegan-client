@@ -64,7 +64,14 @@ const ProductDetailsForm = (props) => {
                 price: priceTrendsData[priceTrendsData.length - 1].price
             }
 
-            setPriceTrends(priceTrendsData.concat(todayPriceTrend));
+            const parsedPriceTrends = priceTrendsData.map(priceTrend => {
+                return {
+                    dateTime: new Date(priceTrend.dateTime),
+                    price: priceTrend.price
+                }
+            })
+
+            setPriceTrends(parsedPriceTrends.concat(todayPriceTrend));
         }
     }, [priceTrendsLoading])
 
@@ -84,18 +91,28 @@ const ProductDetailsForm = (props) => {
                 return flattenedReviewTrend;
             })
 
-            console.log(flattenedReviewTrends)
-
             setReviewTrends(flattenedReviewTrends)
         }
     }, [reviewTrendsLoading])
 
-    useEffect(() => {
-        console.log(priceTrends)
-    }, [priceTrends])
-
     const formatXAxisTick = (dateString) => {
         return "";
+    }
+
+    const PriceTooltip = ({payload}) => {
+
+        if (payload.length === 0) {
+            return null;
+        }
+
+        const data = payload[0].payload;
+
+        return (
+            <div className="price-tooltip">
+                <div>{data.dateTime.toFormat("YYYY-MM-DD")}</div>
+                <div>Price {data.price.toFixed(2)}€</div>
+            </div>
+        )
     }
 
     return (
@@ -129,9 +146,9 @@ const ProductDetailsForm = (props) => {
                                 <CartesianGrid strokeDasharray="3 3"/>
                                 <YAxis stroke="#ffffff"/>
                                 <XAxis dataKey="dateTime" stroke="#ffffff" angle={-45} tickFormatter={formatXAxisTick}/>
-                                <Tooltip/>
+                                <Tooltip content={<PriceTooltip/>}/>
                                 <Legend/>
-                                <Line type="monotone" dataKey="price" name={`${DICTIONARY.price} €`} stroke="#000000"
+                                <Line type="monotone" dataKey="price" name={`${DICTIONARY.price} €`} stroke="#ffffff"
                                       activeDot={{r: 8}} strokeWidth={3}/>
                             </LineChart>
                         </ResponsiveContainer>

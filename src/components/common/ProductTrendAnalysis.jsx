@@ -84,7 +84,7 @@ const ProductTrendAnalysis = (props) => {
                     <YAxis stroke="#ffffff"/>
                     <Tooltip/>
                     <Legend/>
-                    <Line type="monotone" dataKey="count" name={DICTIONARY.searchCount} stroke="#000000"
+                    <Line type="monotone" dataKey="count" name={DICTIONARY.searchCount} stroke="#ffffff"
                           activeDot={{r: 8}} strokeWidth={3}/>
                 </LineChart>
             </ResponsiveContainer>
