@@ -129,7 +129,7 @@ const ProductDetailsForm = (props) => {
                                 <CartesianGrid strokeDasharray="3 3"/>
                                 <YAxis stroke="#ffffff"/>
                                 <XAxis dataKey="dateTime" stroke="#ffffff" angle={-45} tickFormatter={formatXAxisTick}/>
-                                <Tooltip wrapperClassName="tooltip-container"/>
+                                <Tooltip/>
                                 <Legend/>
                                 <Line type="monotone" dataKey="price" name={`${DICTIONARY.price} €`} stroke="#000000"
                                       activeDot={{r: 8}} strokeWidth={3}/>
@@ -152,7 +152,7 @@ const ProductDetailsForm = (props) => {
                             >
                                 <XAxis dataKey="name" stroke="#ffffff"/>
                                 <YAxis stroke="#ffffff"/>
-                                <Tooltip wrapperClassName="tooltip-container"/>
+                                <Tooltip/>
                                 <Legend/>
                                 <Bar dataKey="RECOMMENDED" name={DICTIONARY.recommended} stackId="a" fill="#38ec38"/>
                                 <Bar dataKey="NOT_RECOMMENDED" name={DICTIONARY.notRecommended} stackId="a"
