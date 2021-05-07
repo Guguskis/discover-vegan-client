@@ -63,12 +63,6 @@ const TrendsPage = () => {
         }
     }, [productsTrendsLoading])
 
-    useEffect(() => {
-        if (selectedProduct) {
-            console.log(selectedProduct)
-        }
-    }, [selectedProduct])
-
     const ProductsTrendRow = (productsTrend) => {
         const product = productsTrend.product;
         const searchCount = productsTrend.searchCount;

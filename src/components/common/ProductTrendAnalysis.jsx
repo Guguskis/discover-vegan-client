@@ -36,8 +36,6 @@ const ProductTrendAnalysis = (props) => {
     useEffect(() => {
         if (!productSearchRequestsLoading && productSearchRequestsData) {
 
-            console.log(productSearchRequestsData)
-
             const parsedProductSearchRequests = productSearchRequestsData.map(searchRequests => {
                 return {
                     dateTime: new Date(searchRequests.dateTime),
