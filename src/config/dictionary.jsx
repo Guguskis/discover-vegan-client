@@ -50,7 +50,8 @@ const DEFAULT_DICTIONARY = new LocalizedStrings({
         from: "From",
         to: "To",
         selectProduct: "Select product",
-        interestInProduct: "Interest in product"
+        interestInProduct: "Interest in product",
+        productDetails: "Product details"
     },
     lt: {
         map: "Žemėlapis",
@@ -101,6 +102,7 @@ const DEFAULT_DICTIONARY = new LocalizedStrings({
         to: "Iki",
         selectProduct: "Pasirinkite produktą",
         interestInProduct: "Susidomėjimas produktu",
+        productDetails: "Produkto informacija",
     }
 });
 
