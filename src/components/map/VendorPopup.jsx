@@ -120,6 +120,7 @@ const VendorPopup = (props) => {
             >
                 <div><ProductDetailsForm
                     product={selectedProduct}
+                    vendor={vendor}
                     onClose={onClickHandleProductDetailsClose}
                 /></div>
             </Modal>
