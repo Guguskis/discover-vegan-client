@@ -23,7 +23,7 @@ const ProductDetailsForm = (props) => {
 
     const {DICTIONARY} = useDictionary();
 
-    const [fromDate, setFromDate] = useState(Date.today().add({days: -5}))
+    const [fromDate, setFromDate] = useState(Date.today().add({months: -3}))
     const [toDate, setToDate] = useState(Date.today())
 
     const [priceTrends, setPriceTrends] = useState([]);
@@ -81,7 +81,7 @@ const ProductDetailsForm = (props) => {
             const flattenedReviewTrends = reviewTrendsData.map(reviewTrend => {
 
                 const flattenedReviewTrend = {
-                    dateTime: reviewTrend.dateTime
+                    dateTime: new Date(reviewTrend.dateTime)
                 }
 
                 for (const [reviewType, count] of Object.entries(reviewTrend.counts)) {
@@ -108,9 +108,28 @@ const ProductDetailsForm = (props) => {
         const data = payload[0].payload;
 
         return (
-            <div className="price-tooltip">
+            <div className="price-tooltip tooltip-container">
                 <div>{data.dateTime.toFormat("YYYY-MM-DD")}</div>
                 <div>{`${DICTIONARY.price} ${data.price.toFixed(2)}€`}</div>
+            </div>
+        )
+    }
+
+    const ReviewTooltip = ({payload}) => {
+
+        if (payload.length === 0) {
+            return null;
+        }
+
+        const reviewTrend = payload[0].payload;
+
+        return (
+            <div className="review-tooltip tooltip-container">
+                <div className="date">{reviewTrend.dateTime.toFormat("YYYY-MM-DD")}</div>
+                <div className="recommended">{`${DICTIONARY.recommended} ${reviewTrend.RECOMMENDED}`}</div>
+                <div className="not-recommended">{`${DICTIONARY.notRecommended} ${reviewTrend.NOT_RECOMMENDED}`}</div>
+                <div className="cant-find">{`${DICTIONARY.cantFind} ${reviewTrend.CANT_FIND}`}</div>
+                <div className="not-vegan">{`${DICTIONARY.notVegan} ${reviewTrend.NOT_VEGAN}`}</div>
             </div>
         )
     }
@@ -169,7 +188,7 @@ const ProductDetailsForm = (props) => {
                             >
                                 <XAxis dataKey="name" stroke="#ffffff"/>
                                 <YAxis stroke="#ffffff"/>
-                                <Tooltip/>
+                                <Tooltip content={<ReviewTooltip/>}/>
                                 <Legend/>
                                 <Bar dataKey="RECOMMENDED" name={DICTIONARY.recommended} stackId="a" fill="#38ec38"/>
                                 <Bar dataKey="NOT_RECOMMENDED" name={DICTIONARY.notRecommended} stackId="a"

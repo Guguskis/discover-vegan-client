@@ -55,12 +55,39 @@
       font-size: @font-size-medium;
     }
 
+    .tooltip-container {
+      border: 1px solid @ternary-color;
+      background-color: @secondary-color;
+      padding: 1ch;
+    }
+
     .price-details-container {
       .price-tooltip {
-        border: 1px solid @ternary-color;
-        background-color: @secondary-color;
-        padding: 1ch;
         color: @font-color;
+      }
+    }
+
+    .reviews-details-container {
+      .review-tooltip {
+        .date {
+          color: @font-color
+        }
+
+        .recommended {
+          color: #38ec38;
+        }
+
+        .not-recommended {
+          color: #ffa500;
+        }
+
+        .cant-find {
+          color: #e5e5e5;
+        }
+
+        .not-vegan {
+          color: #91060e;
+        }
       }
     }
 
