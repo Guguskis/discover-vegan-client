@@ -7,12 +7,15 @@
   .product-details-container {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
 
-    .left-section {
+    margin-bottom: 2ch;
+
+    .product-information {
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      flex-grow: 1;
+
       margin-left: 2ch;
 
       .text {
@@ -29,17 +32,10 @@
       }
     }
 
-    .right-section {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-grow: 2;
-
-      img {
-        max-height: 256px;
-        max-width: 256px;
-        object-fit: contain;
-      }
+    img {
+      max-height: 256px;
+      max-width: 256px;
+      object-fit: contain;
     }
   }
 
@@ -52,7 +48,7 @@
 
     .title {
       color: @font-color;
-      font-size: @font-size-medium;
+      font-size: @font-size-large;
     }
 
     .tooltip-container {

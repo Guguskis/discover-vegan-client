@@ -138,13 +138,11 @@ const ProductDetailsForm = (props) => {
         <FormContainer handleOnClose={onClose} title={DICTIONARY.productDetails}>
             <div className="product-details-form-container">
                 <div className="product-details-container">
-                    <div className="left-section">
+                    <img src={product.imageUrl} alt={DICTIONARY.productPhoto}/>
+                    <div className="product-information">
                         <div className="text big">{product.name}</div>
                         <div className="text small">{product.producer}</div>
                         <div className="text">{product.price}€</div>
-                    </div>
-                    <div className="right-section">
-                        <img src={product.imageUrl} alt={DICTIONARY.productPhoto}/>
                     </div>
                 </div>
                 <div className="charts-container">
@@ -155,12 +153,12 @@ const ProductDetailsForm = (props) => {
                                 width={400}
                                 height={300}
                                 data={priceTrends}
-                                margin={{
-                                    top: 5,
-                                    right: 30,
-                                    left: 20,
-                                    bottom: 5,
-                                }}
+                                // margin={{
+                                //     top: 5,
+                                //     right: 30,
+                                //     left: 20,
+                                //     bottom: 5,
+                                // }}
                             >
                                 <CartesianGrid strokeDasharray="3 3"/>
                                 <YAxis stroke="#ffffff"/>
@@ -179,12 +177,12 @@ const ProductDetailsForm = (props) => {
                                 width={400}
                                 height={300}
                                 data={reviewTrends}
-                                margin={{
-                                    top: 20,
-                                    right: 30,
-                                    left: 20,
-                                    bottom: 5,
-                                }}
+                                // margin={{
+                                //     top: 20,
+                                //     right: 30,
+                                //     left: 20,
+                                //     bottom: 5,
+                                // }}
                             >
                                 <XAxis dataKey="name" stroke="#ffffff"/>
                                 <YAxis stroke="#ffffff"/>
