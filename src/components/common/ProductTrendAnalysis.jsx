@@ -66,6 +66,7 @@ const ProductTrendAnalysis = (props) => {
 
     return (
         <div className="product-trend-analysis">
+            <div className="title">{`${DICTIONARY.interestInProduct} ${product.name}`}</div>
             <ResponsiveContainer width="100%" height="100%">
                 <LineChart
                     width={500}
