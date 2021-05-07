@@ -26,9 +26,12 @@ const useOnDragUpdateVendors = (viewport, selectedVendor) => {
     }
 
     const fetchVendors = () => {
-        if (!canFetchData())
-            return;
+        if (canFetchData()) {
+            forceFetchVendors();
+        }
+    }
 
+    const forceFetchVendors = () => {
         executeVendor(
             {
                 ...vendorData,
