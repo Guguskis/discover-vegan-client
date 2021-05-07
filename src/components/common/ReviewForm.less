@@ -1,0 +1,27 @@
+@import "../common";
+
+.review-product-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  flex-direction: column;
+
+  .MuiFormControl-root {
+    margin-bottom: 15ch;
+
+    .MuiFormLabel-root {
+      color: @font-color;
+    }
+
+    .MuiInputBase-root {
+      color: @font-color;
+    }
+
+    .MuiNativeSelect-select {
+      option {
+        background-color: @secondary-color;
+      }
+    }
+  }
+}

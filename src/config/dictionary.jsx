@@ -59,7 +59,10 @@ const DEFAULT_DICTIONARY = new LocalizedStrings({
         cantFind: "Can't find",
         notVegan: "Not vegan",
         reviews: "Reviews",
-        reviewProduct: "Review product"
+        reviewProduct: "Review product",
+        review: "Review",
+        youMustBeLoggedIn: "You must be logged in",
+        selectReview: "Select review",
     },
     lt: {
         map: "Žemėlapis",
@@ -74,7 +77,7 @@ const DEFAULT_DICTIONARY = new LocalizedStrings({
         product: "Produktas",
         productName: "Produkto pavadinimas",
         viewAll: "Peržiūrėti visus",
-        submit: "Skelbti",
+        submit: "Pateikti",
         name: "Pavadinimas",
         producer: "Gamintojas",
         price: "Kaina",
@@ -118,7 +121,10 @@ const DEFAULT_DICTIONARY = new LocalizedStrings({
         cantFind: "Neberanda",
         notVegan: "Neveganiška",
         reviews: "Įvertinimai",
-        reviewProduct: "Įvertinti produktą"
+        reviewProduct: "Įvertinti produktą",
+        review: "Įvertinimas",
+        youMustBeLoggedIn: "Jūs turite būti prisijungęs",
+        selectReview: "Pasirinkite įvertinimą",
     }
 });
 

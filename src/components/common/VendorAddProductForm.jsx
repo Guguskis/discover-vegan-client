@@ -58,14 +58,6 @@ const VendorAddProductForm = (props) => {
         {manual: true}
     )
 
-    const [{data: reviewProductData, loading: reviewProductLoading, error: reviewProductError}, executeReviewProduct] = API.useDiscoverVeganApiAxios(
-        {
-            url: `/api/review`,
-            method: 'POST'
-        },
-        {manual: true}
-    )
-
     const handleOnProductSelect = async (product) => {
         if (products.find(productInArray => productInArray.productId === product.productId)) {
             toast.error("This product already added", {
@@ -137,8 +129,6 @@ const VendorAddProductForm = (props) => {
     const onClickReviewProduct = (product) => {
         setProductToReview(product)
         setReviewProductFormOpen(true)
-        // executeCreateProduct({...createProductData, data: editedProduct})
-
     }
 
     const onClickCloseReviewProduct = () => {
