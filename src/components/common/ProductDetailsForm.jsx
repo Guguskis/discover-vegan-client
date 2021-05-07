@@ -98,51 +98,6 @@ const ProductDetailsForm = (props) => {
         return "";
     }
 
-    const data = [
-        {
-            name: 'Page A',
-            uv: 4000,
-            pv: 2400,
-            amt: 2400,
-        },
-        {
-            name: 'Page B',
-            uv: 3000,
-            pv: 1398,
-            amt: 2210,
-        },
-        {
-            name: 'Page C',
-            uv: 2000,
-            pv: 9800,
-            amt: 2290,
-        },
-        {
-            name: 'Page D',
-            uv: 2780,
-            pv: 3908,
-            amt: 2000,
-        },
-        {
-            name: 'Page E',
-            uv: 1890,
-            pv: 4800,
-            amt: 2181,
-        },
-        {
-            name: 'Page F',
-            uv: 2390,
-            pv: 3800,
-            amt: 2500,
-        },
-        {
-            name: 'Page G',
-            uv: 3490,
-            pv: 4300,
-            amt: 2100,
-        },
-    ];
-
     return (
         <FormContainer handleOnClose={onClose} title={DICTIONARY.productDetails}>
             <div className="product-details-form-container">
@@ -186,7 +141,7 @@ const ProductDetailsForm = (props) => {
                             <BarChart
                                 width={500}
                                 height={300}
-                                data={data}
+                                data={reviewTrends}
                                 margin={{
                                     top: 20,
                                     right: 30,
@@ -199,8 +154,11 @@ const ProductDetailsForm = (props) => {
                                 <YAxis stroke="#ffffff"/>
                                 <Tooltip/>
                                 <Legend/>
-                                <Bar dataKey="pv" stackId="a" fill="#8884d8"/>
-                                <Bar dataKey="uv" stackId="a" fill="#82ca9d"/>
+                                <Bar dataKey="RECOMMENDED" name={DICTIONARY.recommended} stackId="a" fill="#38ec38"/>
+                                <Bar dataKey="NOT_RECOMMENDED" name={DICTIONARY.notRecommended} stackId="a"
+                                     fill="#ffa500"/>
+                                <Bar dataKey="CANT_FIND" name={DICTIONARY.cantFind} stackId="a" fill="#e5e5e5"/>
+                                <Bar dataKey="NOT_VEGAN" name={DICTIONARY.notVegan} stackId="a" fill="#91060e"/>
                             </BarChart>
                         </ResponsiveContainer>
                     </div>
