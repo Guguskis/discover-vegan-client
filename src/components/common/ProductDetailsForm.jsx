@@ -23,7 +23,11 @@ const ProductDetailsForm = (props) => {
 
     const {DICTIONARY} = useDictionary();
 
+    const [fromDate, setFromDate] = useState(Date.today().add({days: -5}))
+    const [toDate, setToDate] = useState(Date.today())
+
     const [priceTrends, setPriceTrends] = useState([]);
+    const [reviewTrends, setReviewTrends] = useState([]);
 
     const [{data: priceTrendsData, loading: priceTrendsLoading, error: priceTrendsError}, executePriceTrends] = API.useDiscoverVeganApiAxios(
         {
@@ -33,9 +37,23 @@ const ProductDetailsForm = (props) => {
         {manual: true}
     )
 
+    const [{data: reviewTrendsData, loading: reviewTrendsLoading, error: reviewTrendsError}, executeReviewTrends] = API.useDiscoverVeganApiAxios(
+        {
+            url: `/api/trend/vendor/${vendor?.vendorId}/product/${product?.productId}/review`,
+            method: 'GET',
+            params: {
+                fromDate: fromDate.toFormat("YYYY-MM-DD"),
+                toDate: toDate.toFormat("YYYY-MM-DD"),
+                stepCount: 20
+            }
+        },
+        {manual: true}
+    )
+
     useEffect(() => {
         if (product) {
             executePriceTrends()
+            executeReviewTrends()
         }
     }, [product])
 
@@ -49,6 +67,28 @@ const ProductDetailsForm = (props) => {
             setPriceTrends(priceTrendsData.concat(todayPriceTrend));
         }
     }, [priceTrendsLoading])
+
+    useEffect(() => {
+        if (!reviewTrendsLoading && reviewTrendsData) {
+
+            const flattenedReviewTrends = reviewTrendsData.map(reviewTrend => {
+
+                const flattenedReviewTrend = {
+                    dateTime: reviewTrend.dateTime
+                }
+
+                for (const [reviewType, count] of Object.entries(reviewTrend.counts)) {
+                    flattenedReviewTrend[reviewType] = count;
+                }
+
+                return flattenedReviewTrend;
+            })
+
+            console.log(flattenedReviewTrends)
+
+            setReviewTrends(flattenedReviewTrends)
+        }
+    }, [reviewTrendsLoading])
 
     useEffect(() => {
         console.log(priceTrends)
