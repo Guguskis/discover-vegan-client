@@ -39,7 +39,7 @@ const useOnDragUpdateVendors = (viewport, selectedVendor) => {
 
     useEffect(() => {
         fetchVendors();
-    }, [])
+    }, [viewport])
 
     useEffect(() => {
         if (vendorData) {
