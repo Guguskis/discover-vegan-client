@@ -53,7 +53,7 @@ const DEFAULT_DICTIONARY = new LocalizedStrings({
         interestInProduct: "Interest in product",
         productDetails: "Product details",
         productPhoto: "Product photo",
-        priceChange: "Price change for",
+        priceChange: "Price change",
         recommended: "Recommended",
         notRecommended: "Not recommended",
         cantFind: "Can't find",
