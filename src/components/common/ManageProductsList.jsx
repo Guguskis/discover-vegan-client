@@ -9,10 +9,10 @@ import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import LocalGroceryStoreIcon from '@material-ui/icons/LocalGroceryStore';
 import EditIcon from '@material-ui/icons/Edit';
 import IconButton from "@material-ui/core/IconButton";
-import DeleteIcon from '@material-ui/icons/Delete';
+import ReportIcon from '@material-ui/icons/Report';
 
 const ManageProductsList = (props) => {
-    const {products, onClickHandleEdit, onClickHandleDelete} = props;
+    const {products, onClickHandleEdit, onClickHandleReview} = props;
 
     return (
         <List dense={false} className="manage-products-container">
@@ -31,8 +31,8 @@ const ManageProductsList = (props) => {
                         <IconButton onClick={() => onClickHandleEdit(product, "UPDATE")} edge="end" aria-label="edit">
                             <EditIcon/>
                         </IconButton>
-                        <IconButton onClick={() => onClickHandleDelete(product)} edge="end" aria-label="delete">
-                            <DeleteIcon/>
+                        <IconButton onClick={() => onClickHandleReview(product)} edge="end" aria-label="delete">
+                            <ReportIcon/>
                         </IconButton>
                     </ListItemSecondaryAction>
                 </ListItem>, {

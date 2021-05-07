@@ -12,6 +12,7 @@ import {toast} from "react-toastify";
 import Button from "./Button.jsx";
 import {useDictionary} from "../../config/dictionary.jsx";
 import {API} from "../../config/axiosConfig.jsx";
+import ReviewForm from "./ReviewForm.jsx";
 
 
 const VendorAddProductForm = (props) => {
@@ -21,6 +22,9 @@ const VendorAddProductForm = (props) => {
     const [editProductFormOpen, setEditProductFormOpen] = useState(false);
     const [formType, setFormType] = useState("")
     const [productToEdit, setProductToEdit] = useState();
+
+    const [reviewProductFormOpen, setReviewProductFormOpen] = useState(false);
+    const [productToReview, setProductToReview] = useState();
 
     const [{data: fileUploadData, loading: fileUploadLoading, error: fileUploadError}, executeFileUpload] = API.useFileServiceAxios(
         {
@@ -37,6 +41,7 @@ const VendorAddProductForm = (props) => {
         },
         {manual: true}
     )
+
     const [{data: addProductToVendorData, loading: addProductToVendorLoading, error: addProductToVendorError}, executeAddProductToVendor] = API.useDiscoverVeganApiAxios(
         {
             url: `/api/vendor/${vendor.vendorId}/product`,
@@ -49,6 +54,14 @@ const VendorAddProductForm = (props) => {
         {
             url: ``,
             method: 'PATCH'
+        },
+        {manual: true}
+    )
+
+    const [{data: reviewProductData, loading: reviewProductLoading, error: reviewProductError}, executeReviewProduct] = API.useDiscoverVeganApiAxios(
+        {
+            url: `/api/review`,
+            method: 'POST'
         },
         {manual: true}
     )
@@ -121,9 +134,16 @@ const VendorAddProductForm = (props) => {
         setProductToEdit(null)
     }
 
-    const onClickDeleteProduct = (product) => {
-        // todo add confirmation prompt
-        ArraysState.remove(setProducts, product);
+    const onClickReviewProduct = (product) => {
+        setProductToReview(product)
+        setReviewProductFormOpen(true)
+        // executeCreateProduct({...createProductData, data: editedProduct})
+
+    }
+
+    const onClickCloseReviewProduct = () => {
+        setProductToReview(null)
+        setReviewProductFormOpen(false)
     }
 
     const ProductInputs = () => (
@@ -145,7 +165,7 @@ const VendorAddProductForm = (props) => {
                 <ProductInputs/>
                 <ManageProductsList products={products}
                                     onClickHandleEdit={editProduct}
-                                    onClickHandleDelete={onClickDeleteProduct}/>
+                                    onClickHandleReview={onClickReviewProduct}/>
                 <Button text={DICTIONARY.done}
                         onClick={handleOnClose}/>
 
@@ -162,6 +182,19 @@ const VendorAddProductForm = (props) => {
                                          loading={isLoading()}/>
                     </div>
                 </Modal>
+
+                <Modal
+                    open={reviewProductFormOpen}
+                    onClose={onClickCloseReviewProduct}
+                    className="modal-container"
+                >
+                    <div><ReviewForm handleOnClose={onClickCloseReviewProduct}
+                                     product={productToReview}
+                                     vendor={vendor}/>
+                    </div>
+                </Modal>
+
+
             </div>
         </FormContainer>
     );
