@@ -14,7 +14,9 @@ const LanguageDropdown = () => {
     const [open, setOpen] = useState(false);
 
     const handleChange = (event) => {
-        setLanguage(event.target.value);
+        const language = event.target.value;
+        localStorage.setItem("language", language)
+        setLanguage(language);
     };
 
     useEffect(() => {
@@ -22,6 +24,12 @@ const LanguageDropdown = () => {
         setForceRerender({})
     }, [language])
 
+    useEffect(() => {
+        const storedLanguage = localStorage.getItem("language")
+        if (storedLanguage) {
+            setLanguage(storedLanguage)
+        }
+    }, [])
 
     const handleClose = () => {
         setOpen(false);
