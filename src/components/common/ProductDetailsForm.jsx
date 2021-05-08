@@ -117,6 +117,10 @@ const ProductDetailsForm = (props) => {
 
     const ReviewTooltip = ({payload}) => {
 
+        if (!payload) {
+            return null
+        }
+
         if (payload.length === 0) {
             return null;
         }
