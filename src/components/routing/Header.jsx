@@ -22,8 +22,6 @@ function Header() {
                          activeClassName="active">{DICTIONARY.map}</NavLink>
                 <NavLink to='/trends' className="routing-item"
                          activeClassName="active">{DICTIONARY.trends}</NavLink>
-                <NavLink to='/wishlist' className="routing-item"
-                         activeClassName="active">{DICTIONARY.wishList}</NavLink>
             </div>
             <div className='user-container'>
                 {userLoggedIn ?
