@@ -16,9 +16,12 @@ const onRejected = (error) => Promise.reject(error);
 
 const ROOT_HOST = "http://localhost";
 const HOST = {
-    FILE_SERVICE: ROOT_HOST + ":8081",
-    DISCOVER_VEGAN_API: ROOT_HOST + ":8080",
-    AUTHENTICATION_SERVICE: ROOT_HOST + ":8082"
+    FILE_SERVICE: "http://file.discovervegan.lt",
+    DISCOVER_VEGAN_API: "http://search.discovervegan.lt",
+    AUTHENTICATION_SERVICE: "http://auth.discovervegan.lt"
+    // FILE_SERVICE: ROOT_HOST + ":8081",
+    // DISCOVER_VEGAN_API: ROOT_HOST + ":8080",
+    // AUTHENTICATION_SERVICE: ROOT_HOST + ":8082"
 }
 const fileServiceAxios = axios.create({baseURL: HOST.FILE_SERVICE});
 const discoverVeganApiAxios = axios.create({baseURL: HOST.DISCOVER_VEGAN_API});
