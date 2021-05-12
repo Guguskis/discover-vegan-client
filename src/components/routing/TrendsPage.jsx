@@ -23,7 +23,7 @@ const TrendsPage = () => {
     const [sortDirection, setSortDirection] = useState("DESC")
 
     const [fromDate, setFromDate] = useState(Date.today().add({months: -1}))
-    const [toDate, setToDate] = useState(Date.today())
+    const [toDate, setToDate] = useState(Date.today().add({days: 1}))
 
     const [{data: productsTrendsData, loading: productsTrendsLoading, error: productsTrendsError}, executeProductsTrends] = API.useDiscoverVeganApiAxios(
         {
