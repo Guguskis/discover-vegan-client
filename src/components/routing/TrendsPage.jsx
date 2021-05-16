@@ -63,6 +63,11 @@ const TrendsPage = () => {
         }
     }, [productsTrendsLoading])
 
+    const onClickHandleSortDirection = (direction) => {
+        setSortDirection(direction)
+        setNextPageToken(0)
+    }
+
     const ProductsTrendRow = (productsTrend) => {
         const product = productsTrend.product;
         const searchCount = productsTrend.searchCount;
@@ -126,7 +131,7 @@ const TrendsPage = () => {
                                 'aria-label': 'change date',
                             }}
                         />
-                        <SortingToggle setSortingValue={setSortDirection}/>
+                        <SortingToggle setSortingValue={onClickHandleSortDirection}/>
                     </div>
                     <div className="container-headers">
                         <div className="product-name-column">{DICTIONARY.productName}</div>
